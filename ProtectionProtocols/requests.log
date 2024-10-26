@@ -1030,3 +1030,11 @@
         Body: {"name":"Aashir Adnan","email":"aashiradnan99@gmail.com","phoneNo":"03039389670"}
         Query: {}
     
+
+        Time: 2024-10-26T20:39:30.500Z
+        Method: POST
+        URL: /api/add/user
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"95e2ce36-8e7c-46b2-a862-d99c3a3cd94b","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"107"}
+        Body: {"name":"Aashir Adnan","email":"aashiradnan99@gmail.com","phoneNo":"03039389670"}
+        Query: {}
+    

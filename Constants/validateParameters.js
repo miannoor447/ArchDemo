@@ -1,7 +1,6 @@
 const {executeQuery} = require("./queryExecution");
 const { decryptData, decryptObject } = require("./Decryption");
 const argon2 = require('argon2');
-const queries = require('../Queries/queries')
 
 
 async function isValidPassword(req, res, plaintextPassword) {
