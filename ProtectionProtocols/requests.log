@@ -1614,3 +1614,59 @@
         Body: {}
         Query: {"version":"1.0","userId":"4"}
     
+
+        Time: 2024-11-18T07:55:05.848Z
+        Method: POST
+        URL: /api/add/user
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"d3510854-6752-48a2-a7c1-657b69ad5883","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"103"}
+        Body: {"name":"Aashir Adnan","email":"aashiradnan99@gmail","phoneNo":"03039389670"}
+        Query: {}
+    
+
+        Time: 2024-11-18T07:57:53.414Z
+        Method: POST
+        URL: /api/add/user/all?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"b8bc1143-bf29-42c2-a7ae-d11b619aeb2a","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"107"}
+        Body: {"name":"Aashir Adnan","email":"aashiradnan99@gmail.com","phoneNo":"03039389670"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T07:58:01.677Z
+        Method: POST
+        URL: /api/list/user/all?version=1.0
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"9758d892-d908-41b7-9fb2-14611926e42e","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"}
+        Body: {}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T07:58:05.359Z
+        Method: POST
+        URL: /api/list/users/all?version=1.0
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"9a65e96d-5078-4c1f-8975-ee90e13ca127","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"}
+        Body: {}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T07:58:14.339Z
+        Method: GET
+        URL: /api/list/users/all?version=1.0
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"3dcaa877-6f60-4d9d-9811-5fc5e8977c78","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T08:02:43.743Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"51018d3d-0dd2-4a87-8c8a-d5e55eba9d99","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"592"}
+        Body: {"EncryptedPayload":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbmNyeXB0ZWRQYXlsb2FkIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnVZVzFsSWpvaVFXRnphR2x5SUVGa2JtRnVJaXdpWlcxaGFXd2lPaUpoWVhOb2FYSmhaRzVoYmprNVFHZHRZV2xzTG1OdmJTSXNJbkJoYzNOM2IzSmtJam9pUTI5dGNGTmphVFJsZG1WeUlpd2ljR2h2Ym1WT2J5STZJakF6TURNNU16ZzVOamN3SWl3aWFXRjBJam94TnpNeE5qTTNNekU0ZlEuVWk0MUJJQU1JekFVWkpfM2Rmc2pIVW5tTUh4a2lJRWlnVnM5Q0hjS1JTdyIsIkVuY3J5cHRpb25EZXRhaWxzIjp7InBsYXRmb3JtTmFtZSI6IlBvc3RtYW4iLCJwbGF0Zm9ybVZlcnNpb24iOiIxLjAifSwiaWF0IjoxNzMxNjM3MzM0fQ.2Bix3VWf0sBfEcwVs8uctyCHI3-rONsv3oNa99LQzGg"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T08:12:15.900Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"2c44b656-b6e8-47b3-bdf3-9bcb0bda5ea5","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"269"}
+        Body: {"EncryptedPayload":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSGFtbWFkIEthbXJhbiIsImVtYWlsIjoiYnNjZTIwMDI5QGl0dS5lZHUucGsiLCJwYXNzd29yZCI6Inh5ejEyMyIsInBob25lTm8iOiIwMzA5MDAwMDMyMyIsImlhdCI6MTczMTkxNzQyNX0.avlKmKlBq2UNTrOiHsMok18E8KhC9JQQ-G2YHCFPtpM"}
+        Query: {"version":"1.0"}
+    
