@@ -1,7 +1,6 @@
 const connectToMyProj = require('../databases/projectDb');
 const jwt = require('jsonwebtoken');
 const { executeQuery } = require('../databases/queryExecution');
-const sendResponse = require('../Constants/response');
 require('dotenv').config();
 
 // Function for handling version checking
@@ -15,7 +14,6 @@ const handleVersionChecking = async (req, res, object) => {
         httpStatusCode: 400, // Bad Request
         description: "SSC: E10 => Version Not Found"
       };
-      return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
     }
 
     version = parseFloat(version);
@@ -57,7 +55,6 @@ const handleVersionChecking = async (req, res, object) => {
         httpStatusCode: 404, // Not Found
         description: "SSC: E50 => Matching version configuration not found"
       };
-      return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
     }
 
     const { config, data, response } = selectedVersion;
@@ -74,7 +71,6 @@ const handleVersionChecking = async (req, res, object) => {
       httpStatusCode: 500, // Internal Server Error
       description: `SSC: E24 => ${error.message || error.toString()}`
     };
-    return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
   }
 };
 

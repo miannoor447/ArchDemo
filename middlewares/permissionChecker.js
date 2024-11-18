@@ -1,6 +1,5 @@
 const executeQueryWithPagination = require('../Constants/executeQueryWithPagination.js');
 const getPaginationParams = require('../Constants/getPaginationParams.js');
-const sendResponse = require('../Constants/response.js');
 
 // Function to build the SQL query based on the request path
 const buildQuery = (path, email, userRoleId, permission) => {
@@ -40,7 +39,6 @@ const permissionChecker = async (req, res, apiData, DecryptedBody, requestedPath
                 httpStatusCode: 400, // Bad Request
                 description: "SSC: E22 => Missing required parameters (email or userRoleId)."
             };
-            return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
         }
 
         const query = buildQuery(requestedPath, email, userRoleId, permission); // Build the query
@@ -54,14 +52,12 @@ const permissionChecker = async (req, res, apiData, DecryptedBody, requestedPath
                 httpStatusCode: 200, // OK
                 description: "SSC: E20 => Permission check successful."
             };
-            return sendResponse(res, successObject.httpStatusCode, successObject.description);
         } else {
             const errorObject = {
                 frameworkStatusCode: 'E41', // Forbidden access
                 httpStatusCode: 403, // Forbidden
                 description: "SSC: E41 => Forbidden: You do not have permission to access this resource."
             };
-            return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
         }
     } catch (error) {
         // General error handling for query execution failure or other issues
@@ -71,7 +67,6 @@ const permissionChecker = async (req, res, apiData, DecryptedBody, requestedPath
             httpStatusCode: 500, // Internal Server Error
             description: `SSC: E43 => Database query failure: ${error.message}`
         };
-        return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
     }
 };
 

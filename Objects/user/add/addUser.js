@@ -9,11 +9,12 @@ global.AddUser_object = {
               "pagination": false,
             },
             "communication": {
-              "encryption": {
-                "platformEncryption": true,
-                "otpEncryption": false,
-                "staticEncryption" : true
-              }
+              "encryption": false,
+              // "encryption": {
+              //   "platformEncryption": true,
+              //   "otpEncryption": false,
+              //   "staticEncryption" : true
+              // }
             },
             "verification" : {
                 "otp" : false,

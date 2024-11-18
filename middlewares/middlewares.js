@@ -1,4 +1,3 @@
-const sendResponse = require("../Constants/response");
 const validateToken = require('./validateToken.js');
 const permissionChecker = require('./permissionChecker.js');
 const validateParametersMiddleware = require('./validateParamatersMiddleware.js');
@@ -8,6 +7,7 @@ const handleVersionChecking = require("./versionChecker.js");
 const handleEncryption = require("./platformEncryption.js");
 const encryptObjectWithJWT = require("../Encryption/jwt_encryption.js");
 const LogError = require("../databases/Errorlog");  // Import the LogError function
+const sendResponse = require('../Constants/response.js');
 
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -32,8 +32,7 @@ const middlewareHandler = async (req, res, next) => {
                 httpStatusCode: 404, // Not Found
                 description: `API Object not found for path: ${requestedPath}`
             };
-            LogError(req, res, "middlewareHandler", errorObject.description); // Log the error
-            sendResponse(res, 404, errorObject.description);
+            LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
             throw errorObject;
         }
 
@@ -48,15 +47,13 @@ const middlewareHandler = async (req, res, next) => {
                 httpStatusCode: 405, // Method Not Allowed
                 description: "Incorrect Request Method"
             };
-            LogError(req, res, "middlewareHandler", errorObject.description); // Log the error
-            sendResponse(res, 405, errorObject.description);
+            LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
             throw errorObject;
         }
 
-        if (config.communication.encryption) {
+        if (config.communication.encryption && req.body) {
             ({ decryptedPayload, encryptionKey } = await handleEncryption(req, res, { config, data, response }));
         }
-        
         if (data.requestMetaData.permission) {
             try {
                 permissionChecker(req, res, data, decryptedPayload, requestedPath);
@@ -66,8 +63,7 @@ const middlewareHandler = async (req, res, next) => {
                     httpStatusCode: 403, // Forbidden
                     description: error.message || "Permission validation failed"
                 };
-                LogError(req, res, "middlewareHandler", errorObject.description); // Log the error
-                sendResponse(res, 403, errorObject.description);
+                LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
                 throw errorObject;
             }
         }
@@ -81,8 +77,7 @@ const middlewareHandler = async (req, res, next) => {
                     httpStatusCode: 401, // Unauthorized
                     description: error.message || "Access token validation failed"
                 };
-                LogError(req, res, "middlewareHandler", errorObject.description); // Log the error
-                sendResponse(res, 401, errorObject.description);
+                LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
                 throw errorObject;
             }
         }
@@ -96,8 +91,7 @@ const middlewareHandler = async (req, res, next) => {
                     httpStatusCode: 401, // Unauthorized
                     description: error.message || "OTP verification failed"
                 };
-                LogError(req, res, "middlewareHandler", errorObject.description); // Log the error
-                sendResponse(res, 401, errorObject.description);
+                LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
                 throw errorObject;
             }
         }
@@ -106,13 +100,12 @@ const middlewareHandler = async (req, res, next) => {
             try {
                 await validateParametersMiddleware(req, res, decryptedPayload, {config, data, response});
             } catch (error) {
-                console.log(error);
                 const errorObject = {
                     frameworkStatusCode: 'E10', // Parameter Validation Failure
                     httpStatusCode: 400, // Bad Request
                     description: error.message || "Parameter validation failed"
                 };
-                LogError(req, res, "middlewareHandler", errorObject.description); // Log the error
+                LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
                 throw errorObject;
             }
         }
@@ -126,8 +119,7 @@ const middlewareHandler = async (req, res, next) => {
                     httpStatusCode: 500, // Internal Server Error
                     description: error.message || "Callback function execution failed"
                 };
-                LogError(req, res, "middlewareHandler", errorObject.description); // Log the error
-                sendResponse(res, 500, errorObject.description);
+                LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
                 throw errorObject;
             }
         } else {
@@ -143,8 +135,7 @@ const middlewareHandler = async (req, res, next) => {
                             httpStatusCode: 500, // Internal Server Error
                             description: error.message || "Payload function execution failed"
                         };
-                        LogError(req, res, "middlewareHandler", errorObject.description); // Log the error
-                        sendResponse(res, 500, errorObject.description);
+                        LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
                         throw errorObject;
                     }
                 }
@@ -159,17 +150,6 @@ const middlewareHandler = async (req, res, next) => {
         }
     }
     catch (error) {
-        console.error("Middleware Error:", error.description || error.message);
-        console.log(error);
-        const errorResponse = {
-            frameworkStatusCode: error.frameworkStatusCode || 'E00', // Default to general error code
-            httpStatusCode: error.httpStatusCode || 500, // Default to HTTP 500 for server errors
-            description: error.description || `Unknown Error: ${error.message}`
-        };
-
-        // Log the error
-        LogError(req, res, "middlewareHandler", errorResponse.description);
-
     }
 };
 

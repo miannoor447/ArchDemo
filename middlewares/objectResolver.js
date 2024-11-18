@@ -1,7 +1,7 @@
 const executeQueryWithPagination = require('../Constants/executeQueryWithPagination.js');
 const { executeQuery } = require('../Constants/queryExecution.js');
 const getPaginationParams = require('../Constants/getPaginationParams.js');
-const LogError = require('../Constants/errorlog'); // Import LogError
+const LogError = require('../databases/Errorlog'); // Import LogError
 const getDateTime = require("../Constants/getDateTime.js");
 
 const objectResolver = async (req, res, decryptedBody, apiObject) => {
@@ -22,7 +22,7 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
                 httpStatusCode: 400, // Bad Request
                 description: "SSC: E21 => Query payload is missing."
             };
-            await LogError(req, res, 'objectResolver', errorObject.description); // Log the error
+            LogError(req, res, errorObject.httpStatusCode, "objectResolver", errorObject.description, errorObject.frameworkStatusCode); // Log the error
             throw new Error(errorObject.description);
         }
 
@@ -69,7 +69,6 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
         return results;
 
     } catch (error) {
-        console.log(error);
         console.error("Error in objectResolver:", error.message);
 
         // Log the error using LogError
@@ -80,8 +79,8 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
             frameworkStatusCode: 'E24', // General error
             httpStatusCode: 500, // Internal Server Error
             description: `SSC: E24 => ${error.message || error.toString()}`
-        };
-
+        }
+        LogError(req, res, errorObject.httpStatusCode, "objectResolver", errorObject.description, errorObject.frameworkStatusCode); // Log the error
         throw new Error(errorObject.description);
     }
 };

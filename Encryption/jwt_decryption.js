@@ -6,7 +6,6 @@ const decryptObjectWithJWT = (token, key) => {
     const decodedObject = jwt.verify(token, key);
     return decodedObject;
   } catch (error) {
-    console.log(error);
     throw new Error('Decryption failed: ' + error.message);
   }
 };

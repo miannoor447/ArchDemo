@@ -2,7 +2,6 @@ const connectToMyProj = require('../databases/projectDb');
 const jwt = require('jsonwebtoken');
 const { executeQuery } = require('../databases/queryExecution');
 const { decryptObjectWithJWT } = require('../Encryption/jwt_decryption');
-const sendResponse = require('../Constants/response');
 require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 
 const handleEncryption = async (req, res, object) => {
@@ -22,7 +21,6 @@ const handleEncryption = async (req, res, object) => {
         httpStatusCode: 400, // Bad Request
         description: "SSC: E10 => Missing Encrypted Payload or Encryption Details"
       };
-      return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
     }
 
     // Handle OTP encryption
@@ -34,7 +32,6 @@ const handleEncryption = async (req, res, object) => {
           httpStatusCode: 400, // Bad Request
           description: "SSC: E10 => Email Not Present For Encryption"
         };
-        return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
       }
 
       const projectDbConnection = connectToMyProj();
@@ -48,7 +45,6 @@ const handleEncryption = async (req, res, object) => {
           httpStatusCode: 400, // Bad Request
           description: "SSC: E10 => Invalid Email For Encryption"
         };
-        return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
       }
     }
 
@@ -61,7 +57,6 @@ const handleEncryption = async (req, res, object) => {
           httpStatusCode: 400, // Bad Request
           description: "SSC: E10 => PlatformName or PlatformVersion Not Present For Encryption"
         };
-        return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
       }
 
       const projectDbConnection = connectToMyProj();
@@ -81,7 +76,6 @@ const handleEncryption = async (req, res, object) => {
           httpStatusCode: 400, // Bad Request
           description: "SSC: E10 => Invalid Platform Name or Version, Source: Platform Encryption"
         };
-        return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
       }
     }
 
@@ -99,7 +93,6 @@ const handleEncryption = async (req, res, object) => {
     };
 
   } catch (error) {
-    console.log(error);
     // Catch any errors and send the response with an appropriate error code and message
     if (error.name === "JsonWebTokenError") {
       // JWT verification error
@@ -108,7 +101,6 @@ const handleEncryption = async (req, res, object) => {
         httpStatusCode: 401, // Unauthorized
         description: "SSC: E40 => Invalid Payload"
       };
-      return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
     }
 
     if (error.message.includes("Invalid Platform Name or Version")) {
@@ -118,7 +110,6 @@ const handleEncryption = async (req, res, object) => {
         httpStatusCode: 400, // Bad Request
         description: "SSC: E10 => Invalid Platform Name or Version, Source: Platform Encryption"
       };
-      return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
     }
 
     // Generic error handling
@@ -127,7 +118,6 @@ const handleEncryption = async (req, res, object) => {
       httpStatusCode: 500, // Internal Server Error
       description: `SSC: E43 => ${error.message || error.toString()}`
     };
-    return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
   }
 };
 

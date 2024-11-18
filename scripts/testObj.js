@@ -54,7 +54,6 @@ const objectResolver = async (req, res, apiObject) => {
         sendResponse(res, { message: "Query executed successfully." });
 
     } catch (error) {
-        console.log(error);
         throw new Error(error.message);
     }
 };

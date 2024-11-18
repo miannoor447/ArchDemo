@@ -1,4 +1,3 @@
-const sendResponse = require("../Constants/response.js");
 const validationsLib = require("../Constants/validateParameters.js");
 
 const validateParametersMiddleware = async (req, res, decryptedBody, apiObject) => {
@@ -28,8 +27,7 @@ const validateParametersMiddleware = async (req, res, decryptedBody, apiObject) 
                     httpStatusCode: 400, // Bad request
                     description: errorMessage
                 };
-
-                sendResponse(res, 400, errorMessage);
+                LogError(req, res, errorObject.httpStatusCode, "validateParameteresMiddleware", errorObject.description, errorObject.frameworkStatusCode); // Log the error
                 throw errorObject;
             }
 
@@ -47,8 +45,7 @@ const validateParametersMiddleware = async (req, res, decryptedBody, apiObject) 
                             httpStatusCode: 500, // Internal server error
                             description: errorMessage
                         };
-
-                        sendResponse(res, 500, errorMessage);
+                        LogError(req, res, errorObject.httpStatusCode, "validateParameteresMiddleware", errorObject.description, errorObject.frameworkStatusCode); // Log the error
                         throw errorObject;
                     }
 
@@ -63,15 +60,13 @@ const validateParametersMiddleware = async (req, res, decryptedBody, apiObject) 
                             httpStatusCode: 400, // Bad request
                             description: errorMessage
                         };
-
-                        sendResponse(res, 400, errorMessage);
+                        LogError(req, res, errorObject.httpStatusCode, "validateParameteresMiddleware", errorObject.description, errorObject.frameworkStatusCode); // Log the error
                         throw errorObject;
                     }
                 }
             }
         }
     } catch (error) {
-        console.log(error);
         console.error("Validation Error:", error.description || error.message);
 
         const errorResponse = {

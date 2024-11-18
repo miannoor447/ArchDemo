@@ -1678,3 +1678,75 @@
         Body: {"EncryptedPayload":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbmNyeXB0ZWRQYXlsb2FkIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnVZVzFsSWpvaVNHRnRiV0ZrSUV0aGJYSmhiaUlzSW1WdFlXbHNJam9pWW5OalpUSXdNREk1UUdsMGRTNWxaSFV1Y0dzaUxDSndZWE56ZDI5eVpDSTZJbmg1ZWpFeU15SXNJbkJvYjI1bFRtOGlPaUl3TXpBNU1EQXdNRE15TXlJc0ltbGhkQ0k2TVRjek1Ua3hOemMxT1gwLkF3RWdVY0tKMGlUdE5vZnB6M0w2d01fOXpfSlUweU44dzlOa1BPbVV6UXciLCJFbmNyeXB0aW9uRGV0YWlscyI6eyJwbGF0Zm9ybU5hbWUiOiJQb3N0bWFuIiwicGxhdGZvcm1WZXJzaW9uIjoiMS4wIn0sImlhdCI6MTczMTkxNzc2OX0.GFqhNtJr4HZc-X7rUnvPqxaBfI2SLMlFh6nzDxeLlTU"}
         Query: {"version":"1.0"}
     
+
+        Time: 2024-11-18T08:37:02.510Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"4687ed4f-b422-452f-b57b-e9230b613175","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"133"}
+        Body: {"name":"Hammad Kamran","email":"bsce20029@itu.edu.pk","password":"xyz123","phoneNo":"03090000323"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T08:44:22.064Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"f191d570-b134-4535-973a-39466d2df374","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"133"}
+        Body: {"name":"Hammad Kamran","email":"bsce20029@itu.edu.pk","password":"xyz123","phoneNo":"03090000323"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T08:44:42.230Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"714a7fd4-f8f1-4a62-ae9e-a440e2517749","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"133"}
+        Body: {"name":"Hammad Kamran","email":"bsce20029@itu.edu.pk","password":"xyz123","phoneNo":"03090000323"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T08:51:42.373Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"88979058-4ef4-4f93-907e-b4aee363bcbd","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"133"}
+        Body: {"name":"Hammad Kamran","email":"bsce20029@itu.edu.pk","password":"xyz123","phoneNo":"03090000323"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T08:54:22.196Z
+        Method: GET
+        URL: /api/list/users?version=1.0&userId=4
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"fa68b588-6a0e-45bf-a7c0-edfcd9c06690","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0","userId":"4"}
+    
+
+        Time: 2024-11-18T08:55:05.591Z
+        Method: GET
+        URL: /api/list/users?version=1.0&userId=4
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"46e79374-e97e-49bf-89b4-58eedf99d427","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0","userId":"4"}
+    
+
+        Time: 2024-11-18T09:01:04.186Z
+        Method: GET
+        URL: /api/list/users?version=1.0&userId=4
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"9c4065c9-2367-44d6-95e5-64e3071383bb","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0","userId":"4"}
+    
+
+        Time: 2024-11-18T09:01:10.991Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"d3d3cd3e-8faf-4053-8b8d-fb93142dcf44","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"133"}
+        Body: {"name":"Hammad Kamran","email":"bsce20029@itu.edu.pk","password":"xyz123","phoneNo":"03090000323"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T09:02:08.750Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"a3ff33b8-cebc-44fe-b5b8-dfe3636812e4","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"133"}
+        Body: {"name":"Hammad Kamran","email":"bsce20029@itu.edu.pk","password":"xyz123","phoneNo":"03090000323"}
+        Query: {"version":"1.0"}
+    

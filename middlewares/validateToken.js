@@ -10,7 +10,6 @@ const validateToken = async (req, res) => {
                 httpStatusCode: 401, // Unauthorized
                 description: "SSC: E40 => Unauthorized: Token expired or invalid"
             };
-            return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
         }
     } catch (error) {
         // Internal server error handling
@@ -20,7 +19,6 @@ const validateToken = async (req, res) => {
             description: `SSC: E24 => ${error.message || error.toString()}`
         };
         console.error('Error validating token:', error);
-        return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
     }
 };
 
