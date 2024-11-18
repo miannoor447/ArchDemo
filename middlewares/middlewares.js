@@ -51,7 +51,7 @@ const middlewareHandler = async (req, res, next) => {
             throw errorObject;
         }
 
-        if (config.communication.encryption && req.body) {
+        if (config.communication.encryption) {
             ({ decryptedPayload, encryptionKey } = await handleEncryption(req, res, { config, data, response }));
         }
         if (data.requestMetaData.permission) {

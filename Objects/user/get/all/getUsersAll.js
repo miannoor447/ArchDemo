@@ -11,7 +11,7 @@ global.ListUsersAll_object = {
           "communication": {
             // "encryption": false
              "encryption": {
-                "platformEncryption": true,
+                "platformEncryption": false,
                 "otpEncryption": false,
                 "staticEncryption" : true
               }
