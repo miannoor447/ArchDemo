@@ -1670,3 +1670,11 @@
         Body: {"EncryptedPayload":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSGFtbWFkIEthbXJhbiIsImVtYWlsIjoiYnNjZTIwMDI5QGl0dS5lZHUucGsiLCJwYXNzd29yZCI6Inh5ejEyMyIsInBob25lTm8iOiIwMzA5MDAwMDMyMyIsImlhdCI6MTczMTkxNzQyNX0.avlKmKlBq2UNTrOiHsMok18E8KhC9JQQ-G2YHCFPtpM"}
         Query: {"version":"1.0"}
     
+
+        Time: 2024-11-18T08:16:26.012Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"041abe1e-2e99-4da8-87fd-55dcfc47faff","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"577"}
+        Body: {"EncryptedPayload":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbmNyeXB0ZWRQYXlsb2FkIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnVZVzFsSWpvaVNHRnRiV0ZrSUV0aGJYSmhiaUlzSW1WdFlXbHNJam9pWW5OalpUSXdNREk1UUdsMGRTNWxaSFV1Y0dzaUxDSndZWE56ZDI5eVpDSTZJbmg1ZWpFeU15SXNJbkJvYjI1bFRtOGlPaUl3TXpBNU1EQXdNRE15TXlJc0ltbGhkQ0k2TVRjek1Ua3hOemMxT1gwLkF3RWdVY0tKMGlUdE5vZnB6M0w2d01fOXpfSlUweU44dzlOa1BPbVV6UXciLCJFbmNyeXB0aW9uRGV0YWlscyI6eyJwbGF0Zm9ybU5hbWUiOiJQb3N0bWFuIiwicGxhdGZvcm1WZXJzaW9uIjoiMS4wIn0sImlhdCI6MTczMTkxNzc2OX0.GFqhNtJr4HZc-X7rUnvPqxaBfI2SLMlFh6nzDxeLlTU"}
+        Query: {"version":"1.0"}
+    
