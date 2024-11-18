@@ -12,8 +12,6 @@ async function LogError(req,res,fileName,error, SCC){
     const query = "INSERT INTO errorlog (ErrorMessage, fileName, createdAt, updatedAt, Status, scc) VALUES (?,?,?,?,?,?)";
     const values = [error.toString(), fileName, currentDateTime,currentDateTime, Status, SCC];
     const results = await executeQuery(res, query, values, connection);
-    const response = { status: 500, message: `${fileName} Error Logged: ${error}`, payload:results };
-    return sendResponse(res, response.status, response.message, response.payload);
 }
     catch(error)
     {
