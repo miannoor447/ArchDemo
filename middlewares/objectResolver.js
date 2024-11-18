@@ -71,16 +71,13 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
     } catch (error) {
         console.error("Error in objectResolver:", error.message);
 
-        // Log the error using LogError
-        await LogError(req, res, 'objectResolver', error, 'E24');
-
         // Ensure detailed error response with proper HTTP status
         const errorObject = {
             frameworkStatusCode: 'E24', // General error
             httpStatusCode: 500, // Internal Server Error
             description: `SSC: E24 => ${error.message || error.toString()}`
         }
-        LogError(req, res, errorObject.httpStatusCode, "objectResolver", errorObject.description, errorObject.frameworkStatusCode); // Log the error
+        LogError(req, res, errorObject.httpStatusCode, "objectResolver", error.message, errorObject.frameworkStatusCode); // Log the error
         throw new Error(errorObject.description);
     }
 };

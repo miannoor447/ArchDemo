@@ -1918,3 +1918,83 @@
         Body: {}
         Query: {"version":"1.0"}
     
+
+        Time: 2024-11-18T09:32:18.722Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"f2f9cb0b-4544-406d-9845-48f52987c54f","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"133"}
+        Body: {"name":"Hammad Kamran","email":"bsce20029@itu.edu.pk","password":"xyz123","phoneNo":"03090000323"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T09:35:27.151Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"e72cf097-80e4-4916-be4b-04c812c35dc0","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"133"}
+        Body: {"name":"Hammad Kamran","email":"bsce20029@itu.edu.pk","password":"xyz123","phoneNo":"03090000323"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T15:03:28.516Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"ba854193-262b-4cd6-92b5-dc0214d992fa","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"133"}
+        Body: {"name":"Hammad Kamran","email":"bsce20029@itu.edu.pk","password":"xyz123","phoneNo":"03090000323"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T15:03:38.085Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"72908610-6a8e-4aac-8957-5a7ab28c850d","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"133"}
+        Body: {"name":"Hammad Kamran","email":"bsce20029@itu.edu.pk","password":"xyz123","phoneNo":"03090000323"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T15:06:26.240Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"9d361394-73cb-4ab6-9c9f-1ba9ef6ee086","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"577"}
+        Body: {"EncryptedPayload":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbmNyeXB0ZWRQYXlsb2FkIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnVZVzFsSWpvaVNHRnRiV0ZrSUV0aGJYSmhiaUlzSW1WdFlXbHNJam9pWW5OalpUSXdNREk1UUdsMGRTNWxaSFV1Y0dzaUxDSndZWE56ZDI5eVpDSTZJbmg1ZWpFeU15SXNJbkJvYjI1bFRtOGlPaUl3TXpBNU1EQXdNRE15TXlJc0ltbGhkQ0k2TVRjek1Ua3hOemMxT1gwLkF3RWdVY0tKMGlUdE5vZnB6M0w2d01fOXpfSlUweU44dzlOa1BPbVV6UXciLCJFbmNyeXB0aW9uRGV0YWlscyI6eyJwbGF0Zm9ybU5hbWUiOiJQb3N0bWFuIiwicGxhdGZvcm1WZXJzaW9uIjoiMS4wIn0sImlhdCI6MTczMTkxNzc2OX0.GFqhNtJr4HZc-X7rUnvPqxaBfI2SLMlFh6nzDxeLlTU"}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T15:20:13.038Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"88eb9e17-86f5-485a-885b-188932e3cc04","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"377"}
+        Body: {"EncryptedPayload":"fAZgnhzhL9hwC+5cs9hVOvlVPLPCyhcIITnhAqA8hLXGLOyTBU2yqjYUIyKOWJOTiLrqUm3PkpJDAKDZrHDOjxg0x0/JmwwXE6+MN4dzbTGS8C7TxVFcbiFPh506sP4WoeVvz4F5zh6KN+Y78iblXitI8QDaaQNbosAk1K+FJSH4fq7l28DsBVWYio5ZJvDqLGELh6CHDq88uU3Z4TqVe+sdAkQg9v1KxcFSo9NSt7K+S+yMiT6rvhmCRpzUJH5RaguUHVWZ0UiwvDnpAzhpEcx2G8v/3Hv+x0o5cclDgrw6ne9QRs/vszYUkntIEfJa13WUHEP7CGubfP6GtxQ9Jg=="}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T15:20:36.253Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"25b68272-799a-4102-9657-f890ec15c39f","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"377"}
+        Body: {"EncryptedPayload":"fAZgnhzhL9hwC+5cs9hVOvlVPLPCyhcIITnhAqA8hLXGLOyTBU2yqjYUIyKOWJOTiLrqUm3PkpJDAKDZrHDOjxg0x0/JmwwXE6+MN4dzbTGS8C7TxVFcbiFPh506sP4WoeVvz4F5zh6KN+Y78iblXitI8QDaaQNbosAk1K+FJSH4fq7l28DsBVWYio5ZJvDqLGELh6CHDq88uU3Z4TqVe+sdAkQg9v1KxcFSo9NSt7K+S+yMiT6rvhmCRpzUJH5RaguUHVWZ0UiwvDnpAzhpEcx2G8v/3Hv+x0o5cclDgrw6ne9QRs/vszYUkntIEfJa13WUHEP7CGubfP6GtxQ9Jg=="}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T15:24:07.576Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"f8360d06-015b-46e6-80d4-dba48f727a19","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"377"}
+        Body: {"EncryptedPayload":"fAZgnhzhL9hwC+5cs9hVOvlVPLPCyhcIITnhAqA8hLXGLOyTBU2yqjYUIyKOWJOTiLrqUm3PkpJDAKDZrHDOjxg0x0/JmwwXE6+MN4dzbTGS8C7TxVFcbiFPh506sP4WoeVvz4F5zh6KN+Y78iblXitI8QDaaQNbosAk1K+FJSH4fq7l28DsBVWYio5ZJvDqLGELh6CHDq88uU3Z4TqVe+sdAkQg9v1KxcFSo9NSt7K+S+yMiT6rvhmCRpzUJH5RaguUHVWZ0UiwvDnpAzhpEcx2G8v/3Hv+x0o5cclDgrw6ne9QRs/vszYUkntIEfJa13WUHEP7CGubfP6GtxQ9Jg=="}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T15:26:04.179Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"7b6eac2a-e93b-462f-b271-1274b23e9222","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"377"}
+        Body: {"EncryptedPayload":"fAZgnhzhL9hwC+5cs9hVOvlVPLPCyhcIITnhAqA8hLXGLOyTBU2yqjYUIyKOWJOTiLrqUm3PkpJDAKDZrHDOjxg0x0/JmwwXE6+MN4dzbTGS8C7TxVFcbiFPh506sP4WoeVvz4F5zh6KN+Y78iblXitI8QDaaQNbosAk1K+FJSH4fq7l28DsBVWYio5ZJvDqLGELh6CHDq88uU3Z4TqVe+sdAkQg9v1KxcFSo9NSt7K+S+yMiT6rvhmCRpzUJH5RaguUHVWZ0UiwvDnpAzhpEcx2G8v/3Hv+x0o5cclDgrw6ne9QRs/vszYUkntIEfJa13WUHEP7CGubfP6GtxQ9Jg=="}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T15:26:18.332Z
+        Method: POST
+        URL: /api/add/user?version=1.0
+        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"fd94073d-95d4-439e-be14-7d82f232e0a7","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"377"}
+        Body: {"EncryptedPayload":"fAZgnhzhL9hwC+5cs9hVOvlVPLPCyhcIITnhAqA8hLXGLOyTBU2yqjYUIyKOWJOTiLrqUm3PkpJDAKDZrHDOjxg0x0/JmwwXE6+MN4dzbTGS8C7TxVFcbiFPh506sP4WoeVvz4F5zh6KN+Y78iblXitI8QDaaQNbosAk1K+FJSH4fq7l28DsBVWYio5ZJvDqLGELh6CHDq88uU3Z4TqVe+sdAkQg9v1KxcFSo9NSt7K+S+yMiT6rvhmCRpzUJH5RaguUHVWZ0UiwvDnpAzhpEcx2G8v/3Hv+x0o5cclDgrw6ne9QRs/vszYUkntIEfJa13WUHEP7CGubfP6GtxQ9Jg=="}
+        Query: {"version":"1.0"}
+    

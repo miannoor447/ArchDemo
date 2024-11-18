@@ -5,9 +5,9 @@ const otpVerif = require("../Constants/otpVerif.js");
 const objectResolver = require("./objectResolver.js");
 const handleVersionChecking = require("./versionChecker.js");
 const handleEncryption = require("./platformEncryption.js");
-const encryptObjectWithJWT = require("../Encryption/jwt_encryption.js");
 const LogError = require("../databases/Errorlog");  // Import the LogError function
 const sendResponse = require('../Constants/response.js');
+const { encryptObject } = require('../Encryption/aes.js');
 
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -144,7 +144,7 @@ const middlewareHandler = async (req, res, next) => {
 
         if (config.communication.encryption) {
             console.log(encryptionKey);
-            sendResponse(res, 200, encryptObjectWithJWT(payload, encryptionKey));
+            sendResponse(res, 200, encryptObject(payload, encryptionKey));
         } else {
             sendResponse(res, 200, payload);
         }
