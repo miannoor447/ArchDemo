@@ -34,7 +34,7 @@ const askQuestion = () => {
           case 0: config.host = answer || 'localhost'; break; // Default to 'localhost' if no input
           case 1: config.user = answer || 'root'; break;       // Default to 'root' if no input
           case 2: config.password = answer || ''; break;       // Default to empty string if no input
-          case 3: config.database = answer || 'architecture_demo'; break; // Default to 'edarete_staging'
+          case 3: config.database = answer || 'archdemo'; break; // Default to 'edarete_staging'
           case 4: config.timezone = answer || '+05:00'; break; // Default to '+05:00' if no input
         }
 
@@ -58,7 +58,7 @@ const connectToMySql = (configuration) => {
 };
 
 const writeConfigToFile = (config) => {
-  const configPath = path.join(__dirname, '..', 'Constants', 'db.js'); // Path to db.js
+  const configPath = path.join(__dirname, '..', 'databases', 'projectDb.js'); // Path to db.js
   const configContent = `const mysql = require('mysql');
 
 const configuration = {
@@ -69,15 +69,15 @@ const configuration = {
   timezone: '${config.timezone}'
 };
 
-const connectToMySql = () => {
+const projectDB = () => {
   const connection = mysql.createConnection(configuration);
   return connection; 
 };
 
-module.exports = connectToMySql;`;
+module.exports = projectDB;`;
 
   fs.writeFileSync(configPath, configContent, 'utf8');
-  console.log('Configuration saved to db.js');
+  console.log('Configuration saved to projectDb.js');
 };
 
 const initialize = async () => {

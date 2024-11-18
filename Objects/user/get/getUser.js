@@ -1,55 +1,74 @@
-global.GetUserByID_object = {
-    "config": {
-      "features": {
-        "authorization": {
-          "accessToken": false,
-          "encryption": false,
-          "platformToken": false
-        },
-        "otpVerif": false,
-        "multistep": false,
-        "parameters": false
-      }
-    },
-    "data": {
-      "parameters": {
-        "fields": [
-          [
-            {
-                "name": "Id",
-                "validations": [
-                ],
-                "required": true,
-                "source": "req.body"
+global.ListUsers_object = {
+  "versions": {
+    "versionData": [{
+      "=1.0": {
+        "config": {
+          "features": {
+            "multistep": false,
+            "parameters": true,
+            "pagination": true
+          },
+          "communication": {
+            "encryption": {
+              "platformEncryption": true,
+              "otpEncryption": false,
+              "staticEncryption": true
             }
-          ]
-        ]
-      },
-      "requestType": "GET",
-      "permission": "GetUsersAll",
-      "apiInfo": [
-        {
-          "requestMethod": "Retrieving",
-          "callbackFunction": null,
-          "query": {
-            "pagination": true,
-            "queryPayload": "SELECT * FROM user WHERE UID = {{Id}}",
+          },
+          "verification": {
+            "otp": false,
+            "accessToken": false
           }
+        },
+        "data": {
+          "parameters": {
+            "fields": [
+              [
+                {
+                  "name": "userId",
+                  "validations": ["isValidUserId"],
+                  "required": true,
+                  "source": "req.query"
+                }
+              ]
+            ]
+          },
+          "apiInfo": [
+            {
+              "query": {
+                "queryNature": "SELECT",
+                "queryPayload": "select * from users where id = {{userId}}",
+                "database": "projectDB"
+              },
+              "utilityFunctions": {
+                "callbackFunction": null,
+                "payloadFunction": []
+              }
+            }
+          ],
+          "requestMetaData": {
+            "requestMethod": "GET",
+            "permission": null,
+            "pagination": {
+              "pageSize": 10,
+              "options": {
+                "pageSizeOptions": [
+                  5,
+                  10,
+                  25,
+                  50,
+                  100,
+                  "All"
+                ]
+              }
+            }
+          }
+        },
+        "response": {
+          "successMessage": "Users retrieved successfully!",
+          "errorMessage": "Failed to retrieve users."
         }
-      ],
-      "pagination": {
-        "pageSize": 10,
-        "options": {
-          "pageSizeOptions": [
-            5,
-            10,
-            25,
-            50,
-            100,
-            "All"
-          ]
-        }
-      }
-    }
-  };
-  
+      },
+    }]
+  }
+}

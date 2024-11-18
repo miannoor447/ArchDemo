@@ -1,6 +1,9 @@
 global.AddUser_object = {
     "versions": {
-      "versionData": [{
+      "supported": [
+        "=1.0"
+      ],
+      "versionData": {
         "=1.0": {
           "config": {
             "features": {
@@ -16,7 +19,7 @@ global.AddUser_object = {
               }
             },
             "verification" : {
-                "otp" : false,
+                "otp" : true,
                 "accessToken" : false
             }
           },
@@ -25,28 +28,10 @@ global.AddUser_object = {
               "fields": [
                 [
                   {
-                    "name": "name",
-                    "validations": ["isValidText"],
-                    "required": true,
-                    "source": "req.body"
-                  },
-                  {
-                    "name": "email",
-                    "validations": ["isValidEmailFormat"],
-                    "required": true,
-                    "source": "req.body"
-                  },
-                  {
-                    "name": "phoneNo",
-                    "validations": ["isValidPhoneNumber"],
-                    "required": false,
-                    "source": "req.body"
-                  },
-                  {
-                    "name": "password",
+                    "name": "",
                     "validations": [],
                     "required": true,
-                    "source": "req.body"
+                    "source": ""
                   }
                 ]
               ]
@@ -55,7 +40,7 @@ global.AddUser_object = {
               {
                 "query": {
                   "queryNature": "",
-                  "queryPayload": "insert into users (name, email, phoneNo, password)values ({{name}}, {{email}}, {{phoneNo}}, {{password}})",
+                  "queryPayload": null,
                   "database" : "projectDB"
                 },
                 "utilityFunctions": {
@@ -65,7 +50,7 @@ global.AddUser_object = {
               }
             ],
             "requestMetaData": {
-              "requestMethod": "POST",
+              "requestMethod": "",
               "permission": null,
               "pagination": {
                 "pageSize": 10,
@@ -87,7 +72,7 @@ global.AddUser_object = {
             "errorMessage": "There was an error generating the configuration."
           }
         },
-      }]
+      }
     }
   }
   

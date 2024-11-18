@@ -1,4 +1,4 @@
 {
-    "ignore": ["Constants/db.js"]
+    "ignore": ["databases/projectDb.js", "databases/platformEncryptionDb.js"]
 }
   

@@ -1,6 +1,9 @@
 global.DeleteUser_object = {
   "versions": {
-    "versionData": [{
+    "supported": [
+      "=1.0"
+    ],
+    "versionData": {
       "=1.0": {
         "config": {
           "features": {
@@ -69,6 +72,6 @@ global.DeleteUser_object = {
           "errorMessage": "There was an error deleting the user."
         }
       }
-    }]
+    }
   }
 };

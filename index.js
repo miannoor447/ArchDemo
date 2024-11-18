@@ -1,7 +1,7 @@
 const express = require('express');
 const apiRoutes = require('./dynamicRoutes.js');
 const applyMiddleware = require('./ProtectionProtocols/middleware.js');
-const { initialize } = require('./initialization_files/db_config.js'); // Import the initialize function
+const { initialize } = require('./databases/dbConfig.js'); // Import the initialize function
 const {requireAllJSFiles} = require('./scripts/requiringScript.js')
 const path = require('path');
 

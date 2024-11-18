@@ -1,72 +1,86 @@
 global.UpdateUser_object = {
-  "config": {
-    "features": {
-      "authorization": {
-        "accessToken": false,
-        "encryption": false,
-        "platformToken": false
-      },
-      "otpVerif": false,
-      "multistep": false,
-      "parameters": true
-    }
-  },
-  "data": {
-      "parameters": {
-          "fields": [
-              [
-                  {
-                      "name": "name",
-                      "validations": [
-                          "isValidText"
-                      ],
-                      "required": true,
-                      "source": "req.body"
-                  },
-                  {
-                      "name": "email",
-                      "validations": [
-                          "isValidEmail"
-                      ],
-                      "required": true,
-                      "source": "req.body"
-                  },
-                  {
-                      "name": "phoneNo",
-                      "validations": [
-                          "isValidPhoneNumber"
-                      ],
-                      "required": true,
-                      "source": "req.body"
-                  },
-              ]
-          ]
-      },
-      "apiInfo": [
-        {
-          "requestMethod": "Update",
-          "callbackFunction": null,
-          "query": {
-            "pagination": false,
-            "queryPayload": "UPDATE user SET Name = {{name}}, Email = {{email}}, PhoneNo = {{phoneNo}}, updatedAt = {{updatedAt}} WHERE UserId = {{Id}};",
+  "versions": {
+    "versionData": [
+      {
+      "=1.0": {
+        "config": {
+          "features": {
+            "multistep": false,
+            "parameters": true,
+            "pagination": false
+          },
+          "communication": {
+            "encryption": {
+              "platformEncryption": true,
+              "otpEncryption": false,
+              "staticEncryption": true
+            }
+          },
+          "verification": {
+            "otp": false,
+            "accessToken": false
           }
-        }
-      ],
-      "requestType": "PUT",
-      "permission": null,
-      "pagination": {
-          "pageSize": 10,
-          "options": {
-            "pageSizeOptions": [
-              5,
-              10,
-              25,
-              50,
-              100,
-              "All"
+        },
+        "data": {
+          "parameters": {
+            "fields": [
+              {
+                "name": "name",
+                "validations": ["isValidText"],
+                "required": true,
+                "source": "req.body"
+              },
+              {
+                "name": "email",
+                "validations": ["isValidEmail"],
+                "required": true,
+                "source": "req.body"
+              },
+              {
+                "name": "phoneNo",
+                "validations": ["isValidPhoneNumber"],
+                "required": true,
+                "source": "req.body"
+              }
             ]
+          },
+          "apiInfo": [
+            {
+              "query": {
+                "queryNature": "Update",
+                "queryPayload": "UPDATE user SET Name = {{name}}, Email = {{email}}, PhoneNo = {{phoneNo}}, updatedAt = {{updatedAt}} WHERE UserId = {{Id}}",
+                "database": "projectDB"
+              },
+              "utilityFunctions": {
+                "callbackFunction": null,
+                "payloadFunction": []
+              }
+            }
+          ],
+          "requestMetaData": {
+            "requestMethod": "PUT",
+            "permission": null,
+            "pagination": {
+              "pageSize": 10,
+              "options": {
+                "pageSizeOptions": [
+                  5,
+                  10,
+                  25,
+                  50,
+                  100,
+                  "All"
+                ]
+              }
+            }
           }
+        },
+        "response": {
+          "successMessage": "User updated successfully!",
+          "errorMessage": "There was an error updating the user."
+        }
       }
-   
+    }
+    ]
   }
 };

@@ -1,7 +1,4 @@
-const connectToMySql = require("../databases/projectDb");
-
-async function executeQuery(res, query, values) {
-   const connection = await connectToMySql();
+async function executeQuery(res, query, values, connection) {
   return new Promise((resolve, reject) => {
    connection.query(query, values, (err, result) => {
       connection.end();

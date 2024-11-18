@@ -1,6 +1,9 @@
-global.DeleteUser_object = {
+global.UpdateUser_object = {
   "versions": {
-    "versionData": [{
+    "supported": [
+      "=1.0"
+    ],
+    "versionData": {
       "=1.0": {
         "config": {
           "features": {
@@ -23,21 +26,31 @@ global.DeleteUser_object = {
         "data": {
           "parameters": {
             "fields": [
-              [
-                {
-                  "name": "Id",
-                  "validations": [],
-                  "required": true,
-                  "source": "req.body"
-                }
-              ]
+              {
+                "name": "name",
+                "validations": ["isValidText"],
+                "required": true,
+                "source": "req.body"
+              },
+              {
+                "name": "email",
+                "validations": ["isValidEmail"],
+                "required": true,
+                "source": "req.body"
+              },
+              {
+                "name": "phoneNo",
+                "validations": ["isValidPhoneNumber"],
+                "required": true,
+                "source": "req.body"
+              }
             ]
           },
           "apiInfo": [
             {
               "query": {
-                "queryNature": "Deletion",
-                "queryPayload": "Delete user WHERE UserId = {{Id}};",
+                "queryNature": "Update",
+                "queryPayload": "UPDATE user SET Name = {{name}}, Email = {{email}}, PhoneNo = {{phoneNo}}, updatedAt = {{updatedAt}} WHERE UserId = {{Id}}",
                 "database": "projectDB"
               },
               "utilityFunctions": {
@@ -47,8 +60,8 @@ global.DeleteUser_object = {
             }
           ],
           "requestMetaData": {
-            "requestMethod": "DELETE",
-            "permission": "DeleteUser",
+            "requestMethod": "PUT",
+            "permission": null,
             "pagination": {
               "pageSize": 10,
               "options": {
@@ -65,10 +78,10 @@ global.DeleteUser_object = {
           }
         },
         "response": {
-          "successMessage": "User deleted successfully!",
-          "errorMessage": "There was an error deleting the user."
+          "successMessage": "User updated successfully!",
+          "errorMessage": "There was an error updating the user."
         }
       }
-    }]
+    }
   }
 };

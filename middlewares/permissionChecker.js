@@ -1,10 +1,11 @@
 const executeQueryWithPagination = require('../Constants/executeQueryWithPagination.js');
 const getPaginationParams = require('../Constants/getPaginationParams.js');
+const sendResponse = require('../Constants/response.js');
 
-
-
+// Function to build the SQL query based on the request path
 const buildQuery = (path, email, userRoleId, permission) => {
     if (path === '/login/request') {
+        // Query for login request validation based on email and permission
         return `
             SELECT *
             FROM userroles ur
@@ -14,6 +15,7 @@ const buildQuery = (path, email, userRoleId, permission) => {
             WHERE u.Email = '${email}' AND p.PermissionType = '${permission}'
         `;
     } else {
+        // Query for permission check based on userRoleId and permission
         return `
             SELECT *
             FROM userroles ur
@@ -24,24 +26,53 @@ const buildQuery = (path, email, userRoleId, permission) => {
     }
 };
 
-const permissionChecker = async (req, res, apiData, requestedPath) => {
-    const { page, offset, limit } = getPaginationParams(req);
-    
-    const permission = apiData.permission
-    const {email} = req.body || {};
-    const query = buildQuery(requestedPath, email, req.query.userRoleId, permission);
-
+// Main function to check if the user has the required permission
+const permissionChecker = async (req, res, apiData, DecryptedBody, requestedPath) => {
     try {
+        const { page, offset, limit } = getPaginationParams(req); // Get pagination params
+        const permission = apiData.permission;
+        const { email } = DecryptedBody || {}; // Get email from the decrypted body
+        const userRoleId = req.query.userRoleId; // Get userRoleId from query params
+        
+        if (!email && !userRoleId) {
+            const errorObject = {
+                frameworkStatusCode: 'E22', // Missing required parameters
+                httpStatusCode: 400, // Bad Request
+                description: "SSC: E22 => Missing required parameters (email or userRoleId)."
+            };
+            return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
+        }
+
+        const query = buildQuery(requestedPath, email, userRoleId, permission); // Build the query
+
+        // Execute the query with pagination (if applicable)
         const permissionResults = await executeQueryWithPagination(res, query, "", page, limit);
+
         if (permissionResults.length > 0) {
-            return;
+            const successObject = {
+                frameworkStatusCode: 'E20', // Permission check successful
+                httpStatusCode: 200, // OK
+                description: "SSC: E20 => Permission check successful."
+            };
+            return sendResponse(res, successObject.httpStatusCode, successObject.description);
         } else {
-            throw new Error('Forbidden: You do not have permission to access this resource');
+            const errorObject = {
+                frameworkStatusCode: 'E41', // Forbidden access
+                httpStatusCode: 403, // Forbidden
+                description: "SSC: E41 => Forbidden: You do not have permission to access this resource."
+            };
+            return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
         }
     } catch (error) {
-        throw new Error(error.message);
+        // General error handling for query execution failure or other issues
+        console.error("Permission check error:", error.message);
+        const errorObject = {
+            frameworkStatusCode: 'E43', // Database query failure
+            httpStatusCode: 500, // Internal Server Error
+            description: `SSC: E43 => Database query failure: ${error.message}`
+        };
+        return sendResponse(res, errorObject.httpStatusCode, errorObject.description);
     }
 };
-
 
 module.exports = permissionChecker;

@@ -39,7 +39,7 @@ async function isValidEmail(req, res, email) {
   const pathParts = requestedPath.split('/');
   const context = pathParts[1];
   if (await isValidEmailFormat(decryptedEmail)) {
-    const query = "SELECT Email FROM user WHERE email = ?";
+    const query = "SELECT Email FROM users WHERE email = ?";
     const values = [decryptedEmail];
     const results = await executeQuery(res, query, values);
 
@@ -256,9 +256,9 @@ async function isValidCNIC(req, res, cnic) {
 }
 
 async function isValidPhoneNumber(req, res, phoneNumber) {
+  console.log(phoneNumber);
   phoneNumber = await decryptData(phoneNumber);
   const phoneRegex = /^0\d{2,3}-?\d{7,8}$/;
-
   if (!phoneRegex.test(phoneNumber)) {
     return { error: "Invalid phone number" };
   }
@@ -486,7 +486,7 @@ async function isValidCloMappingLevel(req, res, level) {
 
 
 
-
+global.isValidEmailFormat = isValidEmailFormat
 global.isValidEmail = isValidEmail;
 global.isValidRole = isValidRole;
 global.isValidPassword = isValidPassword;

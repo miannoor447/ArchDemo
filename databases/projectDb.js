@@ -4,13 +4,13 @@ const configuration = {
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'architecture_demo',
+  database: 'archdemo',
   timezone: '+05:00'
 };
 
-const connectToMySql = () => {
+const projectDB = () => {
   const connection = mysql.createConnection(configuration);
   return connection; 
 };
 
-module.exports = connectToMySql;
+module.exports = projectDB;

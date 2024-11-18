@@ -1,22 +1,29 @@
 const executeQueryWithPagination = require('../Constants/executeQueryWithPagination.js');
 const { executeQuery } = require('../Constants/queryExecution.js');
 const getPaginationParams = require('../Constants/getPaginationParams.js');
-const sendResponse = require('../Constants/response.js');
+const LogError = require('../Constants/errorlog'); // Import LogError
 const getDateTime = require("../Constants/getDateTime.js");
 
-const objectResolver = async (req, res, apiObject) => {
+const objectResolver = async (req, res, decryptedBody, apiObject) => {
     try {
-        let { step } = req.body || req.query;
+        let { step } = decryptedBody || req.query;
         step = step ? parseInt(step) - 1 : 0; // Set step to 0 if not provided
         const { page, limit } = getPaginationParams(req);
         const [CreatedAtDate, CreatedAtTime] = getDateTime();
         const [UpdatedAtDate, UpdatedAtTime] = [CreatedAtDate, CreatedAtTime];
         const createdAt = CreatedAtDate + CreatedAtTime;
         const updatedAt = createdAt;
+
+        // Ensure queryPayload is present
         const { queryPayload } = apiObject.data.apiInfo[step].query;
-        let results;
         if (!queryPayload) {
-            throw new Error("Query payload is missing.");
+            const errorObject = {
+                frameworkStatusCode: 'E21', // Invalid or Missing Query Payload
+                httpStatusCode: 400, // Bad Request
+                description: "SSC: E21 => Query payload is missing."
+            };
+            await LogError(req, res, 'objectResolver', errorObject.description); // Log the error
+            throw new Error(errorObject.description);
         }
 
         // Create an object to hold parameter values
@@ -32,13 +39,11 @@ const objectResolver = async (req, res, apiObject) => {
 
             // Depending on the source, extract the value
             if (source === "req.body") {
-                paramValues[name] = req.body[name];
+                paramValues[name] = decryptedBody[name];
             } else if (source === "req.query") {
                 paramValues[name] = req.query[name];
             }
-            // Add any other sources if needed
-
-            // Replace nested placeholders
+            
             completeQuery = replaceNestedPlaceholders(completeQuery, paramValues);
         }
 
@@ -51,18 +56,33 @@ const objectResolver = async (req, res, apiObject) => {
             .replace(/{{createdAt}}/g, `'${createdAt}'`)
             .replace(/{{updatedAt}}/g, `'${updatedAt}'`);
 
-
-        // Execute the query
+        console.log("Completed Query::: " , completeQuery);
+        // Execute the query with pagination or normal execution
+        let results;
         if (apiObject.data.apiInfo[step].pagination) {
             results = await executeQueryWithPagination(res, completeQuery, "", page, limit);
         } else {
             results = await executeQuery(res, completeQuery);
         }
-        return sendResponse(res, 200, "Query Executed Successfully", {query : completeQuery, results : results});
+
+        // Return success response (200 - OK)
+        return results;
 
     } catch (error) {
         console.log(error);
-        throw new Error(error.message);
+        console.error("Error in objectResolver:", error.message);
+
+        // Log the error using LogError
+        await LogError(req, res, 'objectResolver', error, 'E24');
+
+        // Ensure detailed error response with proper HTTP status
+        const errorObject = {
+            frameworkStatusCode: 'E24', // General error
+            httpStatusCode: 500, // Internal Server Error
+            description: `SSC: E24 => ${error.message || error.toString()}`
+        };
+
+        throw new Error(errorObject.description);
     }
 };
 

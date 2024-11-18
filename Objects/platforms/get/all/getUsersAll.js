@@ -1,12 +1,15 @@
-global.DeleteUser_object = {
+global.GetUserAll_object = {
   "versions": {
-    "versionData": [{
+    "supported": [
+      "=1.0"
+    ],
+    "versionData": {
       "=1.0": {
         "config": {
           "features": {
             "multistep": false,
-            "parameters": true,
-            "pagination": false
+            "parameters": false,
+            "pagination": true
           },
           "communication": {
             "encryption": {
@@ -22,22 +25,13 @@ global.DeleteUser_object = {
         },
         "data": {
           "parameters": {
-            "fields": [
-              [
-                {
-                  "name": "Id",
-                  "validations": [],
-                  "required": true,
-                  "source": "req.body"
-                }
-              ]
-            ]
+            "fields": []
           },
           "apiInfo": [
             {
               "query": {
-                "queryNature": "Deletion",
-                "queryPayload": "Delete user WHERE UserId = {{Id}};",
+                "queryNature": "Retrieving",
+                "queryPayload": "SELECT * FROM user",
                 "database": "projectDB"
               },
               "utilityFunctions": {
@@ -47,8 +41,8 @@ global.DeleteUser_object = {
             }
           ],
           "requestMetaData": {
-            "requestMethod": "DELETE",
-            "permission": "DeleteUser",
+            "requestMethod": "GET",
+            "permission": "GetUsersAll",
             "pagination": {
               "pageSize": 10,
               "options": {
@@ -65,10 +59,10 @@ global.DeleteUser_object = {
           }
         },
         "response": {
-          "successMessage": "User deleted successfully!",
-          "errorMessage": "There was an error deleting the user."
+          "successMessage": "Users retrieved successfully!",
+          "errorMessage": "There was an error retrieving the users."
         }
       }
-    }]
+    }
   }
 };
