@@ -41,7 +41,7 @@ const middlewareHandler = async (req, res, next) => {
         const { features } = config;
         let decryptedPayload = req.body;
         let encryptionKey = null;
-
+        console.log(config.communication);
         if (req.method !== data.requestMetaData.requestMethod) {
             const errorObject = {
                 frameworkStatusCode: 'E52', // Mismatch Request Method
@@ -170,7 +170,6 @@ const middlewareHandler = async (req, res, next) => {
         // Log the error
         LogError(req, res, "middlewareHandler", errorResponse.description);
 
-        sendResponse(res, errorResponse.httpStatusCode, errorResponse.description);
     }
 };
 

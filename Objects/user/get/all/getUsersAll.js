@@ -1,4 +1,4 @@
-global.ListUsers_object = {
+global.ListUsersAll_object = {
   "versions": {
     "versionData": [{
       "=1.0": {
@@ -9,11 +9,7 @@ global.ListUsers_object = {
             "pagination": true
           },
           "communication": {
-            "encryption": {
-              "platformEncryption": true,
-              "otpEncryption": false,
-              "staticEncryption": true
-            }
+            "encryption": false,
           },
           "verification": {
             "otp": false,

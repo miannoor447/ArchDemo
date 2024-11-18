@@ -1550,3 +1550,67 @@
         Body: {"EncryptedPayload":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJFbmNyeXB0ZWRQYXlsb2FkIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnVZVzFsSWpvaVFXRnphR2x5SUVGa2JtRnVJaXdpWlcxaGFXd2lPaUpoWVhOb2FYSmhaRzVoYmprNVFHZHRZV2xzTG1OdmJTSXNJbkJoYzNOM2IzSmtJam9pUTI5dGNGTmphVFJsZG1WeUlpd2ljR2h2Ym1WT2J5STZJakF6TURNNU16ZzVOamN3SWl3aWFXRjBJam94TnpNeE5qTTNNekU0ZlEuVWk0MUJJQU1JekFVWkpfM2Rmc2pIVW5tTUh4a2lJRWlnVnM5Q0hjS1JTdyIsIkVuY3J5cHRpb25EZXRhaWxzIjp7InBsYXRmb3JtTmFtZSI6IlBvc3RtYW4iLCJwbGF0Zm9ybVZlcnNpb24iOiIxLjAifSwiaWF0IjoxNzMxNjM3MzM0fQ.2Bix3VWf0sBfEcwVs8uctyCHI3-rONsv3oNa99LQzGg"}
         Query: {"version":"1.0"}
     
+
+        Time: 2024-11-18T07:48:13.483Z
+        Method: GET
+        URL: /api/list/users/all?version=1.0
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"45315ece-24e1-4cb9-ad9d-4c535e297812","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T07:48:39.876Z
+        Method: GET
+        URL: /api/list/users/all?version=1.0
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"29b1bd6a-354b-467a-91b3-d787415952f1","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T07:48:56.821Z
+        Method: GET
+        URL: /api/list/users/all?version=1.0
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"75d58e94-cd10-4adc-9118-a9f3e76017d5","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T07:50:39.084Z
+        Method: GET
+        URL: /api/list/users/all?version=1.0
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"27b1616c-5268-4b8f-86ab-49f0f888ca0f","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T07:51:06.139Z
+        Method: GET
+        URL: /api/list/users/all?version=1.0
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"926ab1ca-9456-40da-b44a-66b821221e54","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T07:51:52.975Z
+        Method: GET
+        URL: /api/list/users/all?version=1.0
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"a103f4a3-6594-42e0-bddb-1c5eb73ad890","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0"}
+    
+
+        Time: 2024-11-18T07:52:30.269Z
+        Method: GET
+        URL: /api/list/users?version=1.0&userId=4
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"7a82ba91-00b9-4ca9-94ba-dec3eac5bab0","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0","userId":"4"}
+    
+
+        Time: 2024-11-18T07:52:50.998Z
+        Method: GET
+        URL: /api/list/users?version=1.0&userId=4
+        Headers: {"user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"62809b55-a61b-487f-bd23-caff52d78a6e","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}
+        Body: {}
+        Query: {"version":"1.0","userId":"4"}
+    

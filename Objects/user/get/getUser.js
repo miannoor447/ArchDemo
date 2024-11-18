@@ -9,11 +9,7 @@ global.ListUsers_object = {
             "pagination": true
           },
           "communication": {
-            "encryption": {
-              "platformEncryption": true,
-              "otpEncryption": false,
-              "staticEncryption": true
-            }
+            "encryption": false,
           },
           "verification": {
             "otp": false,
@@ -26,7 +22,7 @@ global.ListUsers_object = {
               [
                 {
                   "name": "userId",
-                  "validations": ["isValidUserId"],
+                  "validations": [],
                   "required": true,
                   "source": "req.query"
                 }
@@ -37,7 +33,7 @@ global.ListUsers_object = {
             {
               "query": {
                 "queryNature": "SELECT",
-                "queryPayload": "select * from users where id = {{userId}}",
+                "queryPayload": "select * from users where userId = {{userId}}",
                 "database": "projectDB"
               },
               "utilityFunctions": {
