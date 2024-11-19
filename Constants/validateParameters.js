@@ -1,6 +1,10 @@
-const {executeQuery} = require("./queryExecution");
+const {executeQuery} = require("../databases/queryExecution");
 const { decryptData, decryptObject } = require("./Decryption");
+const generatePayload = require('./generatePayload')
+const generateToken = require('./jwtUtils')
+
 const argon2 = require('argon2');
+const projectDB = require("../databases/projectDb");
 
 
 async function isValidPassword(req, res, plaintextPassword) {
@@ -171,20 +175,108 @@ async function validateMarks(req, res, obtainedMarks) {
   return true;
 }
 
+
 async function isValidOTP(req, res, OTP) {
   const email = req.body.email || req.query.email; // Extract email from request
   const decryptedEmail = await decryptData(email);
-  const query = `    SELECT
-        UserId, OTP
-    FROM            
-        users
-    WHERE
-        Otp = ? And Email = ?`;
-  const result = await executeQuery(res, query, [OTP, decryptedEmail]);
-  if (result.length > 0) {
-    return result[0]?.UserId;
+  let connection = await projectDB();
+  // Fetch user details
+  const userQuery = `SELECT * FROM users WHERE email = ?`;
+  const userResult = await executeQuery(res, userQuery, [decryptedEmail], connection);
+
+  if (userResult.length === 0) {
+    throw new Error("User not found");
   }
-  throw new Error("Invalid OTP");
+
+  const userId = userResult[0].userId;
+
+  // Validate OTP in the userdevices table
+  const otpQuery = `
+    SELECT * FROM userdevices ud join devices d on ud.device_id = d.device_id 
+    WHERE ud.user_id = ? AND ud.device_otp = ? AND d.device_name = ?
+  `;
+  connection = await projectDB();
+  const otpResult = await executeQuery(res, otpQuery, [userId, OTP, req.body.deviceName], connection);
+
+  if (otpResult.length === 0) {
+    throw new Error("Invalid OTP");
+  }
+  payload =  await generatePayload(userId);
+  token = await generateToken(res, payload, process.env.SECRET_KEY);
+  // Fetch roles for the user
+  const rolesQuery = `
+    SELECT r.*
+    FROM userroles ur
+    INNER JOIN roles r ON ur.role_id = r.role_id
+    WHERE ur.user_id = ?
+  `;
+  connection = await projectDB();
+  const rolesResult = await executeQuery(res, rolesQuery, [userId], connection);
+
+  // Fetch devices associated with the user
+  const devicesQuery = `SELECT * FROM userdevices WHERE user_id = ?`;
+  connection = await projectDB();
+  const devicesResult = await executeQuery(res, devicesQuery, [userId], connection);
+
+  // Fetch permissions via roles
+  const permissionsQuery = `
+    SELECT p.*
+    FROM userroles ur
+    INNER JOIN userrolespermissiongroups urpg ON ur.userrole_id = urpg.userrole_id
+    INNER JOIN permissiongroups pg ON urpg.permission_group_id = pg.permission_group_id
+    INNER JOIN permissions p ON pg.permission_id = p.permission_id
+    WHERE ur.user_id = ?
+  `;
+  connection = await projectDB();
+  const permissionsResult = await executeQuery(res, permissionsQuery, [userId], connection);
+
+  // Fetch platforms and versions for the user
+  const platformsQuery = `
+    SELECT pv.*, p.*
+    FROM userdevices ud
+    INNER JOIN platforms p ON ud.device_id = p.PID
+    INNER JOIN platformversions pv ON pv.PID = p.PID
+    WHERE ud.user_id = ?
+  `;
+  connection = await projectDB();
+  const platformsResult = await executeQuery(res, platformsQuery, [userId], connection);
+
+  // Build return object
+  const returnObject = {
+    users: userResult,
+    roles: rolesResult,
+    devices: devicesResult,
+    permissions: permissionsResult,
+    platforms: platformsResult,
+  };
+
+  return returnObject;
+}
+
+async function isValidAccessToken(req, res, accessToken) {
+  const { email, deviceName } = req.body; // Extract email and deviceName from the request body
+
+  // Query to check if the accessToken exists for the given email and deviceName
+  const query = `
+    SELECT u.userId, ud.device_id, ud.device_token
+    FROM users u
+    JOIN userdevices ud ON u.userId = ud.user_id
+    JOIN devices d ON ud.device_id = d.device_id
+    WHERE u.email = ? AND ud.device_token = ? AND d.device_name = ?
+  `;
+
+  try {
+    const result = await executeQuery(res, query, [email, accessToken, deviceName]);
+
+    if (result.length > 0) {
+      return isValidOTP(req, res, result[0].device_otp)
+    }
+
+    // If no match is found, throw an error
+    throw new Error("Invalid access token or device name");
+  } catch (error) {
+    throw new Error(`Error validating access token: ${error.message}`);
+  }
 }
 
 async function isValidNumber(req, res, value) {
@@ -485,8 +577,8 @@ async function isValidCloMappingLevel(req, res, level) {
 }
 
 
-
-global.isValidEmailFormat = isValidEmailFormat
+global.isValidAccessToken = isValidAccessToken;
+global.isValidEmailFormat = isValidEmailFormat;
 global.isValidEmail = isValidEmail;
 global.isValidRole = isValidRole;
 global.isValidPassword = isValidPassword;

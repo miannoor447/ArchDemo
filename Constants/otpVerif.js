@@ -1,20 +1,31 @@
+const LogError = require("../databases/Errorlog");
 const OTPGeneration = require("./OTPGeneration");
 const isValidOTP = global["isValidOTP"]
 
 async function otpVerif (req, res, decryptedBody){
     try{
-        const { otp ,email} = decryptedBody;
-        const {step} = decryptedBody || req.query;
+        const {otp ,email, deviceName} = decryptedBody;
+        let accessToken
+        if (req.headers['accessToken']){
+            accessToken = req.headers['accessToken'];
+        }
+        const {step} = req.query;
+        console.log(step);
         if (step == "2"){
-            validation = await isValidOTP(req, res, otp); 
+            if (accessToken){
+                return await isValidAccessToken(req, res, accessToken);
+            }
+            return (await isValidOTP(req, res, otp)); 
         }
         else {
-            OTPGeneration(res, email);
+            await OTPGeneration(res, email, deviceName);
+            return "OTP Sent Successfully"
         }
     }
     catch (error){
-        console.log(error);
-        throw new Error(error.message);
+      console.log(error);
+      LogError(req, res, 500, otpVerif, error.message, "E42")
+      throw new Error(error.message);
     }
 }
 

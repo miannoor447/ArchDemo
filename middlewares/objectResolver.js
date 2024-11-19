@@ -16,13 +16,7 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
         // Ensure queryPayload is present
         const { queryPayload } = apiObject.data.apiInfo.query;
         if (!queryPayload) {
-            const errorObject = {
-                frameworkStatusCode: 'E21', // Invalid or Missing Query Payload
-                httpStatusCode: 400, // Bad Request
-                description: "SSC: E21 => Query payload is missing."
-            };
-            LogError(req, res, errorObject.httpStatusCode, "objectResolver", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-            throw new Error(errorObject.description);
+            return
         }
 
         // Create an object to hold parameter values
