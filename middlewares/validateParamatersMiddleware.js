@@ -3,13 +3,10 @@ const LogError = require('../databases/Errorlog.js')
 const validateParametersMiddleware = async (req, res, decryptedBody, apiObject) => {
     try {
         const { config, data } = apiObject;
-        let { step } = decryptedBody || req.query;
-        console.log(decryptedBody);
-        step = step ? parseInt(step) - 1 : 0; // Set step to 0 if not provided
         const attributeValidations = {};
         let parameters;
-        parameters = data.parameters.fields[step];
-        
+        parameters = data.parameters.fields;
+        console.log(parameters);
         //console.log("parameters:", parameters);
 
         // Validate each parameter based on the structure

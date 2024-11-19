@@ -7,15 +7,20 @@ require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') }
 // Encryption function
 const handleEncryption = async (req, res, object) => {
   let encryptionKey = '';
-  let decryptedPayload = req.body.EncryptedPayload;
-  let EncryptedPayload = null;
-  let EncryptionDetails = null;
+  let reqData = null;
+  let decryptedPayload;
+  let encryptionDetails = null;
   const { config, data } = object;
 
   try {
-    if (req.body && Object.keys(req.body).length>0) {
-      ({ EncryptedPayload, EncryptionDetails } = decryptObject(decryptedPayload, process.env.SECRET_KEY));
-      if (!EncryptedPayload || !EncryptionDetails) {
+    if (req.method == "GET"){
+      encryptedRequest = req.headers['encryptedRequest']
+    }
+    else{
+      encryptedRequest = req.body.encryptedRequest;
+    }
+      ({ reqData, encryptionDetails } = decryptObject(encryptedRequest, process.env.SECRET_KEY));
+      if (!reqData || !encryptionDetails) {
         const errorObject = {
           frameworkStatusCode: 'E10', // Missing Encrypted Payload or Encryption Details
           httpStatusCode: 400, // Bad Request
@@ -32,7 +37,7 @@ const handleEncryption = async (req, res, object) => {
       
       // Handle platform encryption
       if (config.communication.encryption.platformEncryption) {
-        const { PlatformName, PlatformVersion } = EncryptionDetails;
+        const { PlatformName, PlatformVersion } = encryptionDetails;
         if (!PlatformName || !PlatformVersion) {
           const errorObject = {
             frameworkStatusCode: 'E10', // Missing PlatformName or PlatformVersion for Encryption
@@ -62,11 +67,9 @@ const handleEncryption = async (req, res, object) => {
           return LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
         }
       }
-    }
-
-      if (EncryptedPayload) {
-        console.log(EncryptedPayload);
-        decryptedPayload = decryptObject(EncryptedPayload, encryptionKey);
+      if (reqData) {
+        console.log(reqData);
+        decryptedPayload = decryptObject(reqData, encryptionKey);
       }
 
       return {

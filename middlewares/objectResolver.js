@@ -6,8 +6,7 @@ const getDateTime = require("../Constants/getDateTime.js");
 
 const objectResolver = async (req, res, decryptedBody, apiObject) => {
     try {
-        let { step } = decryptedBody || req.query;
-        step = step ? parseInt(step) - 1 : 0; // Set step to 0 if not provided
+
         const { page, limit } = getPaginationParams(req);
         const [CreatedAtDate, CreatedAtTime] = getDateTime();
         const [UpdatedAtDate, UpdatedAtTime] = [CreatedAtDate, CreatedAtTime];
@@ -15,7 +14,7 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
         const updatedAt = createdAt;
 
         // Ensure queryPayload is present
-        const { queryPayload } = apiObject.data.apiInfo[step].query;
+        const { queryPayload } = apiObject.data.apiInfo.query;
         if (!queryPayload) {
             const errorObject = {
                 frameworkStatusCode: 'E21', // Invalid or Missing Query Payload
@@ -33,7 +32,7 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
         let completeQuery = queryPayload;
 
         // Iterate over fields to extract values and replace placeholders
-        for (const field of apiObject.data.parameters.fields[step]) {
+        for (const field of apiObject.data.parameters.fields) {
             const source = field.source; // Source of the parameter
             const name = field.name; // Name of the parameter
 
@@ -59,7 +58,7 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
         console.log("Completed Query::: " , completeQuery);
         // Execute the query with pagination or normal execution
         let results;
-        if (apiObject.data.apiInfo[step].pagination) {
+        if (apiObject.data.apiInfo.pagination) {
             results = await executeQueryWithPagination(res, completeQuery, "", page, limit);
         } else {
             results = await executeQuery(res, completeQuery);

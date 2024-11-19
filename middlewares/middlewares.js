@@ -14,7 +14,6 @@ const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 const middlewareHandler = async (req, res, next) => {
     try {
         let payload = {};
-        
         const requestedPath = req.path.replace('/api/', '');
         const pathParts = requestedPath.split('/');
         const objectName = pathParts.length >= 2
@@ -109,9 +108,9 @@ const middlewareHandler = async (req, res, next) => {
             }
         }
     
-        if (data.apiInfo[0].utilityFunctions.callbackFunction) {
+        if (data.apiInfo.utilityFunctions.callbackFunction) {
             try {
-                data.apiInfo[0].utilityFunctions.callbackFunction(req, res, decryptedPayload);
+                data.apiInfo.utilityFunctions.callbackFunction(req, res, decryptedPayload);
             } catch (error) {
                 const errorObject = {
                     frameworkStatusCode: 'E22', // Callback Function Error
@@ -124,8 +123,8 @@ const middlewareHandler = async (req, res, next) => {
         } else {
             payload.return = await objectResolver(req, res, decryptedPayload, {config, data, response});
             // Run each function listed in payloadFunction array
-            if (data.apiInfo[0].utilityFunctions.payloadFunction.length > 0) {
-                for (const util of data.apiInfo[0].utilityFunctions.payloadFunction) {
+            if (data.apiInfo.utilityFunctions.payloadFunction.length > 0) {
+                for (const util of data.apiInfo.utilityFunctions.payloadFunction) {
                     try {
                         payload[util] = await util(req, res);
                     } catch (error) {
@@ -148,6 +147,7 @@ const middlewareHandler = async (req, res, next) => {
         }
     }
     catch (error) {
+        console.log(error);
     }
 };
 

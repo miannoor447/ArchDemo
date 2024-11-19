@@ -1,11 +1,14 @@
 const connectToMyProj = require('../databases/projectDb');
 const jwt = require('jsonwebtoken');
 const { executeQuery } = require('../databases/queryExecution');
+const LogError = require('../databases/Errorlog');
 require('dotenv').config();
 
 // Function for handling version checking
 const handleVersionChecking = async (req, res, object) => {
   try {
+    let { step } =  req.query;
+    step = step ? parseInt(step) - 1 : 0; // Set step to 0 if not provided  
     let { version } = req.query;
     if (!version) {
       // Error: Missing version parameter
@@ -55,9 +58,9 @@ const handleVersionChecking = async (req, res, object) => {
         httpStatusCode: 404, // Not Found
         description: "SSC: E50 => Matching version configuration not found"
       };
+      LogError(req, res, errorObject.httpStatusCode, "versionChecker", errorObject.description, errorObject.frameworkStatusCode);
     }
-
-    const { config, data, response } = selectedVersion;
+    const { config, data, response } = selectedVersion.steps[step];
     return {
       config,
       data,
@@ -71,6 +74,7 @@ const handleVersionChecking = async (req, res, object) => {
       httpStatusCode: 500, // Internal Server Error
       description: `SSC: E24 => ${error.message || error.toString()}`
     };
+    LogError(req, res, errorObject.httpStatusCode, "versionChecker", error.message, errorObject.frameworkStatusCode)
   }
 };
 
