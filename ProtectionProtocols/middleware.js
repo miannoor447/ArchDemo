@@ -54,7 +54,12 @@ const applyMiddleware = (app) => {
     app.use(helmet.xContentTypeOptions()); // Prevent MIME type sniffing
     app.use(helmet.xFrameOptions({ action: 'deny' })); // Prevent clickjacking
     app.use(helmet.hsts({ maxAge: 31536000 })); // Enforce HTTPS
-    app.use(cors()); // Enable CORS
+    app.use(cors({
+        origin: '*',
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        credentials: true
+      }));
 
     // Uncomment the following block to enforce HTTPS
     // app.use((req, res, next) => {
