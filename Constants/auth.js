@@ -13,7 +13,7 @@ function verifyToken(res, token,sendResponse=1) {
       if(sendResponse==1)
       {
         const resp = {status: 401,message: 'Token has expired',payload: null};
-        return sendResponse(res, resp.status, resp.message, resp.payload);
+        return sendResponse(res, resp.status, resp.message, resp.payload, "E40");
       }
       return false;
     }
