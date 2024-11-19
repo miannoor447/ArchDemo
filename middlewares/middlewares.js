@@ -40,7 +40,6 @@ const middlewareHandler = async (req, res, next) => {
         const { features } = config;
         let decryptedPayload = req.body;
         let encryptionKey = null;
-        console.log(config.communication);
         if (req.method !== data.requestMetaData.requestMethod) {
             const errorObject = {
                 frameworkStatusCode: 'E52', // Mismatch Request Method
@@ -143,7 +142,6 @@ const middlewareHandler = async (req, res, next) => {
         }
 
         if (config.communication.encryption) {
-            console.log(encryptionKey);
             sendResponse(res, 200, "API Hit Successfully",encryptObject(payload, encryptionKey));
         } else {
             sendResponse(res, 200, "API Hit Successfully", payload);

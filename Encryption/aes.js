@@ -16,7 +16,7 @@ const adjustKeyLength = (key, targetLength = 32) => {
 const encryptObject = (object, key) => {
     const adjustedKey = adjustKeyLength(key); // Adjust key length to 32 bytes
     const encryptionKey = CryptoJS.enc.Utf8.parse(adjustedKey); // 32-byte key for AES-256
-
+    console.log("ENCRYPTED OBJECT :: " , object,"ENCRYPTION KEY TO ENCRYPT :: ", adjustedKey);
     // Convert the object to a string before encryption
     const stringifiedObject = JSON.stringify(object);
 
@@ -33,16 +33,14 @@ const encryptObject = (object, key) => {
 const decryptObject = (encryptedObject, key) => {
     const adjustedKey = adjustKeyLength(key); // Adjust key length to 32 bytes
     const encryptionKey = CryptoJS.enc.Utf8.parse(adjustedKey); // 32-byte key for AES-256
-
+    console.log("ENCRYPTED OBJECT :: " , encryptedObject,"ENCRYPTION KEY TO DECRYPT :: ", adjustedKey);
     // Decrypt the encrypted object (which is a string)
     const decrypted = CryptoJS.AES.decrypt(encryptedObject, encryptionKey, {
         mode: CryptoJS.mode.ECB,
         padding: CryptoJS.pad.Pkcs7,
     });
-    // Convert the decrypted string back to an object
     const decryptedString = decrypted.toString(CryptoJS.enc.Utf8);
     const decryptedObject = JSON.parse(decryptedString);
-
     return decryptedObject;
 };
 

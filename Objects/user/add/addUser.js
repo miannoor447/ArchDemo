@@ -12,7 +12,7 @@ global.AddUser_object = {
               //"encryption": false,
               "encryption": {
                 "platformEncryption": true,
-                "accessTokenEncryption": true,
+                "accessTokenEncryption": false,
               }
             },
             "verification" : {
@@ -26,7 +26,7 @@ global.AddUser_object = {
                 [
                   {
                     "name": "name",
-                    "validations": ["isValidText"],
+                    "validations": [],
                     "required": true,
                     "source": "req.body"
                   },

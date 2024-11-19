@@ -1,7 +1,7 @@
 const connectToMyProj = require('../databases/projectDb');
 const { executeQuery } = require('../databases/queryExecution');
 const LogError = require('../databases/Errorlog');
-const { decryptObject } = require('../Encryption/aes');
+const { decryptObject, encryptObject } = require('../Encryption/aes');
 require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 
 // Encryption function
@@ -14,9 +14,7 @@ const handleEncryption = async (req, res, object) => {
 
   try {
     if (req.body && Object.keys(req.body).length>0) {
-      console.log("Body::", req.body);
-      const { EncryptedPayload, EncryptionDetails } = decryptObject(decryptedPayload, process.env.SECRET_KEY);
-
+      ({ EncryptedPayload, EncryptionDetails } = decryptObject(decryptedPayload, process.env.SECRET_KEY));
       if (!EncryptedPayload || !EncryptionDetails) {
         const errorObject = {
           frameworkStatusCode: 'E10', // Missing Encrypted Payload or Encryption Details
@@ -67,7 +65,7 @@ const handleEncryption = async (req, res, object) => {
     }
 
       if (EncryptedPayload) {
-        console.log("Encrypted Payload:", EncryptedPayload);
+        console.log(EncryptedPayload);
         decryptedPayload = decryptObject(EncryptedPayload, encryptionKey);
       }
 
@@ -76,10 +74,11 @@ const handleEncryption = async (req, res, object) => {
         encryptionKey,
       };
   } catch (error) {
+    console.error(error);
     const errorObject = {
       frameworkStatusCode: 'E40', // Encryption Error
       httpStatusCode: 500, // Internal Server Error
-      description: `SSC: E40 => Encryption Error: ${error.message}`,
+      description: `SSC: E40 => Decryption Error: ${error.message}`,
     };
     LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
   }

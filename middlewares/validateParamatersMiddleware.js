@@ -1,5 +1,5 @@
-const validationsLib = require("../Constants/validateParameters.js");
-
+require('../Constants/validateParameters.js')
+const LogError = require('../databases/Errorlog.js')
 const validateParametersMiddleware = async (req, res, decryptedBody, apiObject) => {
     try {
         const { config, data } = apiObject;
@@ -28,7 +28,6 @@ const validateParametersMiddleware = async (req, res, decryptedBody, apiObject) 
                     description: errorMessage
                 };
                 LogError(req, res, errorObject.httpStatusCode, "validateParameteresMiddleware", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-                throw errorObject;
             }
 
             // If there are validation functions for the parameter
@@ -46,7 +45,7 @@ const validateParametersMiddleware = async (req, res, decryptedBody, apiObject) 
                             description: errorMessage
                         };
                         LogError(req, res, errorObject.httpStatusCode, "validateParameteresMiddleware", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-                        throw errorObject;
+                        return;
                     }
 
                     try {
@@ -61,7 +60,7 @@ const validateParametersMiddleware = async (req, res, decryptedBody, apiObject) 
                             description: errorMessage
                         };
                         LogError(req, res, errorObject.httpStatusCode, "validateParameteresMiddleware", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-                        throw errorObject;
+                        return
                     }
                 }
             }
