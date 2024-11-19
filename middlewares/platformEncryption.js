@@ -14,7 +14,8 @@ const handleEncryption = async (req, res, object) => {
 
   try {
     if (req.method == "GET"){
-      encryptedRequest = req.headers['encryptedRequest']
+      console.log(req.headers);
+      encryptedRequest = req.headers['encryptedrequest']
     }
     else{
       encryptedRequest = req.body.encryptedRequest;

@@ -11,9 +11,8 @@ global.ListUsersAll_object = {
             },
             "communication": {
               "encryption": {
-                "platformEncryption": false,
+                "platformEncryption": true,
                 "accessTokenEncryption": false,
-                "staticEncryption": true
               }
             },
             "verification": {
