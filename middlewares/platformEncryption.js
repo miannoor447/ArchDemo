@@ -34,8 +34,8 @@ const handleEncryption = async (req, res, object) => {
       
       // Handle platform encryption
       if (config.communication.encryption.platformEncryption) {
-        const { PlatformName, platformVersion } = EncryptionDetails;
-        if (!PlatformName || !platformVersion) {
+        const { PlatformName, PlatformVersion } = EncryptionDetails;
+        if (!PlatformName || !PlatformVersion) {
           const errorObject = {
             frameworkStatusCode: 'E10', // Missing PlatformName or PlatformVersion for Encryption
             httpStatusCode: 400, // Bad Request
@@ -48,11 +48,11 @@ const handleEncryption = async (req, res, object) => {
         const platformQuery = `
           SELECT pv.EncryptionKey
           FROM platforms p
-          JOIN platformversions pv ON p.PID = pv.PID
+          JOIN PlatformVersions pv ON p.PID = pv.PID
           JOIN versions v ON pv.VID = v.VID
           WHERE p.PlatformName = ? AND v.versionValue = ?
         `;
-        const platformResults = await executeQuery(res, platformQuery, [PlatformName, platformVersion], projectDbConnection);
+        const platformResults = await executeQuery(res, platformQuery, [PlatformName, PlatformVersion], projectDbConnection);
         if (platformResults.length > 0) {
           encryptionKey += platformResults[0].EncryptionKey;
         } else {
