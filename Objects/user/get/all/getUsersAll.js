@@ -9,12 +9,12 @@ global.ListUsersAll_object = {
             "pagination": true
           },
           "communication": {
-            // "encryption": false
-             "encryption": {
-                "platformEncryption": false,
-                "otpEncryption": false,
-                "staticEncryption" : true
-              }
+            "encryption": false
+            //  "encryption": {
+            //     "platformEncryption": false,
+            //     "otpEncryption": false,
+            //     "staticEncryption" : true
+            //   }
           },
           "verification": {
             "otp": false,

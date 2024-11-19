@@ -144,9 +144,9 @@ const middlewareHandler = async (req, res, next) => {
 
         if (config.communication.encryption) {
             console.log(encryptionKey);
-            sendResponse(res, 200, encryptObject(payload, encryptionKey));
+            sendResponse(res, 200, "API Hit Successfully",encryptObject(payload, encryptionKey));
         } else {
-            sendResponse(res, 200, payload);
+            sendResponse(res, 200, "API Hit Successfully", payload);
         }
     }
     catch (error) {
