@@ -21,9 +21,9 @@ const handleEncryption = async (req, res, object) => {
     }
     else{
       const errorObject = {
-        frameworkStatusCode: 'E10', // Missing Encrypted Payload or Encryption Details
+        frameworkStatusCode: 'E14', // Missing Encrypted Payload or Encryption Details
         httpStatusCode: 400, // Bad Request
-        description: "SSC: E10 => No req body provided",
+        description: "SSC: E14 => No req body provided",
       };
       return LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
     }
