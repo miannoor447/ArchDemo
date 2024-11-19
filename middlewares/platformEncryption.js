@@ -8,20 +8,19 @@ require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') }
 const handleEncryption = async (req, res, object) => {
   let encryptionKey = '';
   let reqData = null;
-  let decryptedPayload;
+  let decryptedPayload = "";
   let encryptionDetails = null;
   const { config, data } = object;
 
   try {
     if (req.method == "GET"){
-      console.log(req.headers);
       encryptedRequest = req.headers['encryptedrequest']
     }
     else{
       encryptedRequest = req.body.encryptedRequest;
     }
       ({ reqData, encryptionDetails } = decryptObject(encryptedRequest, process.env.SECRET_KEY));
-      if (!reqData || !encryptionDetails) {
+      if ((!reqData && req.method != "GET") || !encryptionDetails) {
         const errorObject = {
           frameworkStatusCode: 'E10', // Missing Encrypted Payload or Encryption Details
           httpStatusCode: 400, // Bad Request
@@ -69,7 +68,7 @@ const handleEncryption = async (req, res, object) => {
         }
       }
       if (reqData) {
-        console.log(reqData);
+        console.log("reqData: ", reqData);
         decryptedPayload = decryptObject(reqData, encryptionKey);
       }
 
