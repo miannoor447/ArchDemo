@@ -8,6 +8,8 @@ require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') }
 const handleEncryption = async (req, res, object) => {
   let encryptionKey = '';
   let decryptedPayload = req.body.EncryptedPayload;
+  let EncryptedPayload = null;
+  let EncryptionDetails = null;
   const { config, data } = object;
 
   try {
@@ -95,7 +97,7 @@ const handleEncryption = async (req, res, object) => {
           return LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
         }
       }
-
+    }
       // Handle static encryption
       if (config.communication.encryption.staticEncryption) {
         encryptionKey += process.env.SECRET_KEY;
@@ -111,14 +113,6 @@ const handleEncryption = async (req, res, object) => {
         decryptedPayload,
         encryptionKey,
       };
-    } else {
-      const errorObject = {
-        frameworkStatusCode: 'E10', // Missing Encrypted Payload or Encryption Details
-        httpStatusCode: 400, // Bad Request
-        description: "SSC: E10 => Missing Encrypted Payload or Encryption Details",
-      };
-      LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
-    }
   } catch (error) {
     const errorObject = {
       frameworkStatusCode: 'E40', // Encryption Error
