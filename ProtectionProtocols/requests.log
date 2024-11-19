@@ -1,8 +1,0 @@
-
-        Time: 2024-11-19T07:34:09.203Z
-        Method: POST
-        URL: /api/add/user?version=1.0
-        Headers: {"content-type":"application/json","user-agent":"PostmanRuntime/7.42.0","accept":"*/*","postman-token":"a3ea881a-e77b-43da-aca5-4d724fccdf5a","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"377"}
-        Body: {"EncryptedPayload":"fAZgnhzhL9hwC+5cs9hVOvlVPLPCyhcIITnhAqA8hLXGLOyTBU2yqjYUIyKOWJOTiLrqUm3PkpJDAKDZrHDOjxg0x0/JmwwXE6+MN4dzbTGS8C7TxVFcbiFPh506sP4WoeVvz4F5zh6KN+Y78iblXitI8QDaaQNbosAk1K+FJSH4fq7l28DsBVWYio5ZJvDqLGELh6CHDq88uU3Z4TqVe+sdAkQg9v1KxcFSo9NSt7K+S+yMiT6rvhmCRpzUJH5RaguUHVWZ0UiwvDnpAzhpEcx2G8v/3Hv+x0o5cclDgrw6ne9QRs/vszYUkntIEfJa13WUHEP7CGubfP6GtxQ9Jg=="}
-        Query: {"version":"1.0"}
-    
