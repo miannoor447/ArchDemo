@@ -7,12 +7,14 @@ async function sendResponse(res, status, message, payload) {
   // {
   //   payload=await decryptObject(payload)
   // }
+  res.setHeader('Content-Type', 'application/json');
+
    const response = {
     status: status,
     message: message,
     payload: payload
   };
-  
+  console.log('Response sent:', response);
   res.status(status).json(response);
 }
 

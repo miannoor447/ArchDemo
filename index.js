@@ -12,7 +12,7 @@ async function initializeApp() {
   try {
     const baseDirObjects = path.join(__dirname, '/Objects');
 
-    await initialize(); 
+    //await initialize(); 
 
     applyMiddleware(app);
     requireAllJSFiles(baseDirObjects);
