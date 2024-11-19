@@ -2,34 +2,30 @@ global.ListUsersAll_object = {
   "versions": {
     "versionData": [{
       "=1.0": {
-        "config": {
-          "features": {
-            "multistep": false,
-            "parameters": true,
-            "pagination": true
-          },
-          "communication": {
-   //         "encryption": false
-             "encryption": {
+        "steps": [{
+          "config": {
+            "features": {
+              "multistep": false,
+              "parameters": true,
+              "pagination": true
+            },
+            "communication": {
+              "encryption": {
                 "platformEncryption": false,
-                "otpEncryption": false,
-                "staticEncryption" : true
+                "accessTokenEncryption": false,
+                "staticEncryption": true
               }
+            },
+            "verification": {
+              "otp": false,
+              "accessToken": false
+            }
           },
-          "verification": {
-            "otp": false,
-            "accessToken": false
-          }
-        },
-        "data": {
-          "parameters": {
-            "fields": [
-              [
-              ]
-            ]
-          },
-          "apiInfo": [
-            {
+          "data": {
+            "parameters": {
+              "fields": []
+            },
+            "apiInfo": {
               "query": {
                 "queryNature": "SELECT",
                 "queryPayload": "select * from users",
@@ -39,31 +35,31 @@ global.ListUsersAll_object = {
                 "callbackFunction": null,
                 "payloadFunction": []
               }
-            }
-          ],
-          "requestMetaData": {
-            "requestMethod": "GET",
-            "permission": null,
-            "pagination": {
-              "pageSize": 10,
-              "options": {
-                "pageSizeOptions": [
-                  5,
-                  10,
-                  25,
-                  50,
-                  100,
-                  "All"
-                ]
+            },
+            "requestMetaData": {
+              "requestMethod": "GET",
+              "permission": null,
+              "pagination": {
+                "pageSize": 10,
+                "options": {
+                  "pageSizeOptions": [
+                    5,
+                    10,
+                    25,
+                    50,
+                    100,
+                    "All"
+                  ]
+                }
               }
             }
+          },
+          "response": {
+            "successMessage": "Users retrieved successfully!",
+            "errorMessage": "Failed to retrieve users."
           }
-        },
-        "response": {
-          "successMessage": "Users retrieved successfully!",
-          "errorMessage": "Failed to retrieve users."
-        }
-      },
+        }]
+      }
     }]
   }
-}
+};
