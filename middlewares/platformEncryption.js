@@ -16,8 +16,16 @@ const handleEncryption = async (req, res, object) => {
     if (req.method == "GET"){
       encryptedRequest = req.headers['encryptedrequest']
     }
-    else{
+    else if (req.body){
       encryptedRequest = req.body.encryptedRequest;
+    }
+    else{
+      const errorObject = {
+        frameworkStatusCode: 'E10', // Missing Encrypted Payload or Encryption Details
+        httpStatusCode: 400, // Bad Request
+        description: "SSC: E10 => No req body provided",
+      };
+      return LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
     }
       ({ reqData, encryptionDetails } = decryptObject(encryptedRequest, process.env.SECRET_KEY));
       if ((!reqData && req.method != "GET") || !encryptionDetails) {
