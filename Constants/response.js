@@ -1,5 +1,5 @@
 const {decryptArray,decryptObject} = require('./Decryption.js');
-async function sendResponse(res, status, message, payload) {
+async function sendResponse(res, status, message, payload, SCC = null) {
   if (payload && Array.isArray(payload)) {
     payload = await decryptArray(payload); 
   }
@@ -12,7 +12,8 @@ async function sendResponse(res, status, message, payload) {
    const response = {
     status: status,
     message: message,
-    payload: payload
+    payload: payload,
+    scc : SCC
   };
   console.log('Response sent:', response);
   res.status(status).json(response);
