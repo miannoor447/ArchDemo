@@ -12,8 +12,7 @@ global.AddUser_object = {
               //"encryption": false,
               "encryption": {
                 "platformEncryption": true,
-                "otpEncryption": false,
-                "staticEncryption" : true
+                "accessTokenEncryption": true,
               }
             },
             "verification" : {

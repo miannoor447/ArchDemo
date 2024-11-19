@@ -27,48 +27,15 @@ const handleEncryption = async (req, res, object) => {
       }
 
       // Handle OTP-based encryption
-      if (config.communication.encryption.otpEncryption) {
-        const email = EncryptionDetails.email;
-        if (!email) {
-          const errorObject = {
-            frameworkStatusCode: 'E10', // Missing Email for OTP Encryption
-            httpStatusCode: 400, // Bad Request
-            description: "SSC: E10 => Email Not Present For Encryption",
-          };
-          return LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
-        }
-      
-        const projectDbConnection = connectToMyProj();
-        
-        // Updated SQL query to join users, userdevices, and devices tables
-        const query = `
-          SELECT devices.device_otp 
-          FROM users 
-          JOIN userdevices ON users.userId = userdevices.user_id 
-          JOIN devices ON userdevices.device_id = devices.device_id
-          WHERE users.email = ? AND devices.entryStatus = 'active' 
-          LIMIT 1;
-        `;
-        
-        const results = await executeQuery(res, query, [email], projectDbConnection);
-        
-        if (results.length > 0) {
-          // Add the OTP from the device to the encryption key
-          encryptionKey += results[0].device_otp;
-        } else {
-          const errorObject = {
-            frameworkStatusCode: 'E10', // Invalid Email or No Active Device for OTP Encryption
-            httpStatusCode: 400, // Bad Request
-            description: "SSC: E10 => Invalid Email or No Active Device For Encryption",
-          };
-          return LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
-        }
+      if (config.communication.encryption.accessToken) {
+        const accessToken = req.headers['access-token']; // Access the header value
+        encryptionKey += accessToken
       }
       
       // Handle platform encryption
       if (config.communication.encryption.platformEncryption) {
-        const { platformName, platformVersion } = EncryptionDetails;
-        if (!platformName || !platformVersion) {
+        const { PlatformName, platformVersion } = EncryptionDetails;
+        if (!PlatformName || !platformVersion) {
           const errorObject = {
             frameworkStatusCode: 'E10', // Missing PlatformName or PlatformVersion for Encryption
             httpStatusCode: 400, // Bad Request
@@ -83,9 +50,9 @@ const handleEncryption = async (req, res, object) => {
           FROM platforms p
           JOIN platformversions pv ON p.PID = pv.PID
           JOIN versions v ON pv.VID = v.VID
-          WHERE p.platformName = ? AND v.versionValue = ?
+          WHERE p.PlatformName = ? AND v.versionValue = ?
         `;
-        const platformResults = await executeQuery(res, platformQuery, [platformName, platformVersion], projectDbConnection);
+        const platformResults = await executeQuery(res, platformQuery, [PlatformName, platformVersion], projectDbConnection);
         if (platformResults.length > 0) {
           encryptionKey += platformResults[0].EncryptionKey;
         } else {
@@ -98,12 +65,7 @@ const handleEncryption = async (req, res, object) => {
         }
       }
     }
-      // Handle static encryption
-      if (config.communication.encryption.staticEncryption) {
-        encryptionKey += process.env.SECRET_KEY;
-      }
 
-      // Decrypt the payload
       if (EncryptedPayload) {
         console.log("Encrypted Payload:", EncryptedPayload);
         decryptedPayload = decryptObject(EncryptedPayload, encryptionKey);
