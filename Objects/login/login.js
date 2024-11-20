@@ -11,11 +11,11 @@ global.Login_object = {
                 "pagination": false,
               },
               "communication": {
-                "encryption":false
-                // "encryption": {
-                //   "platformEncryption": true,
+                // "encryption":false
+                "encryption": {
+                  "platformEncryption": true,
                 //   "accessTokenEncryption": false,
-                // }
+                }
               },
               "verification" : {
                   "otp" : true,
@@ -74,11 +74,11 @@ global.Login_object = {
                     "pagination": false,
                   },
                   "communication": {
-                    "encryption":false
-                    // "encryption": {
-                    //   "platformEncryption": true,
-                    //   "accessTokenEncryption": false,
-                    // }
+                    // "encryption":false
+                    "encryption": {
+                      "platformEncryption": true,
+                      "accessTokenEncryption": false,
+                    }
                   },
                   "verification" : {
                       "otp" : true,
