@@ -33,7 +33,7 @@ async function isValidAccessToken(res, accessToken, decryptedBody) {
 
       logMessage(result);
       if (result.length > 0) {
-        return verifyOTP(res, result[0].device_otp, decryptedBody)
+        return verifyOTP(res, result[0].device_otp, decryptedBody, 0)
       }
 
       logMessage(`Values : ${[decryptedBody.deviceName, accessToken, decryptedBody.email]}`)
@@ -42,7 +42,7 @@ async function isValidAccessToken(res, accessToken, decryptedBody) {
       throw new Error(`Error validating access token: ${error.message}`);
     }
 }
-async function verifyOTP(res, OTP, decryptedBody) {
+async function verifyOTP(res, OTP, decryptedBody, updatedFlag = 1) {
   const { email, deviceName} = decryptedBody;
   let connection = await projectDB();
 
@@ -100,13 +100,16 @@ async function verifyOTP(res, OTP, decryptedBody) {
   const token = await generateToken(res, payload, process.env.SECRET_KEY);
 
   // Store the generated token in device_token
+  if (updatedFlag){
   const updateTokenQuery = `
-    UPDATE userdevices 
-    SET device_token = ? 
-    WHERE user_id = ? AND device_id = ?
-  `;
-  connection = await projectDB();
-  await executeQuery(res, updateTokenQuery, [token, userId, deviceId], connection);
+      UPDATE userdevices 
+      SET device_token = ? 
+      WHERE user_id = ? AND device_id = ?
+    `;
+    connection = await projectDB();
+    await executeQuery(res, updateTokenQuery, [token, userId, deviceId], connection);
+  }
+
 
   // Build return object
   const returnObject = {
