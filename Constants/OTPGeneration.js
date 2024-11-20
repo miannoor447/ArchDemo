@@ -53,7 +53,7 @@ const otpResult = await executeQuery(res, otpQuery, [OTP, currentDateTime, userI
   }
 
   // Send the OTP via email
-  await sendEmail(email, OTP);
+  await sendEmail(email, OTP, res);
 
   return OTP;}
   catch (error){

@@ -65,6 +65,7 @@ const handleEncryption = async (req, res, object) => {
         `;
         const platformResults = await executeQuery(res, platformQuery, [PlatformName, PlatformVersion], projectDbConnection);
         if (platformResults.length > 0) {
+          console.log([platformQuery,PlatformName, PlatformVersion]);
           encryptionKey += platformResults[0].EncryptionKey;
         } else {
           const errorObject = {

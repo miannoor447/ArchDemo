@@ -15,6 +15,7 @@ async function sendResponse(res, status, message, payload, SCC = null) {
     payload: payload,
     scc : SCC
   };
+  
   res.status(status).json(response);
 }
 

@@ -34,6 +34,41 @@ const sessionRateLimiter = rateLimit({
     keyGenerator: (req) => req.sessionID || req.ip, // Use session ID or IP as key
 });
 
+// Function to log rejected requests (failed logins or rate-limit exceeded)
+const logRejectedRequest = async (req, res, eventType, reason) => {
+    try {
+        const connection = await securityDB(); // Use securityDB to log rejected requests
+        const { ip, method, originalUrl, headers, body, query } = req;
+
+        const queryParams = JSON.stringify(query);
+        const requestBody = JSON.stringify(body);
+        const requestHeaders = JSON.stringify(headers);
+
+        const insertQuery = `
+            INSERT INTO security_log (
+                event_type, ip_address, user_agent, method, url, headers, request_body, query_params, status_code, reason, additional_info
+            ) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+
+        await executeQuery(res, insertQuery, [
+            eventType,
+            ip,
+            req.get('User-Agent'),
+            method,
+            originalUrl,
+            requestHeaders,
+            requestBody,
+            queryParams,
+            res.statusCode,
+            reason,
+            JSON.stringify({}) // Additional info as empty object or any relevant data
+        ], connection);
+    } catch (err) {
+        console.error('Error logging rejected request:', err);
+    }
+};
+
 // Function to apply middleware to the Express app
 const applyMiddleware = (app) => {
     app.use(express.json()); // Parse JSON bodies
@@ -59,7 +94,7 @@ const applyMiddleware = (app) => {
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization', 'encryptedrequest', 'encryptedRequest', 'accessToken'],
         credentials: true
-      }));
+    }));
 
     // Uncomment the following block to enforce HTTPS
     // app.use((req, res, next) => {
@@ -68,6 +103,18 @@ const applyMiddleware = (app) => {
     //     }
     //     next();
     // });
+
+    // Apply security log for failed logins or rejected requests
+    app.use(async (req, res, next) => {
+        if (res.statusCode === 401) {
+            await logRejectedRequest(req, res, 'Failed Login', 'Incorrect credentials');
+        }
+        else if (res.statusCode === 429) {
+            await logRejectedRequest(req, res, 'Rejected Request', 'Rate limit exceeded');
+        }
+
+        next();
+    });
 };
 
 module.exports = applyMiddleware;

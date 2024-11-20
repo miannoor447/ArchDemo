@@ -125,24 +125,21 @@ async function verifyOTP(res, OTP, decryptedBody) {
   
 async function otpVerif (req, res, decryptedBody){
     try{
-      let otp, email, deviceName;
-        let accessToken
-        if (req.headers['accesstoken']){
-            accessToken = req.headers['accesstoken'];
-        }
-        else{
-          ({otp ,email, deviceName} = decryptedBody)
-        }
+        let otp, email, deviceName, accessToken;
+
         const {step} = req.query;
         if (step == "2"){
-          logMessage(`AccessToken : ${accessToken}`, 0);
-          logMessage(`Request Headers : ${req.headers}`, 0)
-            if (accessToken){
-                return await isValidAccessToken(res, accessToken, decryptedBody);
-            }
+          ({otp ,email, deviceName} = decryptedBody)
+
             return (await verifyOTP(res, otp, decryptedBody)); 
         }
         else {
+          if (req.headers['accesstoken']){
+            accessToken = req.headers['accesstoken'];
+            if (accessToken){
+              return await isValidAccessToken(res, accessToken, decryptedBody);
+            }
+          }
             await OTPGeneration(res, email, deviceName);
             return "OTP Sent Successfully"
         }

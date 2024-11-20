@@ -5,7 +5,7 @@ const { initialize } = require('./databases/dbConfig.js');
 const { requireAllJSFiles } = require('./scripts/requiringScript.js');
 const path = require('path');
 const { executeQuery } = require('./databases/queryExecution.js');
-const errorDB = require('./databases/errorDB.js');
+const securityDB = require('./databases/securityDB.js');
 const getDateTime = require('./Constants/getDateTime.js');
 
 require('dotenv').config();
@@ -14,8 +14,8 @@ const app = express();
 async function logErrorToDatabase(error) {
   try {
     const [currentDateString, currentTimeString, CurrentDateTime] = getDateTime();
-    const connection = errorDB(); // Initialize the database connection
-    const query = `INSERT INTO crashes (timestamp, error_message, stack_trace, created_at, updated_at, status) VALUES (?, ?, ?, ?, ?, ?)`;
+    const connection = securityDB(); // Initialize the database connection
+    const query = `INSERT INTO crash_log (timestamp, error_message, stack_trace, created_at, updated_at, status) VALUES (?, ?, ?, ?, ?, ?)`;
     const values = [
       new Date().toISOString(),
       error.message || 'Unknown error',

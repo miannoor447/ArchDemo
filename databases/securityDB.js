@@ -4,13 +4,13 @@ const configuration = {
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'errordemo',
+  database: 'securityDB',
   timezone: '+05:00'
 };
 
-const errorDB = () => {
+const securityDB = () => {
   const connection = mysql.createConnection(configuration);
   return connection; 
 };
 
-module.exports = errorDB;
+module.exports = securityDB;

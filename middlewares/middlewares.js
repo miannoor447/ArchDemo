@@ -68,7 +68,7 @@ const middlewareHandler = async (req, res, next) => {
 
         if (config.verification.accessToken) {
             try {
-                await validateToken(req, res, next);
+                await validateToken(req, res, decryptedPayload);
             } catch (error) {
                 const errorObject = {
                     frameworkStatusCode: 'E40', // Invalid or Expired Token
