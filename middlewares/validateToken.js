@@ -4,12 +4,7 @@ const validateToken = async (req, res) => {
     try {
         const decodedToken = await checkExpiration(res, req.query.accessToken);
         if (!decodedToken) {
-            // Error: Token expired or invalid
-            const errorObject = {
-                frameworkStatusCode: 'E40', // Unauthorized due to invalid or expired token
-                httpStatusCode: 401, // Unauthorized
-                description: "SSC: E40 => Unauthorized: Token expired or invalid"
-            };
+            throw new Error("Invalid Token")
         }
     } catch (error) {
         // Internal server error handling
