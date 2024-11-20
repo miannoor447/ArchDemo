@@ -137,16 +137,21 @@ async function otpVerif (req, res, decryptedBody){
             return (await verifyOTP(res, otp, decryptedBody)); 
         }
         else {
-          if (req.headers['accesstoken']){
-            accessToken = req.headers['accesstoken'];
-            logMessage(accessToken)
-            if (accessToken && accessToken != 'null'){
-              return await isValidAccessToken(res, accessToken, decryptedBody);
+            try{
+              if (req.headers['accesstoken']){
+
+                accessToken = req.headers['accesstoken'];
+                logMessage(accessToken)
+                if (accessToken && accessToken != 'null'){
+                  return await isValidAccessToken(res, accessToken, decryptedBody);
+                }
+              }
             }
-          }
-            ({email, deviceName} = decryptedBody);
-            await OTPGeneration(res, email, deviceName);
-            return "OTP Sent Successfully"
+            catch (error){
+              ({email, deviceName} = decryptedBody);
+              await OTPGeneration(res, email, deviceName);
+              return "OTP Sent Successfully"
+            }
         }
     }
     catch (error){
