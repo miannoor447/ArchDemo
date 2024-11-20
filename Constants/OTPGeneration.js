@@ -13,15 +13,13 @@ async function OTPGeneration(res, email, deviceName) {
   const [currentDateString, currentTimeString, currentDateTime] = getDateTime();
 
   // Fetch the user's ID based on the email
-  const userQuery = `SELECT userId FROM users WHERE email = ?`;
-  console.log(email)
+  const userQuery = `SELECT user_id FROM users WHERE email = ?`;
   const userResult = await executeQuery(res, userQuery, [email], connection);
-  console.log(userResult);
   if (userResult.length === 0) {
     throw new Error("User not found");
   }
 
-  const userId = userResult[0].userId;
+  const userId = userResult[0].user_id;
 
   // Update the OTP in the userdevices table for the specified device and user
 // Step 1: Query to get the device_id based on device_name

@@ -34,7 +34,7 @@ global.ListUsers_object = {
             "apiInfo": {
               "query": {
                 "queryNature": "SELECT",
-                "queryPayload": "select * from users where userId = {{userId}}",
+                "queryPayload": "select * from users where user_id = {{userId}}",
                 "database": "projectDB"
               },
               "utilityFunctions": {

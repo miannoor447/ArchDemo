@@ -49,7 +49,6 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
             .replace(/{{createdAt}}/g, `'${createdAt}'`)
             .replace(/{{updatedAt}}/g, `'${updatedAt}'`);
 
-        console.log("Completed Query::: " , completeQuery);
         // Execute the query with pagination or normal execution
         let results;
         if (apiObject.data.apiInfo.pagination) {

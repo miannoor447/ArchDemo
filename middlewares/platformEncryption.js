@@ -39,7 +39,7 @@ const handleEncryption = async (req, res, object) => {
 
       // Handle OTP-based encryption
       if (config.communication.encryption.accessToken) {
-        const accessToken = req.headers['access-token']; // Access the header value
+        const accessToken = req.headers['accesstoken']; // Access the header value
         encryptionKey += accessToken
       }
       
@@ -76,7 +76,6 @@ const handleEncryption = async (req, res, object) => {
         }
       }
       if (reqData) {
-        console.log("reqData: ", reqData);
         decryptedPayload = decryptObject(reqData, encryptionKey);
       }
 

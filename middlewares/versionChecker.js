@@ -61,8 +61,6 @@ const handleVersionChecking = async (req, res, object) => {
       LogError(req, res, errorObject.httpStatusCode, "versionChecker", errorObject.description, errorObject.frameworkStatusCode);
     }
     const { config, data, response } = selectedVersion.steps[step];
-    console.log("STEP:", step)
-    console.log(data);
     return {
       config,
       data,

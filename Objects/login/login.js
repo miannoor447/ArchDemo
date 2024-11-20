@@ -27,12 +27,6 @@ global.Login_object = {
                 "fields": 
                   [
                     {
-                      "name": "name",
-                      "validations": [],
-                      "required": true,
-                      "source": "req.body"
-                    },
-                    {
                       "name": "email",
                       "validations": ["isValidEmailFormat"],
                       "required": true,

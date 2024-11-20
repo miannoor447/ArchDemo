@@ -10,7 +10,7 @@ const buildQuery = (path, email, userRoleId, permission) => {
             FROM userroles ur
             JOIN rolespermissions rp ON ur.RoleID = rp.RoleID
             JOIN permissions p ON rp.PermissionID = p.PermissionID
-            JOIN users u ON u.UserId = ur.UserId
+            JOIN users u ON u.user_id = ur.user_id
             WHERE u.Email = '${email}' AND p.PermissionType = '${permission}'
         `;
     } else {

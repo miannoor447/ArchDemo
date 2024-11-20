@@ -55,7 +55,7 @@ global.AddUser_object = {
                 {
                   "query": {
                     "queryNature": "",
-                    "queryPayload": "insert into users (name, email, phoneNo, password)values ({{name}}, {{email}}, {{phoneNo}}, {{password}})",
+                    "queryPayload": "insert into users (name, email, phoneNo, password, entryStatus) values ({{name}}, {{email}}, {{phoneNo}}, {{password}}, 'Active')",
                     "database" : "projectDB"
                   },
                   "utilityFunctions": {

@@ -1,7 +1,6 @@
 const {executeQuery} = require("../databases/queryExecution");
 const { decryptData, decryptObject } = require("./Decryption");
 const generatePayload = require('./generatePayload')
-const generateToken = require('./jwtUtils')
 
 const argon2 = require('argon2');
 const projectDB = require("../databases/projectDb");
@@ -9,12 +8,12 @@ const projectDB = require("../databases/projectDb");
 
 async function isValidPassword(req, res, plaintextPassword) {
   const email = req.body.email || req.query.email; // Extract email from request
-  const query = "SELECT UserId, Password FROM users WHERE email = ?";
+  const query = "SELECT user_id, Password FROM users WHERE email = ?";
   const values = [email];
   const results = await executeQuery(res, query, values);
 
   if (results && results.length > 0) {
-    const userId = results[0].UserId;
+    const userId = results[0].user_id;
     const hashedPassword = results[0].Password;
 
     if (!hashedPassword) {
@@ -176,108 +175,7 @@ async function validateMarks(req, res, obtainedMarks) {
 }
 
 
-async function isValidOTP(req, res, OTP) {
-  const email = req.body.email || req.query.email; // Extract email from request
-  const decryptedEmail = await decryptData(email);
-  let connection = await projectDB();
-  // Fetch user details
-  const userQuery = `SELECT * FROM users WHERE email = ?`;
-  const userResult = await executeQuery(res, userQuery, [decryptedEmail], connection);
 
-  if (userResult.length === 0) {
-    throw new Error("User not found");
-  }
-
-  const userId = userResult[0].userId;
-
-  // Validate OTP in the userdevices table
-  const otpQuery = `
-    SELECT * FROM userdevices ud join devices d on ud.device_id = d.device_id 
-    WHERE ud.user_id = ? AND ud.device_otp = ? AND d.device_name = ?
-  `;
-  connection = await projectDB();
-  const otpResult = await executeQuery(res, otpQuery, [userId, OTP, req.body.deviceName], connection);
-
-  if (otpResult.length === 0) {
-    throw new Error("Invalid OTP");
-  }
-  payload =  await generatePayload(userId);
-  token = await generateToken(res, payload, process.env.SECRET_KEY);
-  // Fetch roles for the user
-  const rolesQuery = `
-    SELECT r.*
-    FROM userroles ur
-    INNER JOIN roles r ON ur.role_id = r.role_id
-    WHERE ur.user_id = ?
-  `;
-  connection = await projectDB();
-  const rolesResult = await executeQuery(res, rolesQuery, [userId], connection);
-
-  // Fetch devices associated with the user
-  const devicesQuery = `SELECT * FROM userdevices WHERE user_id = ?`;
-  connection = await projectDB();
-  const devicesResult = await executeQuery(res, devicesQuery, [userId], connection);
-
-  // Fetch permissions via roles
-  const permissionsQuery = `
-    SELECT p.*
-    FROM userroles ur
-    INNER JOIN userrolespermissiongroups urpg ON ur.userrole_id = urpg.userrole_id
-    INNER JOIN permissiongroups pg ON urpg.permission_group_id = pg.permission_group_id
-    INNER JOIN permissions p ON pg.permission_id = p.permission_id
-    WHERE ur.user_id = ?
-  `;
-  connection = await projectDB();
-  const permissionsResult = await executeQuery(res, permissionsQuery, [userId], connection);
-
-  // Fetch platforms and versions for the user
-  const platformsQuery = `
-    SELECT pv.*, p.*
-    FROM userdevices ud
-    INNER JOIN platforms p ON ud.device_id = p.PID
-    INNER JOIN platformversions pv ON pv.PID = p.PID
-    WHERE ud.user_id = ?
-  `;
-  connection = await projectDB();
-  const platformsResult = await executeQuery(res, platformsQuery, [userId], connection);
-
-  // Build return object
-  const returnObject = {
-    users: userResult,
-    roles: rolesResult,
-    devices: devicesResult,
-    permissions: permissionsResult,
-    platforms: platformsResult,
-  };
-
-  return returnObject;
-}
-
-async function isValidAccessToken(req, res, accessToken) {
-  const { email, deviceName } = req.body; // Extract email and deviceName from the request body
-
-  // Query to check if the accessToken exists for the given email and deviceName
-  const query = `
-    SELECT u.userId, ud.device_id, ud.device_token
-    FROM users u
-    JOIN userdevices ud ON u.userId = ud.user_id
-    JOIN devices d ON ud.device_id = d.device_id
-    WHERE u.email = ? AND ud.device_token = ? AND d.device_name = ?
-  `;
-
-  try {
-    const result = await executeQuery(res, query, [email, accessToken, deviceName]);
-
-    if (result.length > 0) {
-      return isValidOTP(req, res, result[0].device_otp)
-    }
-
-    // If no match is found, throw an error
-    throw new Error("Invalid access token or device name");
-  } catch (error) {
-    throw new Error(`Error validating access token: ${error.message}`);
-  }
-}
 
 async function isValidNumber(req, res, value) {
   const allowFloat = req.body.allowFloat || req.query.allowFloat; // Extract allowFloat from request
@@ -348,7 +246,6 @@ async function isValidCNIC(req, res, cnic) {
 }
 
 async function isValidPhoneNumber(req, res, phoneNumber) {
-  console.log(phoneNumber);
   phoneNumber = await decryptData(phoneNumber);
   const phoneRegex = /^0\d{2,3}-?\d{7,8}$/;
   if (!phoneRegex.test(phoneNumber)) {
@@ -451,7 +348,6 @@ async function isValidLectures(req, res, lec) {
 
 async function isValidIBN(req, res, ibn) {
   ibn = await decryptData(ibn);
-  console.log("ibn", ibn);
   // Regular expression to match only digits
   const digitRegex = /^[0-9]+$/;
 
@@ -553,11 +449,10 @@ async function isValidRole(req, res, email, role) {
   LEFT JOIN
     userroles ur ON ur.RoleId = r.RoleId
   LEFT JOIN
-    users u ON u.UserId = ur.UserId
+    users u ON u.user_id = ur.user_id
   WHERE
     u.Email = ? AND r.RoleName = ?`;
   const values = [email, role];
-  console.log(query, values);
   const results = await executeQuery(res, query, values);
   if (results && results.length > 0) {
     const userRole = results[0].RoleName;
@@ -577,7 +472,7 @@ async function isValidCloMappingLevel(req, res, level) {
 }
 
 
-global.isValidAccessToken = isValidAccessToken;
+
 global.isValidEmailFormat = isValidEmailFormat;
 global.isValidEmail = isValidEmail;
 global.isValidRole = isValidRole;
@@ -608,6 +503,5 @@ global.isValidSalary = isValidSalary;
 global.validateMarks = validateMarks;
 global.isValidIsPresent = isValidIsPresent;
 global.isValidAttachments = isValidAttachments;
-global.isValidOTP = isValidOTP;
 global.isValidCloMappingLevel = isValidCloMappingLevel;
 global.isValidWeightage = isValidWeightage;

@@ -10,7 +10,6 @@ async function handleSendEmail(userEmail,OTP) {
                 pass: process.env.EMAIL_PASS 
             }
         });
-        console.log(process.env.EMAIL_USER)
         let mailOptions = {
             from: 'Scholar Space <scholarspace112@gmail.com>',
             to: `${userEmail}`, 

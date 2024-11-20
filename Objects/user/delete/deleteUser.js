@@ -37,7 +37,7 @@ global.DeleteUser_object = {
             {
               "query": {
                 "queryNature": "Deletion",
-                "queryPayload": "Delete user WHERE UserId = {{Id}};",
+                "queryPayload": "Delete user WHERE user_id = {{Id}};",
                 "database": "projectDB"
               },
               "utilityFunctions": {
