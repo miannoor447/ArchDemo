@@ -136,7 +136,8 @@ async function otpVerif (req, res, decryptedBody){
         else {
           if (req.headers['accesstoken']){
             accessToken = req.headers['accesstoken'];
-            if (accessToken){
+            logMessage(accessToken)
+            if (accessToken && accessToken != 'null'){
               return await isValidAccessToken(res, accessToken, decryptedBody);
             }
           }
