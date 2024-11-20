@@ -140,6 +140,7 @@ async function otpVerif (req, res, decryptedBody){
               return await isValidAccessToken(res, accessToken, decryptedBody);
             }
           }
+            ({email, deviceName} = decryptedBody);
             await OTPGeneration(res, email, deviceName);
             return "OTP Sent Successfully"
         }
