@@ -113,3 +113,117 @@ npm start
 This project is licensed under the MIT License.
 
 ---
+
+
+features: [
+      {
+          title: 'Applicant',
+          description: 'Applying to university for admission',
+          modules: [
+              {
+                  title: 'Application Management',
+                  description: 'Allows applicants to manage their application by providing personal details, academic records, and payment information for selected programs.',
+                  cardStatus: 'Completed',
+                  functionalities: [
+                      {
+                          title: 'Program Selection',
+                          description: 'Applicants select their preferred programs (BS, MS, PhD) during the application process.'
+                      },
+                      {
+                          title: 'Personal Information',
+                          description: 'Applicants provide personal, guardian, and address details required for the application.'
+                      },
+                      {
+                          title: 'Academic Information',
+                          description: 'Applicants upload necessary documents, including transcripts, ID, and certificates, to complete academic requirements.'
+                      },
+                      {
+                          title: 'Fee Payment',
+                          description: 'Applicants submit the application fee and track payment status within the application portal.'
+                      }
+                  ]
+              },
+              {
+                  title: 'Test Selection',
+                  description: 'Allows applicants to choose their preferred tests and provide relevant scores and verification documents for admission.',
+                  cardStatus:'In_Progress',
+                  functionalities: [
+                      {
+                          title: 'Preferred Test Selection',
+                          description: 'Applicants select their preferred admission test(s) from available options, such as ITU or other approved tests.'
+                      },
+                      {
+                          title: 'Test Score Submission',
+                          description: 'Applicants submit their test scores and upload any required verification documents to complete test requirements.',
+                          taskStatus:'done'
+                      }
+                  ]
+              },
+          ]
+      },
+      {
+          title: 'Main Admin',
+          description: 'Overseeing sub-admins',
+          modules: [
+              {
+                  title: 'Performance Monitoring',
+                  description: 'Tracks sub-admin activities and application statuses.',
+                  functionalities: [
+                      {
+                          title: 'View Sub-Admin Activity Reports',
+                          description: 'View details of each sub-admin’s activities.Monitors applications reviewed, accepted, or rejected by each sub-admin.'
+                      },
+
+                  ]
+
+              },
+          ]
+      },
+      {
+          title: 'Sub Admin',
+          description: 'Academic team managing applications',
+          modules: [
+              {
+                  title: 'Dashboard',
+                  description: 'Provides metrics and summaries of application statuses.',
+                  cardStatus:'Completed',
+                  functionalities: [
+                      {
+                          title: 'Track Performance Metrics',
+                          description: 'Tracks applications reviewed, accepted, or rejected by him.',
+                          taskStatus:'done'
+                      },
+                      {
+                          title: 'View Summary Blocks',
+                          description: 'Displays applications by type (BS, MS, PhD)',
+                          taskStatus:'done'
+                      }
+                  ]
+              },        
+          ]
+      },
+      {
+          title: 'IT Team',
+          description: 'Handling technical assignments for admissions',
+          modules: [
+              {
+                  title: 'Roll Number & Venue Assignment',
+                  description: 'Module for generating unique roll numbers and assigning test venues for applicants',
+                  functionalities: [
+                      {
+                          title: 'Generate Unique Roll Numbers',
+                          description: 'Generates unique roll numbers for each verified applicant.',
+
+                      },
+                      {
+                          title: 'Assign Test Venues',
+                          description: 'Assigns test venues based on available seating.',
+
+                      }
+
+                  ]
+
+              },
+          ]
+      },
+  ],

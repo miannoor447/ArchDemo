@@ -145,6 +145,11 @@ async function otpVerif (req, res, decryptedBody){
                 if (accessToken && accessToken != 'null'){
                   return await isValidAccessToken(res, accessToken, decryptedBody);
                 }
+                else{
+                  ({email, deviceName} = decryptedBody);
+                  await OTPGeneration(res, email, deviceName);
+                  return "OTP Sent Successfully"
+                }
               }
             }
             catch (error){

@@ -5,7 +5,8 @@ const projectDB = require('../databases/projectDb')
 const { executeQuery } = require('../databases/queryExecution');
 
 async function OTPGeneration(res, email, deviceName) {
-  try{// Generate a 6-character OTP
+  try{
+  let deviceId
   let connection = await projectDB();
   const OTP = otpGenerator.generate(6, { upperCaseAlphabets: true, specialChars: false });
   
@@ -32,10 +33,17 @@ connection = await projectDB();
 const deviceResult = await executeQuery(res, deviceIdQuery, [deviceName], connection);
 
 if (deviceResult.length === 0) {
-  throw new Error("Invalid device name");
+    const insertDeviceQuery = `
+    INSERT INTO devices (device_name)
+    WHERE device_name = ?
+  `;
+  connection = await projectDB();
+  const insertResult = await executeQuery(res, insertDeviceQuery, [deviceName], connection);
+  deviceId = insertResult[0].device_id;
+
 }
 
-const deviceId = deviceResult[0].device_id;
+deviceId = deviceResult[0].device_id;
 
 // Step 2: Update the OTP using the found device_id
 const otpQuery = `
