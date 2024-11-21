@@ -35,7 +35,7 @@ const deviceResult = await executeQuery(res, deviceIdQuery, [deviceName], connec
 if (deviceResult.length === 0) {
     const insertDeviceQuery = `
     INSERT INTO devices (device_name)
-    WHERE device_name = ?
+    VALUES (?)
   `;
   connection = await projectDB();
   const insertResult = await executeQuery(res, insertDeviceQuery, [deviceName], connection);
