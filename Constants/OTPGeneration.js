@@ -33,14 +33,27 @@ connection = await projectDB();
 const deviceResult = await executeQuery(res, deviceIdQuery, [deviceName], connection);
 
 if (deviceResult.length === 0) {
+    // Insert the new device into the devices table
     const insertDeviceQuery = `
-    INSERT INTO devices (device_name)
-    VALUES (?)
-  `;
-  connection = await projectDB();
-  const insertResult = await executeQuery(res, insertDeviceQuery, [deviceName], connection);
-  deviceId = insertResult[0].device_id;
+        INSERT INTO devices (device_name)
+        VALUES (?)
+    `;
+    connection = await projectDB();
+    const insertDeviceResult = await executeQuery(res, insertDeviceQuery, [deviceName], connection);
 
+    // Get the inserted device ID
+    const newDeviceIdQuery = `
+        SELECT device_id FROM devices WHERE device_name = ?
+    `;
+    const newDeviceResult = await executeQuery(res, newDeviceIdQuery, [deviceName], connection);
+    const deviceId = newDeviceResult[0].device_id;
+
+    // Insert into the userdevices table with userId and deviceId
+    const insertUserDeviceQuery = `
+        INSERT INTO userdevices (user_id, device_id)
+        VALUES (?, ?)
+    `;
+    await executeQuery(res, insertUserDeviceQuery, [userId, deviceId], connection);
 }
 
 deviceId = deviceResult[0].device_id;
