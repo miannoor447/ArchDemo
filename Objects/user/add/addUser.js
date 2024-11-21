@@ -18,7 +18,7 @@ global.AddUser_object = {
               },
               "verification" : {
                   "otp" : false,
-                  "accessToken" : false
+                  "accessToken" : true
               }
             },
             "data": {

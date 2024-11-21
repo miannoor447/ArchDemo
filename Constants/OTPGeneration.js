@@ -3,6 +3,7 @@ const sendEmail = require('./sendEmailOTP');
 const getDateTime = require('./getDateTime');
 const projectDB = require('../databases/projectDb')
 const { executeQuery } = require('../databases/queryExecution');
+const logMessage = require('../LogFunctions/consoleLog');
 
 async function OTPGeneration(res, email, deviceName) {
   try{
@@ -31,7 +32,7 @@ const deviceIdQuery = `
 `;
 connection = await projectDB();
 const deviceResult = await executeQuery(res, deviceIdQuery, [deviceName], connection);
-
+// Check if the device exists
 if (deviceResult.length === 0) {
     // Insert the new device into the devices table
     const insertDeviceQuery = `
@@ -43,20 +44,35 @@ if (deviceResult.length === 0) {
 
     // Get the inserted device ID
     const newDeviceIdQuery = `
-        SELECT device_id FROM devices WHERE device_name = ?
+        SELECT device_id 
+        FROM devices 
+        WHERE device_name = ?
     `;
+    connection = await projectDB();
     const newDeviceResult = await executeQuery(res, newDeviceIdQuery, [deviceName], connection);
-    const deviceId = newDeviceResult[0].device_id;
+    deviceId = newDeviceResult[0].device_id;
+} else {
+    deviceId = deviceResult[0].device_id;
+}
 
+// Check if there's an entry in userdevices for this userId and deviceId
+const userDeviceQuery = `
+  SELECT * 
+  FROM userdevices 
+  WHERE user_id = ? AND device_id = ?
+`;
+connection = await projectDB();
+const userDeviceResult = await executeQuery(res, userDeviceQuery, [userId, deviceId], connection);
+
+if (userDeviceResult.length === 0) {
     // Insert into the userdevices table with userId and deviceId
     const insertUserDeviceQuery = `
         INSERT INTO userdevices (user_id, device_id)
         VALUES (?, ?)
     `;
+    connection = await projectDB();
     await executeQuery(res, insertUserDeviceQuery, [userId, deviceId], connection);
 }
-
-deviceId = deviceResult[0].device_id;
 
 // Step 2: Update the OTP using the found device_id
 const otpQuery = `
@@ -66,7 +82,6 @@ const otpQuery = `
 `;
 connection = await projectDB();
 const otpResult = await executeQuery(res, otpQuery, [OTP, currentDateTime, userId, deviceId], connection);
-
 
   // Check if the OTP was updated
   if (otpResult.affectedRows === 0) {

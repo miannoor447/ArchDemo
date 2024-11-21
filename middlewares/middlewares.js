@@ -13,7 +13,7 @@ const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
 const middlewareHandler = async (req, res, next) => {
     try {
-        let payload = {};
+        let payload = {}, PlatformName, PlatformVersion;
         const requestedPath = req.path.replace('/api/', '');
         const pathParts = requestedPath.split('/');
         const objectName = pathParts.length >= 2
@@ -50,7 +50,7 @@ const middlewareHandler = async (req, res, next) => {
         }
 
         if (config.communication.encryption) {
-            ({ decryptedPayload, encryptionKey } = await handleEncryption(req, res, { config, data, response }));
+            ({ decryptedPayload, encryptionKey, PlatformName, PlatformVersion } = await handleEncryption(req, res, { config, data, response }));
         }
         if (data.requestMetaData.permission) {
             try {
@@ -68,7 +68,7 @@ const middlewareHandler = async (req, res, next) => {
 
         if (config.verification.accessToken) {
             try {
-                await validateToken(req, res, decryptedPayload);
+                await validateToken(req, res, decryptedPayload, PlatformName, PlatformVersion);
             } catch (error) {
                 const errorObject = {
                     frameworkStatusCode: 'E40', // Invalid or Expired Token

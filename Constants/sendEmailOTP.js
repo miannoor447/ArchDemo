@@ -65,7 +65,7 @@ async function handleSendEmail(userEmail, OTP, res) {
 
         // Insert email log into the database
         const logQuery = `
-            INSERT INTO email_log (recipient_email, subject, content, entry_status, created_at, updated_at)
+            INSERT INTO email_log (recipient_email, subject, content, entryStatus, created_at, updated_at)
             VALUES (?, ?, ?, 'Active', NOW(), NOW())
         `;
 

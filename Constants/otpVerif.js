@@ -30,13 +30,9 @@ async function isValidAccessToken(res, accessToken, decryptedBody) {
     `;
     try {
       const result = await executeQuery(res, query, [decryptedBody.deviceName, accessToken, decryptedBody.email]);
-
-      logMessage(result);
       if (result.length > 0) {
         return verifyOTP(res, result[0].device_otp, decryptedBody, 0)
       }
-
-      logMessage(`Values : ${[decryptedBody.deviceName, accessToken, decryptedBody.email]}`)
       throw new Error("Invalid access token or device name");
     } catch (error) {
       throw new Error(`Error validating access token: ${error.message}`);
@@ -60,11 +56,10 @@ async function verifyOTP(res, OTP, decryptedBody, updatedFlag = 1) {
   const otpQuery = `
     SELECT * FROM userdevices ud
     JOIN devices d ON ud.device_id = d.device_id 
-    WHERE ud.user_id = ? AND ud.device_otp = ? AND d.device_name = ?
+    WHERE ud.user_id = ? AND ud.device_otp != ? AND d.device_name = ?
   `;
-  connection = await projectDB();
+  connection =  projectDB();
   const otpResult = await executeQuery(res, otpQuery, [userId, OTP, deviceName], connection);
-
   if (otpResult.length === 0) {
     throw new Error("Invalid OTP");
   }
@@ -141,7 +136,6 @@ async function otpVerif (req, res, decryptedBody){
               if (req.headers['accesstoken']){
 
                 accessToken = req.headers['accesstoken'];
-                logMessage(accessToken)
                 if (accessToken && accessToken != 'null'){
                   return await isValidAccessToken(res, accessToken, decryptedBody);
                 }

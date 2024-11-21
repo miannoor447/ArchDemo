@@ -10,6 +10,7 @@ const handleEncryption = async (req, res, object) => {
   let reqData = null;
   let decryptedPayload = "";
   let encryptionDetails = null;
+  let PlatformName, PlatformVersion;
   const { config, data } = object;
 
   try {
@@ -45,7 +46,7 @@ const handleEncryption = async (req, res, object) => {
       
       // Handle platform encryption
       if (config.communication.encryption.platformEncryption) {
-        const { PlatformName, PlatformVersion } = encryptionDetails;
+        ({ PlatformName, PlatformVersion } = encryptionDetails)
         if (!PlatformName || !PlatformVersion) {
           const errorObject = {
             frameworkStatusCode: 'E10', // Missing PlatformName or PlatformVersion for Encryption
@@ -65,7 +66,6 @@ const handleEncryption = async (req, res, object) => {
         `;
         const platformResults = await executeQuery(res, platformQuery, [PlatformName, PlatformVersion], projectDbConnection);
         if (platformResults.length > 0) {
-          console.log([platformQuery,PlatformName, PlatformVersion]);
           encryptionKey += platformResults[0].EncryptionKey;
         } else {
           const errorObject = {
@@ -83,6 +83,8 @@ const handleEncryption = async (req, res, object) => {
       return {
         decryptedPayload,
         encryptionKey,
+        PlatformName,
+        PlatformVersion
       };
   } catch (error) {
     console.error(error);

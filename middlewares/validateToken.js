@@ -2,7 +2,7 @@ const checkExpiration = require('../Constants/checkExpiration.js');
 const projectDB = require('../databases/projectDb'); // Assuming you have a projectDB connection module
 const { executeQuery } = require('../databases/queryExecution.js');
 
-const validateToken = async (req, res, decryptedBody) => {
+const validateToken = async (req, res, decryptedBody, platform, platformVersion) => {
     try {
         const decodedToken = await checkExpiration(res, req.headers['accesstoken']);
         if (!decodedToken) {
@@ -13,36 +13,32 @@ const validateToken = async (req, res, decryptedBody) => {
         const { userId, deviceId } = decodedToken;  // Get userId and deviceId from the decoded token
 
         // Assuming the following information comes from request headers or body
-        const email = decryptedBody.email || req.headers['email'] || 'Unknown'; // Attempt to get email from body or headers
         const ipAddress = req.ip || req.connection.remoteAddress || 'Unknown';
-        const deviceName = req.headers['devicename'] || 'Unknown'; // Assuming device name comes from headers
-        const deviceOtp = req.headers['deviceotp'] || 'Unknown'; // Assuming device OTP comes from headers
         const apiUrl = req.originalUrl;
         const httpMethod = req.method;
         const requestPayload = JSON.stringify(decryptedBody);  // Assuming request payload is in the body
         const userAgent = req.get('User-Agent');
-        const platform = req.headers['platform'] || 'Unknown'; // Assuming platform comes from headers
-        const platformVersion = req.headers['platformversion'] || 'Unknown'; // Assuming platform version comes from headers
         const responseCode = res.statusCode;
         const responseTimeMs = res.get('X-Response-Time') || 0;  // Assuming you have a middleware calculating response time
-        const entryStatus = responseCode === 200 ? 'Success' : 'Failed';
+        const entryStatus = 'Active';
 
         // Insert activity record into the useractivity table
         const connection = await projectDB();
 
         const insertQuery = `
-            INSERT INTO useractivity (
-                user_id, email, ip_address, device_id, device_name, device_otp, 
-                api_url, http_method, request_payload, response_code, response_time_ms,
-                user_agent, platform, platform_version, createdAt, updatedAt, entryStatus
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), ?)
+        INSERT INTO useractivity (
+            user_id, ip_address, device_id, api_url, http_method, request_payload, 
+            response_code, response_time_ms, user_agent, platform, platform_version, 
+            createdAt, updatedAt, entryStatus
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW(), ?)
         `;
-
+        
         await executeQuery(res, insertQuery, [
-            userId, email, ipAddress, deviceId, deviceName, deviceOtp,
-            apiUrl, httpMethod, requestPayload, responseCode, responseTimeMs,
-            userAgent, platform, platformVersion, entryStatus
+            userId, ipAddress, deviceId, apiUrl, httpMethod, requestPayload, 
+            responseCode, responseTimeMs, userAgent, platform, platformVersion, 
+            entryStatus
         ], connection);
+    
 
     } catch (error) {
         // Internal server error handling
