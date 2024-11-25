@@ -10,9 +10,8 @@ global.DeleteUser_object = {
           },
           "communication": {
             "encryption": {
-              "platformEncryption": false,
+              "platformEncryption": true,
               "otpEncryption": false,
-              "staticEncryption": false
             }
           },
           "verification": {
@@ -37,7 +36,7 @@ global.DeleteUser_object = {
             {
               "query": {
                 "queryNature": "Deletion",
-                "queryPayload": "Delete user WHERE user_id = {{Id}};",
+                "queryPayload": "Update users set entryStatus = 'deleted' WHERE user_id = {{Id}};",
                 "database": "projectDB"
               },
               "utilityFunctions": {

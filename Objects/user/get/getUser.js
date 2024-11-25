@@ -47,16 +47,7 @@ global.ListUsers_object = {
               "permission": null,
               "pagination": {
                 "pageSize": 10,
-                "options": {
-                  "pageSizeOptions": [
-                    5,
-                    10,
-                    25,
-                    50,
-                    100,
-                    "All"
-                  ]
-                }
+                
               }
             }
           },

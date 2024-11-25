@@ -31,7 +31,7 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
             const name = field.name; // Name of the parameter
 
             // Depending on the source, extract the value
-            if (source === "req.body") {
+            if (source === "req.body" || source === "req.headers") {
                 paramValues[name] = decryptedBody[name];
             } else if (source === "req.query") {
                 paramValues[name] = req.query[name];
