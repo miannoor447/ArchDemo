@@ -6,8 +6,8 @@ global.AdminDashboard_object = {
             {
             "config": {
               "features": {
-                "multistep": true,
-                "parameters": true,
+                "multistep": false,
+                "parameters": false,
                 "pagination": false,
               },
               "communication": {

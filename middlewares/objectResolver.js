@@ -1,9 +1,9 @@
-const executeQueryWithPagination = require('../Constants/executeQueryWithPagination.js');
-const { executeQuery } = require('../Constants/queryExecution.js');
+const executeQueryWithPagination = require('../databases/executeQueryWithPagination.js');
+const { executeQuery } = require('../databases/queryExecution.js');
 const getPaginationParams = require('../Constants/getPaginationParams.js');
 const LogError = require('../databases/Errorlog'); // Import LogError
 const getDateTime = require("../Constants/getDateTime.js");
-
+const projectDB = require('../databases/projectDb.js');
 const objectResolver = async (req, res, decryptedBody, apiObject) => {
     try {
 
@@ -52,9 +52,11 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
         // Execute the query with pagination or normal execution
         let results;
         if (apiObject.data.apiInfo.pagination) {
-            results = await executeQueryWithPagination(res, completeQuery, "", page, limit);
+            const connection = await projectDB();
+            results = await executeQueryWithPagination(res, completeQuery, connection, "", page, limit);
         } else {
-            results = await executeQuery(res, completeQuery);
+            const connection = await projectDB();
+            results = await executeQuery(res, completeQuery, connection);
         }
 
         // Return success response (200 - OK)
