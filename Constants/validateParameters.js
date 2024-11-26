@@ -44,7 +44,8 @@ async function isValidEmail(req, res, email) {
   if (await isValidEmailFormat(decryptedEmail)) {
     const query = "SELECT Email FROM users WHERE email = ?";
     const values = [decryptedEmail];
-    const results = await executeQuery(res, query, values);
+    const connection = projectDB()
+    const results = await executeQuery(res, query, values, connection);
 
     if (results && results.length > 0) {
       if (context === "signup") {

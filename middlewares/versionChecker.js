@@ -1,6 +1,3 @@
-const connectToMyProj = require('../databases/projectDb');
-const jwt = require('jsonwebtoken');
-const { executeQuery } = require('../databases/queryExecution');
 const LogError = require('../databases/Errorlog');
 require('dotenv').config();
 

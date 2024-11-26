@@ -27,7 +27,7 @@ global.ListGroupsAll_object = {
               "apiInfo": {
                 "query": {
                   "queryNature": "select",
-                  "queryPayload": "SELECT * FROM groups WHERE entryStatus != 'inactive'", // Exclude inactive groups
+                  "queryPayload": "SELECT group_id as id,groups.* FROM groups WHERE entryStatus != 'inactive'", // Exclude inactive groups
                   "database": "projectDB"
                 },
                 "utilityFunctions": {

@@ -1,3 +1,5 @@
+const { executeStatisticsQueries } = require("../../UtilityFunctions/CallbackFunctions/AdminDashboard/getAllAdminDashboardInfo");
+
 global.AdminDashboard_object = {
     "versions": {
       "versionData": [{
@@ -12,11 +14,11 @@ global.AdminDashboard_object = {
               },
               "communication": {
                 "encryption": {
-                  "platformEncryption": true,
+                  "platformEncryption": false,
                 }
               },
               "verification" : {
-                  "otp" : true,
+                  "otp" : false,
                   "accessToken" : false
               }
             },
@@ -35,7 +37,7 @@ global.AdminDashboard_object = {
                   },
                   "utilityFunctions": {
                     "callbackFunction": null,
-                    "payloadFunction": []
+                    "payloadFunction": [executeStatisticsQueries]
                   }
                 }
               ,
@@ -52,85 +54,6 @@ global.AdminDashboard_object = {
               "errorMessage": "There was an error generating the configuration."
             }
             },
-            {
-                "config": {
-                  "features": {
-                    "multistep": true,
-                    "parameters": true,
-                    "pagination": false,
-                  },
-                  "communication": {
-                    // "encryption":false
-                    "encryption": {
-                      "platformEncryption": true,
-                      "accessTokenEncryption": false,
-                    }
-                  },
-                  "verification" : {
-                      "otp" : true,
-                      "accessToken" : false
-                  }
-                },
-                "data": {
-                  "parameters": {
-                    "fields": 
-                      [
-                        {
-                          "name": "otp",
-                          "validations": [],
-                          "required": false,
-                          "source": "req.body"
-                        },
-                        {
-                            "name": "email",
-                            "validations": ["isValidEmailFormat"],
-                            "required": true,
-                            "source": "req.body"
-                        },
-                        {
-                            "name": "deviceName",
-                            "validations": [],
-                            "required": true,
-                            "source": "req.body"
-                        },
-                      ]
-                  },
-                  "apiInfo": 
-                    {
-                      "query": {
-                        "queryNature": "",
-                        "queryPayload": null,
-                        "database" : "projectDB"
-                      },
-                      "utilityFunctions": {
-                        "callbackFunction": null,
-                        "payloadFunction": []
-                      }
-                    }
-                  ,
-                  "requestMetaData": {
-                    "requestMethod": "POST",
-                    "permission": null,
-                    "pagination": {
-                      "pageSize": 10,
-                      "options": {
-                        "pageSizeOptions": [
-                          5,
-                          10,
-                          25,
-                          50,
-                          100,
-                          "All"
-                        ]
-                      }
-                    }
-                  }
-                },
-                "response": {
-                  "successMessage": "Configuration generated successfully!",
-                  "errorMessage": "There was an error generating the configuration."
-                }
-            }
             ]
         },
       }]

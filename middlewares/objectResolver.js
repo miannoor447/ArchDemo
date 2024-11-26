@@ -53,10 +53,10 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
         let results;
         if (apiObject.data.apiInfo.pagination) {
             const connection = await projectDB();
-            results = await executeQueryWithPagination(res, completeQuery, connection, "", page, limit);
+            results = await executeQueryWithPagination(res, completeQuery, "", connection, page, limit);
         } else {
             const connection = await projectDB();
-            results = await executeQuery(res, completeQuery, connection);
+            results = await executeQuery(res, completeQuery, "", connection);
         }
 
         // Return success response (200 - OK)
@@ -64,7 +64,7 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
 
     } catch (error) {
         console.error("Error in objectResolver:", error.message);
-
+        console.log(error);
         // Ensure detailed error response with proper HTTP status
         const errorObject = {
             frameworkStatusCode: 'E24', // General error

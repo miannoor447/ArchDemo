@@ -42,12 +42,6 @@ global.UpdateUser_object = {
                   "source": "req.body"
                 },
                 {
-                  "name": "updatedAt",
-                  "validations": [],
-                  "required": true,
-                  "source": "server"
-                },
-                {
                   "name": "Id",
                   "validations": [],
                   "required": true,

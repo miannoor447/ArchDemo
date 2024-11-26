@@ -27,7 +27,7 @@ global.ListPermissionGroupsAll_object = {
             "apiInfo": {
               "query": {
                 "queryNature": "select",
-                "queryPayload": "SELECT * FROM permissiongroups WHERE entryStatus != 'inactive'",  // Exclude logically inactive groups
+                "queryPayload": "SELECT permission_group_is AS id, permissiongroups.* FROM permissiongroups WHERE entryStatus != 'inactive'",  // Exclude logically inactive groups
                 "database": "projectDB"
               },
               "utilityFunctions": {

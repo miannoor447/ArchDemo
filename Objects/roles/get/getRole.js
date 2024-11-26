@@ -8,7 +8,7 @@ global.ListRolesAll_object = {
                 "config": {
                   "features": {
                     "multistep": false,
-                    "parameters": true,
+                    "parameters": false,
                     "pagination": true
                   },
                   "communication": {
@@ -29,7 +29,7 @@ global.ListRolesAll_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "select",
-                      "queryPayload": "SELECT role_id as id, * FROM roles",
+                      "queryPayload": "SELECT role_id as id, roles.* FROM roles",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

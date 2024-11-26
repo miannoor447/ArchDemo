@@ -46,7 +46,7 @@ const permissionChecker = async (req, res, apiData, DecryptedBody, requestedPath
 
         // Execute the query with pagination (if applicable)\
         const connection = projectDB()
-        const permissionResults = await executeQueryWithPagination(res, query, connection, "", page, limit);
+        const permissionResults = await executeQueryWithPagination(res, query, "", connection, req.query.page, limit);
 
         if (permissionResults.length > 0) {
             const successObject = {

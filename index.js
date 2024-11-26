@@ -15,7 +15,7 @@ async function logErrorToDatabase(error) {
   try {
     const [currentDateString, currentTimeString, CurrentDateTime] = getDateTime();
     const connection = securityDB(); // Initialize the database connection
-    const query = `INSERT INTO crash_log (timestamp, error_message, stack_trace, created_at, updated_at, status) VALUES (?, ?, ?, ?, ?, ?)`;
+    const query = `INSERT INTO crash_log (timestamp, error_message, stack_trace, created_at, updated_at, entryStatus) VALUES (?, ?, ?, ?, ?, ?)`;
     const values = [
       new Date().toISOString(),
       error.message || 'Unknown error',

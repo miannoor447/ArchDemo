@@ -30,7 +30,7 @@ global.ListPermissionsAll_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "select",
-                      "queryPayload": "SELECT * FROM permissions",
+                      "queryPayload": "SELECT permission_id AS id, permissions.*  FROM permissions",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

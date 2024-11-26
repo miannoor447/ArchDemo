@@ -1,8 +1,8 @@
 const LogError = require('../../../databases/Errorlog.js');
 const { executeQuery } = require('../../../databases/queryExecution.js');
-const projectDB = require('../databases/projectDb.js');
+const projectDB = require('../../../databases/projectDb.js');
 
-async function executeStatisticsQueries(res) {
+async function executeStatisticsQueries(req,    res) {
     const resultsObject = {};
         let connection = await projectDB();
 
@@ -16,7 +16,7 @@ async function executeStatisticsQueries(res) {
             WHERE 
                 table_schema = 'projectdb';
         `;
-        resultsObject.tableCounts = await executeQuery(res, completeQuery, connection);
+        resultsObject.tableCounts = await executeQuery(res, completeQuery, "", connection);
 
         // Query 2: Count of permissions each group has
         completeQuery = `
@@ -34,7 +34,7 @@ async function executeStatisticsQueries(res) {
                 g.id, g.name;
         `;
         connection = await projectDB();
-        resultsObject.permissionsPerGroup = await executeQuery(res, completeQuery, connection);
+        resultsObject.permissionsPerGroup = await xecuteQuery(res, completeQuery, "", connection);
 
         // Query 3: Count of overlapping permissions between groups
         completeQuery = `
@@ -56,7 +56,7 @@ async function executeStatisticsQueries(res) {
                 g1.id, g2.id;
         `;
         connection = await projectDB();
-        resultsObject.overlappingPermissions = await executeQuery(res, completeQuery, connection);
+        resultsObject.overlappingPermissions = await xecuteQuery(res, completeQuery, "", connection);
 
         // Query 4: Count of unassigned permissions
         completeQuery = `
@@ -70,7 +70,7 @@ async function executeStatisticsQueries(res) {
                 pg.group_id IS NULL;
         `;
         connection = await projectDB();
-        resultsObject.unassignedPermissions = await executeQuery(res, completeQuery, connection);
+        resultsObject.unassignedPermissions = await xecuteQuery(res, completeQuery, "", connection);
 
         // Query 5: Count of active users
         completeQuery = `
@@ -82,7 +82,7 @@ async function executeStatisticsQueries(res) {
                 entryStatus = 'Active';
         `;
         connection = await projectDB();
-        resultsObject.activeUsers = await executeQuery(res, completeQuery, connection);
+        resultsObject.activeUsers = await xecuteQuery(res, completeQuery, "", connection);
 
         // Query 6: Count of inactive users
         completeQuery = `
@@ -94,7 +94,7 @@ async function executeStatisticsQueries(res) {
                 entryStatus = 'Inactive';
         `;
         connection = await projectDB();
-        resultsObject.inactiveUsers = await executeQuery(res, completeQuery, connection);
+        resultsObject.inactiveUsers = await xecuteQuery(res, completeQuery, "", connection);
 
         // Query 7: Count for all tables in securitydb
         completeQuery = `
@@ -107,7 +107,7 @@ async function executeStatisticsQueries(res) {
                 table_schema = 'securitydb';
         `;
         connection = await projectDB();
-        resultsObject.securityDbTableCounts = await executeQuery(res, completeQuery, connection);
+        resultsObject.securityDbTableCounts = await xecuteQuery(res, completeQuery, "", connection);
 
         // Query 8: Count of users in each permission group
         completeQuery = `
@@ -125,7 +125,7 @@ async function executeStatisticsQueries(res) {
                 pg.id, pg.name;
         `;
         connection = await projectDB();
-        resultsObject.usersPerPermissionGroup = await executeQuery(res, completeQuery, connection);
+        resultsObject.usersPerPermissionGroup = await xecuteQuery(res, completeQuery, "", connection);
         
 
         return resultsObject;
