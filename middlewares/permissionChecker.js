@@ -1,5 +1,6 @@
-const executeQueryWithPagination = require('../Constants/executeQueryWithPagination.js');
+const executeQueryWithPagination = require('../databases/executeQueryWithPagination.js');
 const getPaginationParams = require('../Constants/getPaginationParams.js');
+const projectDB = require('../databases/projectDb.js');
 
 // Function to build the SQL query based on the request path
 const buildQuery = (path, email, userRoleId, permission) => {
@@ -43,8 +44,9 @@ const permissionChecker = async (req, res, apiData, DecryptedBody, requestedPath
 
         const query = buildQuery(requestedPath, email, userRoleId, permission); // Build the query
 
-        // Execute the query with pagination (if applicable)
-        const permissionResults = await executeQueryWithPagination(res, query, "", page, limit);
+        // Execute the query with pagination (if applicable)\
+        const connection = projectDB()
+        const permissionResults = await executeQueryWithPagination(res, query, connection, "", page, limit);
 
         if (permissionResults.length > 0) {
             const successObject = {

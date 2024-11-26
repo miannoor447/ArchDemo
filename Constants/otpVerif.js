@@ -4,7 +4,7 @@ const generatePayload = require("./generatePayload");
 const OTPGeneration = require("./OTPGeneration");
 const generateToken = require('./jwtUtils');
 const projectDB = require("../databases/projectDb");
-const { executeQuery } = require("./queryExecution");
+const { executeQuery } = require("../databases/queryExecution");
 const logMessage = require("../LogFunctions/consoleLog");
 async function isValidAccessToken(res, accessToken, decryptedBody) {
     const query = `
@@ -29,7 +29,8 @@ async function isValidAccessToken(res, accessToken, decryptedBody) {
       AND u.email = ?
     `;
     try {
-      const result = await executeQuery(res, query, [decryptedBody.deviceName, accessToken, decryptedBody.email]);
+      const connection = projectDB();
+      const result = await executeQuery(res, query, [decryptedBody.deviceName, accessToken, decryptedBody.email], connection);
       if (result.length > 0) {
         return verifyOTP(res, result[0].device_otp, decryptedBody, 0)
       }
