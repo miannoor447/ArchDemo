@@ -42,7 +42,7 @@ global.UpdateEmailLog_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE email_log SET view_count = COALESCE({{view_count}}, view_count), updated_at = CURRENT_TIMESTAMP WHERE email_id = {{email_id}}",
+                      "queryPayload": "UPDATE email_log SET view_count = COALESCE({{view_count}}, view_count), updated_at = CURRENT_TIMESTAMP WHERE email_id = {{Id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

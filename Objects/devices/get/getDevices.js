@@ -31,7 +31,7 @@ global.GetDevicesAll_object = {
                         "apiInfo": {
                             "query": {
                                 "queryNature": "select",
-                                "queryPayload": "SELECT * FROM devices WHERE device_id = {{device_id}}",
+                                "queryPayload": "SELECT * FROM devices WHERE device_id = {{Id}}",
                                 "database": "projectDB"
                             },
                             "utilityFunctions": {

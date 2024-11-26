@@ -54,7 +54,7 @@ global.UpdateUserDevice_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE userdevices SET device_otp = {{device_otp}}, device_token = {{device_token}}, entryStatus = {{entryStatus}} WHERE userdevice_id = {{userdevice_id}}",
+                      "queryPayload": "UPDATE userdevices SET device_otp = {{device_otp}}, device_token = {{device_token}}, entryStatus = {{entryStatus}} WHERE userdevice_id = {{Id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

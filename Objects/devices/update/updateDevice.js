@@ -45,7 +45,7 @@ global.UpdateDevices_object = {
                         "apiInfo": {
                             "query": {
                                 "queryNature": "update",
-                                "queryPayload": "UPDATE devices SET {{device_name ? `device_name = ${device_name},` : ''}} {{entryStatus ? `entryStatus = ${entryStatus}` : ''}} WHERE device_id = {{device_id}}",
+                                "queryPayload": "UPDATE devices SET {{device_name ? `device_name = ${device_name},` : ''}} {{entryStatus ? `entryStatus = ${entryStatus}` : ''}} WHERE device_id = {{Id}}",
                                 "database": "projectDB"
                             },
                             "utilityFunctions": {

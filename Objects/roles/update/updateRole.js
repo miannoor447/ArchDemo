@@ -48,7 +48,7 @@ global.UpdateRole_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE roles SET role_name = {{role_name}}, entryStatus = {{entryStatus}} WHERE role_id = {{role_id}}",
+                      "queryPayload": "UPDATE roles SET role_name = {{role_name}}, entryStatus = {{entryStatus}} WHERE role_id = {{Id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
