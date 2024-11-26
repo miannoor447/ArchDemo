@@ -48,7 +48,7 @@ global.UpdateSecurityLog_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE security_log SET error_message = COALESCE({{error_message}}, error_message), status = COALESCE({{status}}, status), updated_at = CURRENT_TIMESTAMP WHERE id = {{id}} AND status != 'deleted'",
+                      "queryPayload": "UPDATE security_log SET error_message = COALESCE({{error_message}}, error_message), status = COALESCE({{status}}, status), updated_at = CURRENT_TIMESTAMP WHERE id = {{id}} AND status != 'inactive'",
                       "database": "securitydb"
                     },
                     "utilityFunctions": {

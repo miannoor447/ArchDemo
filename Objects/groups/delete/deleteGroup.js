@@ -32,7 +32,7 @@ global.DeleteGroup_object = {
               "apiInfo": {
                 "query": {
                   "queryNature": "update",
-                  "queryPayload": "UPDATE groups SET entryStatus = 'deleted' WHERE group_id = {{group_id}}",
+                  "queryPayload": "UPDATE groups SET entryStatus = 'inactive' WHERE group_id = {{group_id}}",
                   "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -47,7 +47,7 @@ global.DeleteGroup_object = {
               }
             },
             "response": {
-              "successMessage": "Group deleted successfully!",
+              "successMessage": "Group inactive successfully!",
               "errorMessage": "Error deleting group."
             }
           }]

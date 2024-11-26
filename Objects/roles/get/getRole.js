@@ -29,7 +29,7 @@ global.ListRolesAll_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "select",
-                      "queryPayload": "SELECT * FROM roles",
+                      "queryPayload": "SELECT role_id as id, * FROM roles",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

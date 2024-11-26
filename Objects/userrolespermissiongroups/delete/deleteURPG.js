@@ -36,7 +36,7 @@ global.DeleteUserRolePermissionGroup_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE userrolespermissiongroups SET entryStatus = 'deleted' WHERE userrolepermissiongroup_id = {{userrolepermissiongroup_id}}",
+                      "queryPayload": "UPDATE userrolespermissiongroups SET entryStatus = 'inactive' WHERE userrolepermissiongroup_id = {{userrolepermissiongroup_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -51,7 +51,7 @@ global.DeleteUserRolePermissionGroup_object = {
                   }
                 },
                 "response": {
-                  "successMessage": "User role permission group deleted successfully!",
+                  "successMessage": "User role permission group inactive successfully!",
                   "errorMessage": "Error deleting user role permission group."
                 }
               }

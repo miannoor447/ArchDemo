@@ -2,6 +2,7 @@ const connectToMyProj = require('../databases/projectDb');
 const { executeQuery } = require('../databases/queryExecution');
 const LogError = require('../databases/Errorlog');
 const { decryptObject, encryptObject } = require('../Encryption/aes');
+const logMessage = require('../LogFunctions/consoleLog');
 require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 
 // Encryption function
@@ -14,8 +15,10 @@ const handleEncryption = async (req, res, object) => {
   const { config, data } = object;
 
   try {
-    if (req.method == "GET"){
+    logMessage(req.headers)
+    if (req.headers['encryptedrequest']){
       encryptedRequest = req.headers['encryptedrequest']
+      logMessage(encryptedRequest);
     }
     else if (Object.keys(req.body).length > 0){
       encryptedRequest = req.body.encryptedRequest;
@@ -77,9 +80,14 @@ const handleEncryption = async (req, res, object) => {
         }
       }
       if (reqData) {
+        logMessage("In req data decryption");
         decryptedPayload = decryptObject(reqData, encryptionKey);
+        logMessage(decryptedPayload);
       }
-
+      logMessage([ decryptedPayload,
+        encryptionKey,
+        PlatformName,
+        PlatformVersion]);
       return {
         decryptedPayload,
         encryptionKey,

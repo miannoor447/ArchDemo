@@ -36,7 +36,7 @@ global.DeleteVersion_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE versions SET entryStatus = 'deleted' WHERE VID = {{VID}}",
+                      "queryPayload": "UPDATE versions SET entryStatus = 'inactive' WHERE VID = {{VID}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -51,7 +51,7 @@ global.DeleteVersion_object = {
                   }
                 },
                 "response": {
-                  "successMessage": "Version deleted successfully!",
+                  "successMessage": "Version inactive successfully!",
                   "errorMessage": "Error deleting version."
                 }
               }

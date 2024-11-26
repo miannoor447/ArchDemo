@@ -34,7 +34,7 @@ global.DeleteDevice_object = {
                         "apiInfo": {
                             "query": {
                                 "queryNature": "update",
-                                "queryPayload": "update devices set entryStatus = 'deleted' where device_id = {{device_id}}",
+                                "queryPayload": "update devices set entryStatus = 'inactive' where device_id = {{device_id}}",
                                 "database": "projectDB"
                             },
                             "utilityFunctions": {
@@ -48,8 +48,8 @@ global.DeleteDevice_object = {
                         }
                     },
                     "response": {
-                        "successMessage": "Device marked as deleted successfully!",
-                        "errorMessage": "Failed to mark the device as deleted."
+                        "successMessage": "Device marked as inactive successfully!",
+                        "errorMessage": "Failed to mark the device as inactive."
                     }
                 }]
             }
