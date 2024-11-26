@@ -36,7 +36,7 @@ global.DeletePlatform_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "delete",
-                        "queryPayload": "UPDATE platforms SET entryStatus = 'deleted' WHERE PID = {{PID}}",
+                        "queryPayload": "UPDATE platforms SET entryStatus = 'inactive' WHERE PID = {{PID}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -51,7 +51,7 @@ global.DeletePlatform_object = {
                   }
                 },
                 "response": {
-                  "successMessage": "Platform deleted successfully!",
+                  "successMessage": "Platform inactive successfully!",
                   "errorMessage": "Error deleting platform."
                 }
               }

@@ -42,7 +42,7 @@ global.UpdateCrashLog_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE crash_log SET status = COALESCE(NULLIF({{status}}, ''), status), updated_at = CURRENT_TIMESTAMP WHERE id = {{id}} AND status != 'deleted'",
+                      "queryPayload": "UPDATE crash_log SET status = COALESCE(NULLIF({{status}}, ''), status), updated_at = CURRENT_TIMESTAMP WHERE id = {{id}} AND status != 'inactive'",
                       "database": "securitydb"
                     },
                     "utilityFunctions": {

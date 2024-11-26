@@ -36,7 +36,7 @@ global.DeletePermission_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE permissions SET entryStatus = 'deleted' WHERE permission_id = {{permission_id}}",
+                      "queryPayload": "UPDATE permissions SET entryStatus = 'inactive' WHERE permission_id = {{permission_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -51,7 +51,7 @@ global.DeletePermission_object = {
                   }
                 },
                 "response": {
-                  "successMessage": "Permission deleted successfully!",
+                  "successMessage": "Permission inactive successfully!",
                   "errorMessage": "Error deleting permission."
                 }
               }

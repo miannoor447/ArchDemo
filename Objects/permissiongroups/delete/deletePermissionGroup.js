@@ -32,7 +32,7 @@ global.DeletePermissionGroup_object = {
               "apiInfo": {
                 "query": {
                   "queryNature": "update",
-                  "queryPayload": "UPDATE permissiongroups SET entryStatus = 'deleted' WHERE permission_group_id = {{permission_group_id}}",
+                  "queryPayload": "UPDATE permissiongroups SET entryStatus = 'inactive' WHERE permission_group_id = {{permission_group_id}}",
                   "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -47,7 +47,7 @@ global.DeletePermissionGroup_object = {
               }
             },
             "response": {
-              "successMessage": "Permission group marked as deleted successfully!",
+              "successMessage": "Permission group marked as inactive successfully!",
               "errorMessage": "Error deleting permission group."
             }
           }]

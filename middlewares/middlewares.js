@@ -8,6 +8,7 @@ const handleEncryption = require("./platformEncryption.js");
 const LogError = require("../databases/Errorlog");  // Import the LogError function
 const sendResponse = require('../Constants/response.js');
 const { encryptObject } = require('../Encryption/aes.js');
+const logMessage = require('../LogFunctions/consoleLog.js');
 
 const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -25,6 +26,7 @@ const middlewareHandler = async (req, res, next) => {
             : 'InvalidPath'; // Handle cases with less than 2 segments
         
         const apiObject = global[objectName];
+        logMessage(objectName)
         if (!apiObject) {
             const errorObject = {
                 frameworkStatusCode: 'E50', // API Object Does Not Exist
@@ -35,7 +37,8 @@ const middlewareHandler = async (req, res, next) => {
             throw errorObject;
         }
 
-        const { config, data, response } = await handleVersionChecking(req, res, apiObject);
+        const { config, data, response } = await handleVersionChecking(req, res, apiObject);    
+        logMessage([data.requestMetaData]);
         const { features } = config;
         let decryptedPayload = req.body;
         let encryptionKey = null;
@@ -147,6 +150,8 @@ const middlewareHandler = async (req, res, next) => {
         }
     }
     catch (error) {
+        LogError(req, res, 500, "middlewareHandler", error.message, null); // Log the error
+        logMessage(error.message);
     }
 };
 
