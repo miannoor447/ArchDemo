@@ -52,7 +52,7 @@ global.UpdateUser_object = {
             "apiInfo": {
               "query": {
                 "queryNature": "UPDATE",
-                "queryPayload": "UPDATE user SET Name = {{name}}, Email = {{email}}, PhoneNo = {{phoneNo}}, updatedAt = {{updatedAt}} WHERE user_id = {{Id}}",
+                "queryPayload": "UPDATE users SET Name = {{name}}, Email = {{email}}, PhoneNo = {{phoneNo}}, updatedAt = {{updatedAt}} WHERE user_id = {{Id}}",
                 "database": "projectDB"
               },
               "utilityFunctions": {

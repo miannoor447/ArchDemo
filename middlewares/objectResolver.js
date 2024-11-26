@@ -51,9 +51,9 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
 
         // Execute the query with pagination or normal execution
         let results;
-        if (apiObject.data.apiInfo.pagination) {
+        if (apiObject.config.features.pagination) {
             const connection = await projectDB();
-            results = await executeQueryWithPagination(res, completeQuery, "", connection, page, limit);
+            results = await executeQueryWithPagination(req, res, completeQuery, "", connection, page, limit);
         } else {
             const connection = await projectDB();
             results = await executeQuery(res, completeQuery, "", connection);

@@ -15,7 +15,7 @@ async function LogError(req,res,statusCode,fileName,error, SCC){
 }
     catch(error)
     {
-
+        console.log(error);
     }
 }
 module.exports = LogError;

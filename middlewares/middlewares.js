@@ -26,19 +26,16 @@ const middlewareHandler = async (req, res, next) => {
             : 'InvalidPath'; // Handle cases with less than 2 segments
         
         const apiObject = global[objectName];
-        logMessage(objectName)
         if (!apiObject) {
             const errorObject = {
                 frameworkStatusCode: 'E50', // API Object Does Not Exist
                 httpStatusCode: 404, // Not Found
                 description: `API Object not found for path: ${requestedPath}`
             };
-            LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-            throw errorObject;
+            LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode);
+            return; 
         }
-
         const { config, data, response } = await handleVersionChecking(req, res, apiObject);    
-        logMessage([data.requestMetaData]);
         const { features } = config;
         let decryptedPayload = req.body;
         let encryptionKey = null;
@@ -49,7 +46,7 @@ const middlewareHandler = async (req, res, next) => {
                 description: "Incorrect Request Method"
             };
             LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-            throw errorObject;
+            return
         }
 
         if (config.communication.encryption) {
@@ -65,7 +62,7 @@ const middlewareHandler = async (req, res, next) => {
                     description: error.message || "Permission validation failed"
                 };
                 LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-                throw errorObject;
+                return
             }
         }
 
@@ -79,7 +76,7 @@ const middlewareHandler = async (req, res, next) => {
                     description: error.message || "Access token validation failed"
                 };
                 LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-                throw errorObject;
+                return
             }
         }
 
@@ -93,7 +90,7 @@ const middlewareHandler = async (req, res, next) => {
                     description: error.message || "OTP verification failed"
                 };
                 LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-                throw errorObject;
+                return
             }
         }
 
@@ -107,7 +104,7 @@ const middlewareHandler = async (req, res, next) => {
                     description: error.message || "Parameter validation failed"
                 };
                 LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-                throw errorObject;
+                return
             }
         }
     
@@ -121,7 +118,7 @@ const middlewareHandler = async (req, res, next) => {
                     description: error.message || "Callback function execution failed"
                 };
                 LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-                throw errorObject;
+                return
             }
         } else {
             payload.return = await objectResolver(req, res, decryptedPayload, {config, data, response});
@@ -137,7 +134,7 @@ const middlewareHandler = async (req, res, next) => {
                             description: error.message || "Payload function execution failed"
                         };
                         LogError(req, res, errorObject.httpStatusCode, "middlewareHandler", errorObject.description, errorObject.frameworkStatusCode); // Log the error
-                        throw errorObject;
+                        return
                     }
                 }
             }

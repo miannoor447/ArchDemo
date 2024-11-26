@@ -15,10 +15,8 @@ const handleEncryption = async (req, res, object) => {
   const { config, data } = object;
 
   try {
-    logMessage(req.headers)
     if (req.headers['encryptedrequest']){
       encryptedRequest = req.headers['encryptedrequest']
-      logMessage(encryptedRequest);
     }
     else if (Object.keys(req.body).length > 0){
       encryptedRequest = req.body.encryptedRequest;
@@ -80,14 +78,8 @@ const handleEncryption = async (req, res, object) => {
         }
       }
       if (reqData) {
-        logMessage("In req data decryption");
         decryptedPayload = decryptObject(reqData, encryptionKey);
-        logMessage(decryptedPayload);
       }
-      logMessage([ decryptedPayload,
-        encryptionKey,
-        PlatformName,
-        PlatformVersion]);
       return {
         decryptedPayload,
         encryptionKey,

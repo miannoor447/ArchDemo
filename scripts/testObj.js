@@ -45,7 +45,7 @@ const objectResolver = async (req, res, apiObject) => {
         console.log(completeQuery);
         return;
         if (apiObject.data.pagination) {
-            await executeQueryWithPagination(res, completeQuery, "", page, limit);
+            await executeQueryWithPagination(req, res, completeQuery, "", page, limit);
         } else {
             await executeQuery(res, completeQuery);
         }
