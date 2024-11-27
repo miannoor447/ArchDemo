@@ -126,7 +126,8 @@ const middlewareHandler = async (req, res, next) => {
             if (data.apiInfo.utilityFunctions.payloadFunction.length > 0) {
                 for (const util of data.apiInfo.utilityFunctions.payloadFunction) {
                     try {
-                        payload[util] = await util(req, res);
+                        const functionName = util.name; // Get the name of the async function
+                        payload[functionName] = await util(req, res); // Store the result using the function name
                     } catch (error) {
                         const errorObject = {
                             frameworkStatusCode: 'E24', // Payload Function Error

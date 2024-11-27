@@ -13,9 +13,7 @@ global.AdminDashboard_object = {
                 "pagination": false,
               },
               "communication": {
-                "encryption": {
-                  "platformEncryption": false,
-                }
+                "encryption": false,
               },
               "verification" : {
                   "otp" : false,

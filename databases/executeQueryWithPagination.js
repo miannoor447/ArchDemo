@@ -2,7 +2,7 @@ const logMessage = require("../LogFunctions/consoleLog");
 const { executeQuery } = require("./queryExecution");
 
 async function executeQueryWithPagination(req, res, query, values, connection) {
-    const { page_size = 10, page_no = 1, sort_by = "user_id", sort_order = "ASC", filter_columns = "[]", filter_values = "[]" } = req.query;
+    const { page_size = 10, page_no = 1, sort_by , sort_order, filter_columns = "[]", filter_values = "[]" } = req.query;
 
     const pageSize = parseInt(page_size, 10) || 10;
     const pageNo = parseInt(page_no, 10) || 1;
