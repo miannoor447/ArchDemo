@@ -27,7 +27,7 @@ const handleEncryption = async (req, res, object) => {
         httpStatusCode: 400, // Bad Request
         description: "SSC: E14 => No req body provided",
       };
-      return LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
+      throw new Error(errorObject.description);
     }
       ({ reqData, encryptionDetails } = decryptObject(encryptedRequest, process.env.SECRET_KEY));
       if ((!reqData && req.method != "GET") || !encryptionDetails) {
@@ -36,7 +36,7 @@ const handleEncryption = async (req, res, object) => {
           httpStatusCode: 400, // Bad Request
           description: "SSC: E10 => Missing Encrypted Payload or Encryption Details",
         };
-        return LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
+        throw new Error(errorObject.description);
       }
 
       // Handle OTP-based encryption
@@ -54,9 +54,9 @@ const handleEncryption = async (req, res, object) => {
             httpStatusCode: 400, // Bad Request
             description: "SSC: E10 => PlatformName or PlatformVersion Not Present For Encryption",
           };
-          return LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
-        }
+          throw new Error(errorObject.description);
 
+        }
         const projectDbConnection = connectToMyProj();
         const platformQuery = `
           SELECT pv.EncryptionKey
@@ -74,7 +74,7 @@ const handleEncryption = async (req, res, object) => {
             httpStatusCode: 400, // Bad Request
             description: "SSC: E10 => Invalid Platform Name or Version, Source: Platform Encryption",
           };
-          return LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
+          throw new Error(errorObject.description);
         }
       }
       if (reqData) {
@@ -93,7 +93,7 @@ const handleEncryption = async (req, res, object) => {
       httpStatusCode: 500, // Internal Server Error
       description: `SSC: E40 => Decryption Error: ${error.message}`,
     };
-    LogError(req, res, errorObject.httpStatusCode, "platformEncryption", errorObject.description, errorObject.frameworkStatusCode);
+    throw new Error(errorObject.description);
   }
 };
 

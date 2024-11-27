@@ -71,8 +71,8 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
             httpStatusCode: 500, // Internal Server Error
             description: `SSC: E24 => ${error.message || error.toString()}`
         }
-        LogError(req, res, errorObject.httpStatusCode, "objectResolver", error.message, errorObject.frameworkStatusCode); // Log the error
-        throw new Error(errorObject.description);
+        LogError(req, res, errorObject.httpStatusCode, "objectResolver", error.message, errorObject.frameworkStatusCode); 
+        return;
     }
 };
 

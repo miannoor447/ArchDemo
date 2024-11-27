@@ -1,3 +1,5 @@
+const { total_count } = require("../../../UtilityFunctions/PayloadFunctions/groups/getCount");
+
 global.ListGroupsAll_object = {
     "versions": {
       "versionData": [{
@@ -32,7 +34,7 @@ global.ListGroupsAll_object = {
                 },
                 "utilityFunctions": {
                   "callbackFunction": null,
-                  "payloadFunction": []
+                  "payloadFunction": [total_count]
                 }
               },
               "requestMetaData": {

@@ -1,4 +1,3 @@
-const sendResponse = require('./response');
 const moment = require('moment');
 
 function ifExpire(decoded, res) {

@@ -1,3 +1,5 @@
+const { total_count } = require("../../../UtilityFunctions/PayloadFunctions/devices/getCount");
+
 global.GetDevicesAll_object = {
     "versions": {
         "versionData": [{
@@ -21,22 +23,17 @@ global.GetDevicesAll_object = {
                     },
                     "data": {
                         "parameters": {
-                            "fields": [{
-                                "name": "device_id",
-                                "validations": [],
-                                "required": false,
-                                "source": "req.query"
-                            }]
+                            "fields": []
                         },
                         "apiInfo": {
                             "query": {
                                 "queryNature": "select",
-                                "queryPayload": "SELECT * FROM devices WHERE device_id = {{Id}}",
+                                "queryPayload": "SELECT * FROM devices",
                                 "database": "projectDB"
                             },
                             "utilityFunctions": {
                                 "callbackFunction": null,
-                                "payloadFunction": []
+                                "payloadFunction": [total_count]
                             }
                         },
                         "requestMetaData": {

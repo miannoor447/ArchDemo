@@ -1,3 +1,5 @@
+const { total_count } = require("../../../UtilityFunctions/PayloadFunctions/platforms/getCount");
+
 global.ListPlatformsAll_object = {
     "versions": {
       "versionData": [
@@ -34,7 +36,7 @@ global.ListPlatformsAll_object = {
                     },
                     "utilityFunctions": {
                       "callbackFunction": null,
-                      "payloadFunction": []
+                      "payloadFunction": [total_count]
                     }
                   },
                   "requestMetaData": {

@@ -1,4 +1,4 @@
-const { executeStatisticsQueries } = require("../../UtilityFunctions/CallbackFunctions/AdminDashboard/getAllAdminDashboardInfo");
+const { executeStatisticsQueries } = require("../../UtilityFunctions/PayloadFunctions/AdminDashboard/getAllAdminDashboardInfo");
 
 global.AdminDashboard_object = {
     "versions": {
@@ -13,7 +13,11 @@ global.AdminDashboard_object = {
                 "pagination": false,
               },
               "communication": {
-                "encryption": false,
+                // "encryption": {
+                //   "platformEncryption": true,
+                // },
+                "encryption": false
+
               },
               "verification" : {
                   "otp" : false,
@@ -40,7 +44,7 @@ global.AdminDashboard_object = {
                 }
               ,
               "requestMetaData": {
-                "requestMethod": "POST",
+                "requestMethod": "GET",
                 "permission": null,
                 "pagination": {
                   "pageSize": 10

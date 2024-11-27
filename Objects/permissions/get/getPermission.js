@@ -1,3 +1,5 @@
+const { total_count } = require("../../../UtilityFunctions/PayloadFunctions/permissions/getCount");
+
 global.ListPermissionsAll_object = {
     "versions": {
       "versionData": [
@@ -35,7 +37,7 @@ global.ListPermissionsAll_object = {
                     },
                     "utilityFunctions": {
                       "callbackFunction": null,
-                      "payloadFunction": []
+                      "payloadFunction": [total_count]
                     }
                   },
                   "requestMetaData": {

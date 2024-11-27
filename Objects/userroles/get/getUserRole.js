@@ -1,3 +1,5 @@
+const { total_count } = require("../../../UtilityFunctions/PayloadFunctions/userRoles/getCount");
+
 global.ListUserRoleAll_object = {
     "versions": {
       "versionData": [
@@ -34,7 +36,7 @@ global.ListUserRoleAll_object = {
                     },
                     "utilityFunctions": {
                       "callbackFunction": null,
-                      "payloadFunction": []
+                      "payloadFunction": [total_count]
                     }
                   },
                   "requestMetaData": {

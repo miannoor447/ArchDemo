@@ -26,36 +26,36 @@ global.AddUser_object = {
                 "fields": 
                   [
                     {
-                      "name": "name",
+                      "name": "newUser_name",
                       "validations": [],
                       "required": true,
                       "source": "req.body"
                     },
                     {
-                      "name": "email",
+                      "name": "newUser_email",
                       "validations": ["isValidEmailFormat"],
                       "required": true,
                       "source": "req.body"
                     },
                     {
-                      "name": "phoneNo",
+                      "name": "newUser_phoneno",
                       "validations": ["isValidPhoneNumber"],
                       "required": false,
                       "source": "req.body"
                     },
-                    {
-                      "name": "password",
-                      "validations": [],
-                      "required": true,
-                      "source": "req.body"
-                    }
+                    // {
+                    //   "name": "newUser_password",
+                    //   "validations": [],
+                    //   "required": true,
+                    //   "source": "req.body"
+                    // }
                   ]
               },
               "apiInfo": 
                 {
                   "query": {
                     "queryNature": "",
-                    "queryPayload": "insert into users (name, email, phoneNo, password, entryStatus) values ({{name}}, {{email}}, {{phoneNo}}, {{password}}, 'Active')",
+                    "queryPayload": "insert into users (name, email, phoneNo, password, entryStatus) values ({{newUser_name}}, {{newUser_ASDemail}}, {{newUser_phoneno}}, 'xyz123', 'Active')",
                     "database" : "projectDB"
                   },
                   "utilityFunctions": {
