@@ -4,7 +4,7 @@ const configuration = {
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'projectDB',
+  database: 'projectdb_new',
   timezone: '+05:00'
 };
 

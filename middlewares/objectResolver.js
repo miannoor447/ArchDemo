@@ -58,8 +58,13 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
             const connection = await projectDB();
             results = await executeQuery(res, completeQuery, "", connection);
         }
-
-        // Return success response (200 - OK)
+        if (Array.isArray(results) && results.length > 0) {
+            // Create a deep copy of results excluding the circular reference
+            const userInfo = JSON.parse(JSON.stringify(results));
+            results[0].userInfo = userInfo;
+        } else {
+            console.error("No results found or results is not an array.");
+        }
         return results;
 
     } catch (error) {
@@ -87,7 +92,7 @@ const replaceNestedPlaceholders = (query, params) => {
             if (value[k] !== undefined) {
                 value = value[k];
             } else {
-                return match; // Return the original match if the key doesn't exist
+                return 'NULL'; // Replace unresolved placeholders with NULL
             }
         }
 

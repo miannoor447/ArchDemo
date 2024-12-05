@@ -72,7 +72,6 @@ const logRejectedRequest = async (req, res, eventType, reason) => {
 // Function to apply middleware to the Express app
 const applyMiddleware = (app) => {
     app.use(express.json()); // Parse JSON bodies
-    // Ensure session management middleware is set up before this line if you use sessionID
     app.use(sessionRateLimiter); // Apply rate limiter
     app.use(logRequestToFile); // Apply request logging
     app.use(helmet()); // Security headers
@@ -95,7 +94,6 @@ const applyMiddleware = (app) => {
         allowedHeaders: ['Content-Type', 'Authorization', 'encryptedrequest', 'encryptedRequest', 'accessToken'],
         credentials: true
     }));
-
     // Uncomment the following block to enforce HTTPS
     // app.use((req, res, next) => {
     //     if (req.headers['x-forwarded-proto'] !== 'https') {
@@ -103,7 +101,6 @@ const applyMiddleware = (app) => {
     //     }
     //     next();
     // });
-
     // Apply security log for failed logins or rejected requests
     app.use(async (req, res, next) => {
         if (res.statusCode === 401) {

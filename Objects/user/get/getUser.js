@@ -10,10 +10,11 @@ global.ListUsers_object = {
               "pagination": true
             },
             "communication": {
-              "encryption": {
-                "platformEncryption": false,
-                "accessTokenEncryption": false
-              }
+              // "encryption": {
+              //   "platformEncryption": false,
+              //   "accessTokenEncryption": false
+              // },
+              "encryption": false
             },
             "verification": {
               "otp": false,
@@ -34,7 +35,7 @@ global.ListUsers_object = {
             "apiInfo": {
               "query": {
                 "queryNature": "SELECT",
-                "queryPayload": "select * from users where user_id = {{userId}}",
+                "queryPayload": "select * from users where {{userId}} IS NULL OR user_id = {{userId}}" ,
                 "database": "projectDB"
               },
               "utilityFunctions": {

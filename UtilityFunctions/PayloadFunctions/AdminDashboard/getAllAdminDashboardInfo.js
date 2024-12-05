@@ -2,7 +2,9 @@ const LogError = require('../../../databases/Errorlog.js');
 const { executeQuery } = require('../../../databases/queryExecution.js');
 const projectDB = require('../../../databases/projectDb.js');
 
-
+/**
+ * Function to get record counts for all tables in 'projectdb_new' schema.
+ */
 async function getTableCounts(req, res) {
     try {
         const fetchTablesQuery = `
@@ -11,9 +13,9 @@ async function getTableCounts(req, res) {
             FROM 
                 information_schema.tables 
             WHERE 
-                table_schema = 'projectdb';
+                table_schema = 'projectdb_new';
         `;
-        let connection = projectDB()
+        let connection = projectDB();
         const tablesResult = await executeQuery(null, fetchTablesQuery, [], connection);
 
         if (!tablesResult || tablesResult.length === 0) {
@@ -25,64 +27,85 @@ async function getTableCounts(req, res) {
         for (const table of tablesResult) {
             const tableName = table.table_name;
             const countQuery = `SELECT COUNT(*) AS record_count FROM \`${tableName}\`;`;
-            connection = projectDB()
+            connection = projectDB();
             const countResult = await executeQuery(null, countQuery, [], connection);
             tableCounts[tableName] = countResult[0]?.record_count || 0;
         }
 
         return tableCounts;
     } catch (error) {
+        LogError(error);
         throw error;
     }
 }
 
-// Query 2: Count of permissions each group has
+/**
+ * Query 2: Count of permissions each permission group has.
+ */
 async function getPermissionsPerGroup(req, res) {
     const query = `
         SELECT 
-            g.group_id AS group_id,
-            g.group_name AS group_name,
+            pg.permission_group_id AS group_id,
+            pg.group_name AS group_name,
             COUNT(p.permission_id) AS permission_count
         FROM 
-            groups g
+            permission_groups pg
         LEFT JOIN 
-            permissiongroups pg ON g.group_id = pg.group_id
+            permission_groups_permissions ppg ON pg.permission_group_id = ppg.group_id
         LEFT JOIN 
-            permissions p ON pg.permission_id = p.permission_id
+            permissions p ON ppg.permission_id = p.permission_id
         GROUP BY 
-            g.group_id, g.group_name;
-    `;    
+            pg.permission_group_id, pg.group_name;
+    `;
     const connection = projectDB();
 
-    return await executeQuery(res, query, "", connection);
+    try {
+        const result = await executeQuery(null, query, [], connection);
+        return result;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
 }
 
-// Query 3: Count of overlapping permissions between groups
+/**
+ * Query 3: Count of overlapping permissions between permission groups.
+ */
 async function getOverlappingPermissions(req, res) {
     const query = `
         SELECT 
-            g1.group_id AS group1_id, 
-            g2.group_id AS group2_id, 
+            g1.permission_group_id AS group1_id, 
+            g2.permission_group_id AS group2_id, 
             COUNT(DISTINCT p.permission_id) AS overlapping_permissions_count
         FROM 
-            permissiongroups pg1
+            permission_groups_permissions ppg1
         INNER JOIN 
-            permissiongroups pg2 ON pg1.permission_id = pg2.permission_id AND pg1.group_id < pg2.group_id
+            permission_groups_permissions ppg2 
+            ON ppg1.permission_id = ppg2.permission_id 
+            AND ppg1.group_id < ppg2.group_id
         INNER JOIN 
-            groups g1 ON pg1.group_id = g1.group_id
+            permission_groups g1 ON ppg1.group_id = g1.permission_group_id
         INNER JOIN 
-            groups g2 ON pg2.group_id = g2.group_id
+            permission_groups g2 ON ppg2.group_id = g2.permission_group_id
         INNER JOIN 
-            permissions p ON pg1.permission_id = p.permission_id
+            permissions p ON ppg1.permission_id = p.permission_id
         GROUP BY 
-            g1.group_id, g2.group_id;
-    `;    
+            g1.permission_group_id, g2.permission_group_id;
+    `;
     const connection = projectDB();
 
-    return await executeQuery(res, query, "", connection);
+    try {
+        const result = await executeQuery(null, query, [], connection);
+        return result;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
 }
 
-// Query 4: Count of unassigned permissions
+/**
+ * Query 4: Count of unassigned permissions (permissions not linked to any permission group).
+ */
 async function getUnassignedPermissions(req, res) {
     const query = `
         SELECT 
@@ -90,16 +113,24 @@ async function getUnassignedPermissions(req, res) {
         FROM 
             permissions p
         LEFT JOIN 
-            permissiongroups pg ON p.permission_id = pg.permission_id
+            permission_groups_permissions ppg ON p.permission_id = ppg.permission_id
         WHERE 
-            pg.group_id IS NULL;
-    `;    
+            ppg.group_id IS NULL;
+    `;
     const connection = projectDB();
 
-    return await executeQuery(res, query, "", connection);
+    try {
+        const result = await executeQuery(null, query, [], connection);
+        return result;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
 }
 
-// Query 5: Count of active users
+/**
+ * Query 5: Count of active users.
+ */
 async function getActiveUsers(req, res) {
     const query = `
         SELECT 
@@ -107,14 +138,22 @@ async function getActiveUsers(req, res) {
         FROM 
             users
         WHERE 
-            entryStatus = 'active';
-    `;    
+            status = 'active';
+    `;
     const connection = projectDB();
 
-    return await executeQuery(res, query, "", connection);
+    try {
+        const result = await executeQuery(null, query, [], connection);
+        return result;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
 }
 
-// Query 6: Count of inactive users
+/**
+ * Query 6: Count of inactive users.
+ */
 async function getInactiveUsers(req, res) {
     const query = `
         SELECT 
@@ -122,14 +161,23 @@ async function getInactiveUsers(req, res) {
         FROM 
             users
         WHERE 
-            entryStatus = 'inactive';
-    `;    
+            status = 'inactive';
+    `;
     const connection = projectDB();
 
-    return await executeQuery(res, query, "", connection);
+    try {
+        const result = await executeQuery(null, query, [], connection);
+        return result;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
 }
 
-// Query 7: Count for all tables in securitydb
+/**
+ * Query 7: Count of records for all tables in 'securitydb' schema.
+ * If 'securitydb' is not part of your current schema, adjust accordingly.
+ */
 async function getSecurityDbTableCounts(req, res) {
     const query = `
         SELECT 
@@ -139,44 +187,68 @@ async function getSecurityDbTableCounts(req, res) {
             information_schema.tables
         WHERE 
             table_schema = 'securitydb';
-    `;    
+    `;
     const connection = projectDB();
 
-    return await executeQuery(res, query, "", connection);
+    try {
+        const result = await executeQuery(null, query, [], connection);
+        return result;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
 }
 
-// Query 8: Count of users in each permission group
+/**
+ * Query 8: Count of users in each permission group.
+ */
 async function getUsersPerPermissionGroup(req, res) {
     const query = `
         SELECT 
             pg.permission_group_id AS permissiongroup_id,
-            pg.permission_id AS permissiongroup_name,
-            COUNT(DISTINCT ur.user_id) AS user_count
+            pg.group_name AS permissiongroup_name,
+            COUNT(DISTINCT urdd.user_id) AS user_count
         FROM 
-            permissiongroups pg
+            permission_groups pg
         LEFT JOIN 
-            userrolespermissiongroups urpg ON pg.permission_group_id = urpg.permission_group_id
+            permission_groups_permissions ppg ON pg.permission_group_id = ppg.group_id
         LEFT JOIN 
-            userroles ur ON urpg.userrole_id = ur.role_id
+            user_role_designation_permissions urdp ON ppg.permission_id = urdp.permission_id
+        LEFT JOIN 
+            user_roles_designations_department urdd ON urdp.user_role_designation_department_id = urdd.user_role_designation_department_id
         GROUP BY 
-            pg.permission_group_id, pg.permission_id;
-    `;    
+            pg.permission_group_id, pg.group_name;
+    `;
     const connection = projectDB();
-    return await executeQuery(res, query, "", connection);
+
+    try {
+        const result = await executeQuery(null, query, [], connection);
+        return result;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
 }
 
-
+/**
+ * Function to execute all statistical queries and compile results.
+ */
 async function executeStatisticsQueries(req, res) {
-    const resultsObject = {};
-    resultsObject.tableCounts = await getTableCounts(req, res);
-    resultsObject.permissionsPerGroup = await getPermissionsPerGroup(req, res);
-    resultsObject.overlappingPermissions = await getOverlappingPermissions(req, res);
-    resultsObject.unassignedPermissions = await getUnassignedPermissions(req, res);
-    resultsObject.activeUsers = await getActiveUsers(req, res);
-    resultsObject.inactiveUsers = await getInactiveUsers(req, res);
-    resultsObject.securityDbTableCounts = await getSecurityDbTableCounts(req, res);
-    resultsObject.usersPerPermissionGroup = await getUsersPerPermissionGroup(req, res);
-    return resultsObject;
+    try {
+        const resultsObject = {};
+        resultsObject.tableCounts = await getTableCounts(req, res);
+        resultsObject.permissionsPerGroup = await getPermissionsPerGroup(req, res);
+        resultsObject.overlappingPermissions = await getOverlappingPermissions(req, res);
+        resultsObject.unassignedPermissions = await getUnassignedPermissions(req, res);
+        resultsObject.activeUsers = await getActiveUsers(req, res);
+        resultsObject.inactiveUsers = await getInactiveUsers(req, res);
+        resultsObject.securityDbTableCounts = await getSecurityDbTableCounts(req, res);
+        resultsObject.usersPerPermissionGroup = await getUsersPerPermissionGroup(req, res);
+        return resultsObject;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
 }
 
 module.exports = {
