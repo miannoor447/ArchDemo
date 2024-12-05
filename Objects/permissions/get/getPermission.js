@@ -14,6 +14,7 @@ global.ListPermissionsAll_object = {
                     "pagination": true
                   },
                   "communication": {
+                    // encryption:false
                     "encryption": {
                       "platformEncryption": true,
                       "accessTokenEncryption": false
@@ -32,7 +33,7 @@ global.ListPermissionsAll_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "select",
-                      "queryPayload": "SELECT permission_id AS id, permissions.*  FROM permissions",
+                      "queryPayload": "SELECT permission_id AS id,permission_id AS p_permissionId,permission_name AS p_permissionName, permissions.*  FROM permissions",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

@@ -38,7 +38,7 @@ global.AddPlatformVersion_object = {
                         "source": "req.body"
                       },
                       {
-                        "name": "EncryptionKey",
+                        "name": "encryption_key",
                         "validations": [],
                         "required": true,
                         "source": "req.body"
@@ -54,7 +54,7 @@ global.AddPlatformVersion_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "insert",
-                      "queryPayload": "INSERT INTO platformversions (PID, VID, EncryptionKey, entryStatus) VALUES ({{PID}}, {{VID}}, {{EncryptionKey}}, 'Active')",
+                      "queryPayload": "INSERT INTO platform_versions (PID, VID, encryption_key, entryStatus) VALUES ({{PID}}, {{VID}}, {{encryption_key}}, 'Active')",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

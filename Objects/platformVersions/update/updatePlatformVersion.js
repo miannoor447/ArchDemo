@@ -44,7 +44,7 @@ global.UpdatePlatformVersion_object = {
                         "source": "req.body"
                       },
                       {
-                        "name": "EncryptionKey",
+                        "name": "encryption_key",
                         "validations": [],
                         "required": false,
                         "source": "req.body"
@@ -60,7 +60,7 @@ global.UpdatePlatformVersion_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE platformversions SET PID = {{PID}}, VID = {{VID}}, EncryptionKey = {{EncryptionKey}}, entryStatus = {{entryStatus}} WHERE PVID = {{PVID}}",
+                      "queryPayload": "UPDATE platform_versions SET PID = {{PID}}, VID = {{VID}}, encryption_key = {{encryption_key}}, entryStatus = {{entryStatus}} WHERE PVID = {{PVID}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

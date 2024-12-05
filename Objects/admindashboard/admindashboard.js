@@ -13,10 +13,10 @@ global.AdminDashboard_object = {
                 "pagination": false,
               },
               "communication": {
-                // "encryption": {
-                //   "platformEncryption": true,
-                // },
-                "encryption": false
+                "encryption": {
+                  "platformEncryption": true,
+                },
+                // "encryption": false
 
               },
               "verification" : {
