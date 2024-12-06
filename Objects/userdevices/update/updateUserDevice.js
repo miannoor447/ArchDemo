@@ -44,7 +44,7 @@ global.UpdateUserDevice_object = {
                         "source": "req.body"
                       },
                       {
-                        "name": "entryStatus",
+                        "name": "status",
                         "validations": [],
                         "required": false,
                         "source": "req.body"
@@ -54,7 +54,7 @@ global.UpdateUserDevice_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE userdevices SET device_otp = {{device_otp}}, device_token = {{device_token}}, entryStatus = {{entryStatus}} WHERE userdevice_id = {{Id}}",
+                      "queryPayload": "UPDATE userdevices SET device_otp = {{device_otp}}, device_token = {{device_token}}, status = {{status}} WHERE userdevice_id = {{Id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

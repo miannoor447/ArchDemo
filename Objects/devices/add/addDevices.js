@@ -32,7 +32,7 @@ global.AddDevices_object = {
                       "apiInfo": {
                           "query": {
                               "queryNature": "insert",
-                              "queryPayload": "INSERT INTO devices (device_name, entryStatus) VALUES ({{device_name}}, 'Active')",
+                              "queryPayload": "INSERT INTO devices (device_name, status) VALUES ({{device_name}}, 'Active')",
                               "database": "projectDB"
                           },
                           "utilityFunctions": {

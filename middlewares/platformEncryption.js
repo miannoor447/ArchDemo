@@ -17,9 +17,12 @@ const handleEncryption = async (req, res, object) => {
   try {
     if (req.headers['encryptedrequest']){
       encryptedRequest = req.headers['encryptedrequest']
+      logMessage("Extracting ER from headers")
     }
     else if (Object.keys(req.body).length > 0){
       encryptedRequest = req.body.encryptedRequest;
+      logMessage("Extracting ER from body")
+
     }
     else{
       const errorObject = {
@@ -59,15 +62,15 @@ const handleEncryption = async (req, res, object) => {
         }
         const projectDbConnection = connectToMyProj();
         const platformQuery = `
-          SELECT pv.EncryptionKey
+          SELECT pv.encryption_key
           FROM platforms p
-          JOIN PlatformVersions pv ON p.PID = pv.PID
-          JOIN versions v ON pv.VID = v.VID
-          WHERE p.PlatformName = ? AND v.versionValue = ?
+          JOIN platform_versions pv ON p.platform_id = pv.platform_id
+          JOIN version v ON pv.version_id = v.version_id
+          WHERE p.platform_name = ? AND v.version = ?
         `;
         const platformResults = await executeQuery(res, platformQuery, [PlatformName, PlatformVersion], projectDbConnection);
         if (platformResults.length > 0) {
-          encryptionKey += platformResults[0].EncryptionKey;
+          encryptionKey += platformResults[0].encryption_key;
         } else {
           const errorObject = {
             frameworkStatusCode: 'E10', // Invalid Platform Name or Version
@@ -78,6 +81,7 @@ const handleEncryption = async (req, res, object) => {
         }
       }
       if (reqData) {
+        logMessage([reqData, encryptionKey])
         decryptedPayload = decryptObject(reqData, encryptionKey);
       }
       return {

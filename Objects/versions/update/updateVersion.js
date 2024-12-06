@@ -42,7 +42,7 @@ global.UpdateVersion_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE versions SET versionValue = {{versionValue}}, entryStatus = 'Active' WHERE VID = {{VID}}",
+                      "queryPayload": "UPDATE version SET version = {{versionValue}}, status = 'Active' WHERE VID = {{VID}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

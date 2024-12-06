@@ -32,7 +32,7 @@ global.AddRole_object = {
                         "source": "req.body"
                       },
                       {
-                        "name": "entryStatus",
+                        "name": "status",
                         "validations": [],
                         "required": false,
                         "source": "req.body"
@@ -42,7 +42,7 @@ global.AddRole_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "insert",
-                      "queryPayload": "INSERT INTO roles (role_name, entryStatus) VALUES ({{role_name}}, 'Active')",
+                      "queryPayload": "INSERT INTO roles (role_name, status) VALUES ({{role_name}}, 'Active')",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

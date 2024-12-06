@@ -48,7 +48,7 @@ global.UpdateUserRole_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE userroles SET user_id = {{user_id}}, role_id = {{role_id}}, entryStatus = 'Active' WHERE userrole_id = {{userrole_id}}",
+                      "queryPayload": "UPDATE userroles SET user_id = {{user_id}}, role_id = {{role_id}}, status = 'Active' WHERE userrole_id = {{userrole_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

@@ -2,7 +2,7 @@ require('dotenv').config();
 const nodemailer = require('nodemailer');
 const securityDB = require('../databases/securityDB');
 const { executeQuery } = require('../databases/queryExecution');
-
+const logMessage = require('../LogFunctions/consoleLog')
 async function handleSendEmail(userEmail, OTP, res) {
     let connection;
 
@@ -59,6 +59,7 @@ async function handleSendEmail(userEmail, OTP, res) {
 
         // Send email
         let info = await transporter.sendMail(mailOptions);
+        logMessage(mailOptions);
 
         // Get the database connection
         connection = await securityDB();

@@ -36,7 +36,7 @@ global.DeleteRole_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "delete",
-                        "queryPayload": "UPDATE roles SET entryStatus = 'inactive' WHERE role_id = {{Id}}",
+                        "queryPayload": "UPDATE roles SET status = 'inactive' WHERE role_id = {{Id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

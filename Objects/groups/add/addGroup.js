@@ -37,7 +37,7 @@ global.AddGroups_object = {
               "apiInfo": {
                 "query": {
                   "queryNature": "insert",
-                  "queryPayload": "INSERT INTO groups (group_name, description, entryStatus) VALUES ({{group_name}}, {{description}}, 'Active')",
+                  "queryPayload": "INSERT INTO groups (group_name, description, status) VALUES ({{group_name}}, {{description}}, 'Active')",
                   "database": "projectDB"
                 },
                 "utilityFunctions": {

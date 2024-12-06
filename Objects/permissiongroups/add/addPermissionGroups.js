@@ -40,7 +40,7 @@ global.AddPermissionGroup_object = {
             "apiInfo": {
               "query": {
                 "queryNature": "insert",
-                "queryPayload": "INSERT INTO permissiongroups (permission_id, group_id, entryStatus) VALUES ({{permission_id}},{{group_id}}, 'Active')",
+                "queryPayload": "INSERT INTO permissiongroups (permission_id, group_id, status) VALUES ({{permission_id}},{{group_id}}, 'Active')",
                 "database": "projectDB"
               },
               "utilityFunctions": {

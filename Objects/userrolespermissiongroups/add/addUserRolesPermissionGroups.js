@@ -42,7 +42,7 @@ global.AddUserRolePermissionGroup_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "insert",
-                      "queryPayload": "INSERT INTO userrolespermissiongroups (userrole_id, permission_group_id, entryStatus) VALUES ({{userrole_id}}, {{permission_group_id}}, 'Active')",
+                      "queryPayload": "INSERT INTO userrolespermissiongroups (userrole_id, permission_group_id, status) VALUES ({{userrole_id}}, {{permission_group_id}}, 'Active')",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

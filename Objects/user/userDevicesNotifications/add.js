@@ -1,4 +1,4 @@
-global.DeleteGroup_object = {
+global.AddUserDeviceNotification_object = {
     "versions": {
       "versionData": [{
         "=1.0": {
@@ -22,17 +22,25 @@ global.DeleteGroup_object = {
             },
             "data": {
               "parameters": {
-                "fields": [{
-                  "name": "group_id",
-                  "validations": [],
-                  "required": true,
-                  "source": "req.body"
-                }]
+                "fields": [
+                  {
+                    "name": "user_device_id",
+                    "validations": [],
+                    "required": true,
+                    "source": "req.body"
+                  },
+                  {
+                    "name": "notification_id",
+                    "validations": [],
+                    "required": true,
+                    "source": "req.body"
+                  },
+                ]
               },
               "apiInfo": {
                 "query": {
-                  "queryNature": "update",
-                  "queryPayload": "UPDATE groups SET status = 'inactive' WHERE group_id = {{Id}}",
+                  "queryNature": "insert",
+                  "queryPayload": "INSERT INTO user_device_notifications (user_device_id, notification_id, status) VALUES ({{user_device_id}}, {{notification_id}}, `Active`",
                   "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -41,14 +49,14 @@ global.DeleteGroup_object = {
                 }
               },
               "requestMetaData": {
-                "requestMethod": "PUT", // Changed to PUT since it's an update
+                "requestMethod": "POST",
                 "permission": null,
                 "pagination": {}
               }
             },
             "response": {
-              "successMessage": "Group inactive successfully!",
-              "errorMessage": "Error deleting group."
+              "successMessage": "User device notification added successfully!",
+              "errorMessage": "Error adding user device notification."
             }
           }]
         }

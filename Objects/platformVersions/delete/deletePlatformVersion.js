@@ -36,7 +36,7 @@ global.DeletePlatformVersion_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "delete",
-                        "queryPayload": "UPDATE platformversions SET entryStatus = 'inactive' WHERE PVID = {{PVID}}",
+                        "queryPayload": "UPDATE platformversions SET status = 'inactive' WHERE platform_version_id = {{PVID}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -46,7 +46,7 @@ global.DeletePlatformVersion_object = {
                   },
                   "requestMetaData": {
                     "requestMethod": "DELETE",
-                    "permission": null,
+                    "permission": "admin_platform version_delete",
                     "pagination": {}
                   }
                 },

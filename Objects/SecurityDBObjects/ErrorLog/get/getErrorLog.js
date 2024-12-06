@@ -29,7 +29,7 @@ global.ListErrorLogAll_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "select",
-                      "queryPayload": "UPDATE error_log SET view_count = view_count + 1 WHERE entryStatus = 'Active'; SELECT * FROM error_log",
+                      "queryPayload": "UPDATE error_log SET view_count = view_count + 1 WHERE status = 'Active'; SELECT * FROM error_log",
                       "database": "securitydb"
                     },
                     "utilityFunctions": {

@@ -36,7 +36,7 @@ global.DeleteUserDevice_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "delete",
-                        "queryPayload": "UPDATE userdevices SET entryStatus = 'inactive' WHERE userdevice_id = {{Id}}",
+                        "queryPayload": "UPDATE userdevices SET status = 'inactive' WHERE userdevice_id = {{Id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

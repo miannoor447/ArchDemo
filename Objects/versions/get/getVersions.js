@@ -31,7 +31,7 @@ global.ListVersionsAll_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "select",
-                      "queryPayload": "SELECT * FROM versions WHERE entryStatus = 'Active'",
+                      "queryPayload": "SELECT * FROM version WHERE status = 'Active'",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

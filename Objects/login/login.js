@@ -11,11 +11,11 @@ global.Login_object = {
                 "pagination": false,
               },
               "communication": {
-                // "encryption":false
-                "encryption": {
-                  "platformEncryption": true,
-                //   "accessTokenEncryption": false,
-                }
+                "encryption":false
+                // "encryption": {
+                //   "platformEncryption": true,
+                // //   "accessTokenEncryption": false,
+                // }
               },
               "verification" : {
                   "otp" : true,
@@ -33,7 +33,7 @@ global.Login_object = {
                       "source": "req.body"
                     },
                     {
-                        "name": "deviceName",
+                        "name": "device_name",
                         "validations": [],
                         "required": true,
                         "source": "req.body"
@@ -102,7 +102,7 @@ global.Login_object = {
                             "source": "req.body"
                         },
                         {
-                            "name": "deviceName",
+                            "name": "device_name",
                             "validations": [],
                             "required": true,
                             "source": "req.body"

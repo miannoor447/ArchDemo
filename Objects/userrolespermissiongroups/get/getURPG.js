@@ -31,7 +31,7 @@ global.ListUserRolePermissionGroupAll_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "select",
-                      "queryPayload": "SELECT * FROM userrolespermissiongroups WHERE entryStatus = 'Active'",
+                      "queryPayload": "SELECT * FROM userrolespermissiongroups WHERE status = 'Active'",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

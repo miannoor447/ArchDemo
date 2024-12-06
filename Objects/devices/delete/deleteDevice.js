@@ -34,7 +34,7 @@ global.DeleteDevice_object = {
                         "apiInfo": {
                             "query": {
                                 "queryNature": "update",
-                                "queryPayload": "update devices set entryStatus = 'inactive' where device_id = {{Id}}",
+                                "queryPayload": "update devices set status = 'inactive' where device_id = {{Id}}",
                                 "database": "projectDB"
                             },
                             "utilityFunctions": {

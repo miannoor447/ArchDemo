@@ -31,7 +31,7 @@ global.ListPlatformVersionsAll_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "select",
-                      "queryPayload": "SELECT * FROM platformversions",
+                      "queryPayload": "SELECT * FROM platform_versions",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

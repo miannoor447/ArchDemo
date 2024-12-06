@@ -48,7 +48,7 @@ global.UpdateUserRolePermissionGroup_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE userrolespermissiongroups SET userrole_id = {{userrole_id}}, permission_group_id = {{permission_group_id}}, entryStatus = 'Active' WHERE userrolepermissiongroup_id = {{userrolepermissiongroup_id}}",
+                      "queryPayload": "UPDATE userrolespermissiongroups SET userrole_id = {{userrole_id}}, permission_group_id = {{permission_group_id}}, status = 'Active' WHERE userrolepermissiongroup_id = {{userrolepermissiongroup_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

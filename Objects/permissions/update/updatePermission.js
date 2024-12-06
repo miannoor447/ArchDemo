@@ -38,7 +38,7 @@ global.UpdatePermission_object = {
                         "source": "req.body"
                       },
                       {
-                        "name": "entryStatus",
+                        "name": "status",
                         "validations": [],
                         "required": false,
                         "source": "req.body"
@@ -48,7 +48,7 @@ global.UpdatePermission_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE permissions SET permission_name = {{permission_name}}, entryStatus = {{entryStatus}} WHERE permission_id = {{Id}}",
+                      "queryPayload": "UPDATE permissions SET permission_name = {{permission_name}}, status = {{status}} WHERE permission_id = {{Id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

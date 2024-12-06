@@ -42,7 +42,7 @@ global.UpdateGroup_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE groups SET group_name = {{group_name}}, entryStatus = 'Active' WHERE group_id = {{Id}}",
+                      "queryPayload": "UPDATE groups SET group_name = {{group_name}}, status = 'Active' WHERE group_id = {{Id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

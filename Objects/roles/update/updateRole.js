@@ -38,7 +38,7 @@ global.UpdateRole_object = {
                         "source": "req.body"
                       },
                       {
-                        "name": "entryStatus",
+                        "name": "status",
                         "validations": [],
                         "required": false,
                         "source": "req.body"
@@ -48,7 +48,7 @@ global.UpdateRole_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE roles SET role_name = {{role_name}}, entryStatus = {{entryStatus}} WHERE role_id = {{Id}}",
+                      "queryPayload": "UPDATE roles SET role_name = {{role_name}}, status = {{status}} WHERE role_id = {{Id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

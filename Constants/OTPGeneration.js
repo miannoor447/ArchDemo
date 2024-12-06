@@ -7,7 +7,7 @@ const logMessage = require('../LogFunctions/consoleLog');
 
 async function OTPGeneration(res, email, deviceName) {
   try{
-  let deviceId
+  let deviceId, otpResult;
   let connection = await projectDB();
   const OTP = otpGenerator.generate(6, { upperCaseAlphabets: true, specialChars: false });
   
@@ -26,62 +26,57 @@ async function OTPGeneration(res, email, deviceName) {
   // Update the OTP in the userdevices table for the specified device and user
 // Step 1: Query to get the device_id based on device_name
 const deviceIdQuery = `
-  SELECT device_id 
-  FROM devices 
-  WHERE device_name = ?
+  SELECT * 
+  FROM user_devices 
+  WHERE user_id = ?
 `;
 connection = await projectDB();
-const deviceResult = await executeQuery(res, deviceIdQuery, [deviceName], connection);
+const deviceResult = await executeQuery(res, deviceIdQuery, [userId], connection);
+deviceId = deviceResult[0].user_device_Id
 // Check if the device exists
 if (deviceResult.length === 0) {
     // Insert the new device into the devices table
     const insertDeviceQuery = `
-        INSERT INTO devices (device_name)
-        VALUES (?)
+        INSERT INTO user_devices (user_id, device_token, device_name, platform_version_id, os_version)
+        VALUES (?, ?, ?, ?, ?)
     `;
     connection = await projectDB();
-    const insertDeviceResult = await executeQuery(res, insertDeviceQuery, [deviceName], connection);
+    const insertDeviceResult = await executeQuery(res, insertDeviceQuery, [userId, null,  deviceName, null, null], connection);
 
     // Get the inserted device ID
     const newDeviceIdQuery = `
-        SELECT device_id 
-        FROM devices 
+        SELECT user_device_id 
+        FROM user_devices 
         WHERE device_name = ?
     `;
     connection = await projectDB();
     const newDeviceResult = await executeQuery(res, newDeviceIdQuery, [deviceName], connection);
-    deviceId = newDeviceResult[0].device_id;
-} else {
-    deviceId = deviceResult[0].device_id;
-}
+    deviceId = newDeviceResult[0].user_device_id;
 
-// Check if there's an entry in userdevices for this userId and deviceId
-const userDeviceQuery = `
-  SELECT * 
-  FROM userdevices 
-  WHERE user_id = ? AND device_id = ?
-`;
-connection = await projectDB();
-const userDeviceResult = await executeQuery(res, userDeviceQuery, [userId, deviceId], connection);
-
-if (userDeviceResult.length === 0) {
-    // Insert into the userdevices table with userId and deviceId
-    const insertUserDeviceQuery = `
-        INSERT INTO userdevices (user_id, device_id)
-        VALUES (?, ?)
+    deviceId = deviceResult[0].user_device_id;
+    const otpQuery = `
+      INSERT INTO device_otp (user_device_id, otp, otp_failure_count)
+      VALUES (?,?,?)
     `;
     connection = await projectDB();
-    await executeQuery(res, insertUserDeviceQuery, [userId, deviceId], connection);
+    otpResult = await executeQuery(res, otpQuery, [deviceId, OTP, currentDateTime, 0], connection);
+
+
+} else {
+    deviceId = deviceResult[0].user_device_id;
+    const otpQuery = `
+      UPDATE device_otp
+      SET otp = ?
+      WHERE user_device_id = ?
+    `;
+    connection = await projectDB();
+    otpResult = await executeQuery(res, otpQuery, [OTP, deviceId], connection);
+
 }
 
+
 // Step 2: Update the OTP using the found device_id
-const otpQuery = `
-  UPDATE userdevices
-  SET device_otp = ?, updatedAt = ?
-  WHERE user_id = ? AND device_id = ?
-`;
-connection = await projectDB();
-const otpResult = await executeQuery(res, otpQuery, [OTP, currentDateTime, userId, deviceId], connection);
+
 
   // Check if the OTP was updated
   if (otpResult.affectedRows === 0) {

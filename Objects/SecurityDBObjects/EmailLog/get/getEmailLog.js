@@ -29,7 +29,7 @@ global.ListEmailLogAll_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "select",
-                      "queryPayload": "UPDATE email_log SET view_count = view_count + 1 WHERE entryStatus = 'Active'; SELECT * FROM email_log",
+                      "queryPayload": "UPDATE email_log SET view_count = view_count + 1 WHERE status = 'Active'; SELECT * FROM email_log",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

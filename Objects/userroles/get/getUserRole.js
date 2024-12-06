@@ -31,7 +31,7 @@ global.ListUserRoleAll_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "select",
-                      "queryPayload": "SELECT * FROM userroles WHERE entryStatus = 'Active'",
+                      "queryPayload": "SELECT * FROM userroles WHERE status = 'Active'",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

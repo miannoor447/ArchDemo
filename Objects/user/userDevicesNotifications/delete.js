@@ -1,4 +1,4 @@
-global.DeleteGroup_object = {
+global.DeleteUserDeviceNotification_object = {
     "versions": {
       "versionData": [{
         "=1.0": {
@@ -22,17 +22,19 @@ global.DeleteGroup_object = {
             },
             "data": {
               "parameters": {
-                "fields": [{
-                  "name": "group_id",
-                  "validations": [],
-                  "required": true,
-                  "source": "req.body"
-                }]
+                "fields": [
+                  {
+                    "name": "user_device_notification_id",
+                    "validations": [],
+                    "required": true,
+                    "source": "req.body"
+                  }
+                ]
               },
               "apiInfo": {
                 "query": {
-                  "queryNature": "update",
-                  "queryPayload": "UPDATE groups SET status = 'inactive' WHERE group_id = {{Id}}",
+                  "queryNature": "DELETE",
+                  "queryPayload": "UPDATE user_device_notifications SET entry = 'inactive' WHERE user_device_notification_id = {{user_device_notification_id}}",
                   "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -41,14 +43,14 @@ global.DeleteGroup_object = {
                 }
               },
               "requestMetaData": {
-                "requestMethod": "PUT", // Changed to PUT since it's an update
+                "requestMethod": "DELETE",
                 "permission": null,
                 "pagination": {}
               }
             },
             "response": {
-              "successMessage": "Group inactive successfully!",
-              "errorMessage": "Error deleting group."
+              "successMessage": "User device notification deleted successfully!",
+              "errorMessage": "Error deleting user device notification."
             }
           }]
         }

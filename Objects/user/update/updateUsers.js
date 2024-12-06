@@ -24,8 +24,8 @@ global.UpdateUser_object = {
             "parameters": {
               "fields": [
                 {
-                  "name": "name",
-                  "validations": ["isValidText"],
+                  "name": "user_id",
+                  "validations": [],
                   "required": true,
                   "source": "req.body"
                 },
@@ -36,15 +36,75 @@ global.UpdateUser_object = {
                   "source": "req.body"
                 },
                 {
-                  "name": "phoneNo",
-                  "validations": ["isValidPhoneNumber"],
-                  "required": true,
+                  "name": "first_name",
+                  "validations": ["isValidText"],
+                  "required": false,
                   "source": "req.body"
                 },
                 {
-                  "name": "Id",
+                  "name": "last_name",
+                  "validations": ["isValidText"],
+                  "required": false,
+                  "source": "req.body"
+                },
+                {
+                  "name": "phone_no",
+                  "validations": ["isValidPhoneNumber"],
+                  "required": false,
+                  "source": "req.body"
+                },
+                {
+                  "name": "cnic",
                   "validations": [],
-                  "required": true,
+                  "required": false,
+                  "source": "req.body"
+                },
+                {
+                  "name": "gender",
+                  "validations": [],
+                  "required": false,
+                  "source": "req.body"
+                },
+                {
+                  "name": "father_name",
+                  "validations": [],
+                  "required": false,
+                  "source": "req.body"
+                },
+                {
+                  "name": "image_attachment_id",
+                  "validations": [],
+                  "required": false,
+                  "source": "req.body"
+                },
+                {
+                  "name": "address",
+                  "validations": [],
+                  "required": false,
+                  "source": "req.body"
+                },
+                {
+                  "name": "date_of_birth",
+                  "validations": [],
+                  "required": false,
+                  "source": "req.body"
+                },
+                {
+                  "name": "blood_group",
+                  "validations": [],
+                  "required": false,
+                  "source": "req.body"
+                },
+                {
+                  "name": "religion",
+                  "validations": [],
+                  "required": false,
+                  "source": "req.body"
+                },
+                {
+                  "name": "status",
+                  "validations": [],
+                  "required": false,
                   "source": "req.body"
                 }
               ]
@@ -52,7 +112,7 @@ global.UpdateUser_object = {
             "apiInfo": {
               "query": {
                 "queryNature": "UPDATE",
-                "queryPayload": "UPDATE users SET Name = {{name}}, Email = {{email}}, PhoneNo = {{phoneNo}}, updatedAt = {{updatedAt}} WHERE user_id = {{Id}}",
+                "queryPayload": "UPDATE users SET email = {{email}}, first_name = {{first_name}}, last_name = {{last_name}}, phone_no = {{phone_no}}, cnic = {{cnic}}, gender = {{gender}}, father_name = {{father_name}}, image_attachment_id = {{image_attachment_id}}, address = {{address}}, date_of_birth = {{date_of_birth}}, blood_group = {{blood_group}}, religion = {{religion}}, status = {{status}}, updated_at = {{updated_at}} WHERE user_id = {{user_id}}",
                 "database": "projectDB"
               },
               "utilityFunctions": {
@@ -63,10 +123,7 @@ global.UpdateUser_object = {
             "requestMetaData": {
               "requestMethod": "PUT",
               "permission": null,
-              "pagination": {
-                "pageSize": 10,
-                
-              }
+              "pagination": {}
             }
           },
           "response": {

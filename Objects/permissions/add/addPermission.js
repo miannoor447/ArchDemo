@@ -36,7 +36,7 @@ global.AddPermission_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "insert",
-                      "queryPayload": "INSERT INTO permissions (permission_name, entryStatus) VALUES ({{permission_name}}, 'Active')",
+                      "queryPayload": "INSERT INTO permissions (permission_name, status) VALUES ({{permission_name}}, 'Active')",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

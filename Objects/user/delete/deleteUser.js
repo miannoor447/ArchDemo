@@ -34,7 +34,7 @@ global.DeleteUser_object = {
             "apiInfo": {
               "query": {
                 "queryNature": "update",
-                "queryPayload": "UPDATE users SET entryStatus = 'inactive' WHERE user_id = {{Id}};",
+                "queryPayload": "UPDATE users SET status = 'inactive' WHERE user_id = {{Id}};",
                 "database": "projectDB"
               },
               "utilityFunctions": {

@@ -50,7 +50,7 @@ global.AddUserDevice_object = {
                         "source": "req.body"
                       },
                       {
-                        "name": "entryStatus",
+                        "name": "status",
                         "validations": [],
                         "required": false,
                         "source": "req.body"
@@ -60,7 +60,7 @@ global.AddUserDevice_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "insert",
-                      "queryPayload": "INSERT INTO userdevices (user_id, device_id, device_otp, device_token, entryStatus) VALUES ({{user_id}}, {{device_id}}, {{device_otp}}, {{device_token}}, 'Active')",
+                      "queryPayload": "INSERT INTO userdevices (user_id, device_id, device_otp, device_token, status) VALUES ({{user_id}}, {{device_id}}, {{device_otp}}, {{device_token}}, 'Active')",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

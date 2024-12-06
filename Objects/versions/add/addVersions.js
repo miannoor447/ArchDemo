@@ -36,7 +36,7 @@ global.AddVersion_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "insert",
-                      "queryPayload": "INSERT INTO versions (versionValue, entryStatus) VALUES ({{versionValue}}, 'Active')",
+                      "queryPayload": "INSERT INTO version (version, status) VALUES ({{versionValue}}, 'Active')",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {

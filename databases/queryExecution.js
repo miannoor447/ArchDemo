@@ -6,6 +6,8 @@ async function executeQuery(res, query, values, connection) {
       connection.end();
       if (err) {
         reject(err);
+        logMessage(query);
+        logMessage(values)
         throw new Error ("Error Executing the query: " + err)
       } else {
         resolve(result);

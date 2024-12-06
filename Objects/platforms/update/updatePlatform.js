@@ -38,7 +38,7 @@ global.UpdatePlatform_object = {
                         "source": "req.body"
                       },
                       {
-                        "name": "entryStatus",
+                        "name": "status",
                         "validations": [],
                         "required": false,
                         "source": "req.body"
@@ -48,7 +48,7 @@ global.UpdatePlatform_object = {
                   "apiInfo": {
                     "query": {
                       "queryNature": "update",
-                      "queryPayload": "UPDATE platforms SET platformName = {{platformName}}, entryStatus = {{entryStatus}} WHERE PID = {{PID}}",
+                      "queryPayload": "UPDATE platforms SET platform_name = {{platformName}}, status = {{status}} WHERE platform_id = {{PID}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
