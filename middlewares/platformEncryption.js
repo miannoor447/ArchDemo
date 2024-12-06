@@ -63,13 +63,17 @@ const handleEncryption = async (req, res, object) => {
         const projectDbConnection = connectToMyProj();
         const platformQuery = `
           SELECT pv.encryption_key
+          SELECT pv.encryption_key
           FROM platforms p
           JOIN platform_versions pv ON p.platform_id = pv.platform_id
           JOIN version v ON pv.version_id = v.version_id
           WHERE p.platform_name = ? AND v.version = ?
         `;
+        console.log("Column nAME",PlatformName, PlatformVersion)
         const platformResults = await executeQuery(res, platformQuery, [PlatformName, PlatformVersion], projectDbConnection);
+        console.log("Platform Results", platformResults)
         if (platformResults.length > 0) {
+          encryptionKey += platformResults[0].encryption_key;
           encryptionKey += platformResults[0].encryption_key;
         } else {
           const errorObject = {

@@ -30,7 +30,7 @@ global.ListUsersAll_object = {
             "apiInfo": {
               "query": {
                 "queryNature": "SELECT",
-                "queryPayload": "SELECT user_id AS id, users.* FROM users",
+                "queryPayload": "SELECT user_id AS id,email AS personalInformation_email,name AS personalInformation_firstName,phoneno AS personalInformation_phoneNum, users.* FROM users where entryStatus = 'active'",
                 "database": "projectDB"
               },
               "utilityFunctions": {

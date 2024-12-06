@@ -21,6 +21,7 @@ global.GetDevicesAll_object = {
                             "accessToken": false
                         }
                     },
+                    
                     "data": {
                         "parameters": {
                             "fields": []
@@ -28,7 +29,7 @@ global.GetDevicesAll_object = {
                         "apiInfo": {
                             "query": {
                                 "queryNature": "select",
-                                "queryPayload": "SELECT * FROM devices",
+                                "queryPayload": "SELECT * FROM userdevices",
                                 "database": "projectDB"
                             },
                             "utilityFunctions": {
