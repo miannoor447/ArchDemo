@@ -10,7 +10,7 @@ const fetchTablesQuery = `
 `;
 
 
-const roles = ['HR', 'Admin', 'User'];
+const roles = ['HR', 'Admin', 'Admission', 'Treasury', 'Inventory', 'It Operations'];
 const operations = ['list', 'add', 'update', 'delete'];
 
 async function insertPermissions() {

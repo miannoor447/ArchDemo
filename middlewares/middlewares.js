@@ -38,6 +38,7 @@ const middlewareHandler = async (req, res, next) => {
         const { config, data, response } = await handleVersionChecking(req, res, apiObject);    
         const { features } = config;
         let decryptedPayload = req.body;
+        logMessage(decryptedPayload, req.body);
         let encryptionKey = null;
         if (req.method !== data.requestMetaData.requestMethod) {
             const errorObject = {
