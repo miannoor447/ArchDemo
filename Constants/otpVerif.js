@@ -176,14 +176,11 @@ async function verifyOTP(res, OTP, decryptedBody, updatedFlag = 1) {
             ON urdd.role_designation_department_id = rdd.role_designation_department_id
         LEFT JOIN roles r 
             ON rdd.role_id = r.role_id
-        LEFT JOIN user_role_designation_permissions urdp 
-            ON urdd.user_role_designation_department_id = urdp.user_role_designation_department_id
         LEFT JOIN designations d 
             ON rdd.designation_id = d.designation_id
         LEFT JOIN departments dept 
             ON rdd.department_id = dept.department_id
         WHERE u.user_id = ?;
-
     `
     connection = projectDB()
     const compound_user = await executeQuery(res, compoundUserDataQuery, [userId], connection)

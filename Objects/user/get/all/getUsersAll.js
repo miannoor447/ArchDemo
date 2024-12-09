@@ -12,11 +12,11 @@ global.ListUsersAll_object = {
               "pagination": true
             },
             "communication": {
-              // "encryption": {
-              //   "platformEncryption": true,
-              //   "accessTokenEncryption": false,
-              // }
-              "encryption": false
+              "encryption": {
+                "platformEncryption": true,
+                "accessTokenEncryption": false,
+              }
+              // "encryption": false
             },
             "verification": {
               "otp": false,
@@ -30,7 +30,7 @@ global.ListUsersAll_object = {
             "apiInfo": {
               "query": {
                 "queryNature": "SELECT",
-                "queryPayload": "SELECT user_id AS id, users.* FROM users where entryStatus = 'active'",
+                "queryPayload": "SELECT user_id AS id, users.* FROM users where status = 'active'",
                 "database": "projectDB"
               },
               "utilityFunctions": {
