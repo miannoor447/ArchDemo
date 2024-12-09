@@ -63,7 +63,6 @@ const handleEncryption = async (req, res, object) => {
         const projectDbConnection = connectToMyProj();
         const platformQuery = `
           SELECT pv.encryption_key
-          SELECT pv.encryption_key
           FROM platforms p
           JOIN platform_versions pv ON p.platform_id = pv.platform_id
           JOIN versions v ON pv.version_id = v.version_id

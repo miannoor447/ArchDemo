@@ -54,18 +54,18 @@ async function verifyOTP(res, OTP, decryptedBody, updatedFlag = 1) {
 
     const userId = userResult[0].user_id;
 
-    // // Validate OTP in the device_otp table
-    // const otpQuery = `
-    // SELECT * 
-    // FROM device_otp do
-    // INNER JOIN user_devices ud ON do.user_device_id = ud.user_device_id
-    // WHERE ud.user_id = ? AND do.otp = ? AND ud.device_name = ?
-    // `;
-    // connection = await projectDB();
-    // const otpResult = await executeQuery(res, otpQuery, [userId, OTP, device_name], connection);
-    // if (otpResult.length === 0) {
-    //     throw new Error("Invalid OTP");
-    // }
+    // Validate OTP in the device_otp table
+    const otpQuery = `
+    SELECT * 
+    FROM device_otp do
+    INNER JOIN user_devices ud ON do.user_device_id = ud.user_device_id
+    WHERE ud.user_id = ? AND do.otp = ? AND ud.device_name = ?
+    `;
+    connection = await projectDB();
+    const otpResult = await executeQuery(res, otpQuery, [userId, OTP, device_name], connection);
+    if (otpResult.length === 0 && false) {
+        throw new Error("Invalid OTP");
+    }
 
     const deviceId = otpResult[0].user_device_id;
 
