@@ -6,7 +6,7 @@ async function total_count(req, res){
         SELECT
             COUNT(*) as count
         FROM 
-            permissiongroups
+            permission_groups
     `
     const connection = projectDB(); 
     const results = await executeQuery(res, query, "", connection);
