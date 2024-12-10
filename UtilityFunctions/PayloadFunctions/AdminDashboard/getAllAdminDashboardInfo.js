@@ -1,6 +1,7 @@
 const LogError = require('../../../databases/Errorlog.js');
 const { executeQuery } = require('../../../databases/queryExecution.js');
 const projectDB = require('../../../databases/projectDb.js');
+const securityDB = require('../../../databases/securityDB.js');
 
 /**
  * Function to get record counts for all tables in 'projectdb_new' schema.
@@ -230,6 +231,76 @@ async function getUsersPerPermissionGroup(req, res) {
     }
 }
 
+async function getSecurityLogData(req, res) {
+    const query = `
+        SELECT entryStatus, COUNT(*) AS entryCount
+        FROM security_log
+        GROUP BY entryStatus;
+    `;
+    const connection = securityDB();
+
+    try {
+        const result = await executeQuery(null, query, [], connection);
+        return result;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
+}
+async function getCrashLogData(req, res) {
+    const query = `
+        SELECT entryStatus, COUNT(*) AS entryCount
+        FROM crash_log
+        GROUP BY entryStatus;
+
+    `;
+    const connection = securityDB();
+
+    try {
+        const result = await executeQuery(null, query, [], connection);
+        return result;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
+}
+
+async function getEventLogData(req, res) {
+    const query = `
+        SELECT entryStatus, COUNT(*) AS entryCount
+        FROM email_log
+        GROUP BY entryStatus;
+
+    `;
+    const connection = securityDB();
+
+    try {
+        const result = await executeQuery(null, query, [], connection);
+        return result;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
+}
+
+async function getErrorLogData(req, res) {
+    const query = `
+        SELECT entryStatus, COUNT(*) AS entryCount
+        FROM error_log
+        GROUP BY entryStatus;
+
+    `;
+    const connection = securityDB();
+
+    try {
+        const result = await executeQuery(null, query, [], connection);
+        return result;
+    } catch (error) {
+        LogError(error);
+        throw error;
+    }
+}
+
 /**
  * Function to execute all statistical queries and compile results.
  */
@@ -244,6 +315,10 @@ async function executeStatisticsQueries(req, res) {
         resultsObject.inactiveUsers = await getInactiveUsers(req, res);
         resultsObject.securityDbTableCounts = await getSecurityDbTableCounts(req, res);
         resultsObject.usersPerPermissionGroup = await getUsersPerPermissionGroup(req, res);
+        resultsObject.securityLog = await getSecurityLogData(req, res);
+        resultsObject.eventLog = await getEventLogData(req, res);
+        resultsObject.crashLog = await getCrashLogData(req, res);
+        resultsObject.errorLog = await getErrorLogData(req, res);
         return resultsObject;
     } catch (error) {
         LogError(error);
