@@ -1,213 +1,186 @@
 /* API Objects for table: departments */
 
-    global.ListDepartmentsAll_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": true
-                },
-                "communication": {
-                    //"encryption": false,
+      global.ListDepartmentsAll_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": true
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
+                "data": {
+                  "parameters": {
+                    "fields": []
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "SELECT",
+                      "queryPayload": "SELECT department_id as Departments_departmentId, department_name as Departments_departmentName, status as Departments_status, updated_by as Departments_updatedBy, created_at as Departments_createdAt, updated_at as Departments_updatedAt, COUNT(*) OVER () AS table_count FROM Departments",
+                      "database": "projectDB"
+                    },
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
+                    }
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "GET",
+                    "permission": null,
+                    "pagination": { "pageSize": 10 }
+                  }
+                },
+                "response": {
+                  "successMessage": "Departments retrieved successfully!",
+                  "errorMessage": "Failed to retrieve Departments."
                 }
-            },
-            "data": {
-                "parameters": {
-                "fields": []
-                },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "SELECT",
-                    "queryPayload": "SELECT *, COUNT(*) OVER () AS table_count FROM Departments",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
-                }
-                },
-                "requestMetaData": {
-                "requestMethod": "GET",
-                "permission": null,
-                "pagination": { "pageSize": 10 }
-                }
-            },
-            "response": {
-                "successMessage": "Departments retrieved successfully!",
-                "errorMessage": "Failed to retrieve Departments."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };
 
 
-    global.ListDepartments_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": true
-                },
-                "communication": {
-                    //"encryption": false,
+      global.ListDepartments_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": true
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
-                }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    {
-                    "name": "id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.query"
+                "data": {
+                  "parameters": {
+                    "fields": [
+                      {
+                        "name": "id",
+                        "validations": [],
+                        "required": true,
+                        "source": "req.query"
+                      }
+                    ]
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "SELECT",
+                      "queryPayload": "SELECT department_id as Departments_departmentId, department_name as Departments_departmentName, status as Departments_status, updated_by as Departments_updatedBy, created_at as Departments_createdAt, updated_at as Departments_updatedAt FROM Departments WHERE department_id = {{id}}",
+                      "database": "projectDB"
+                    },
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
                     }
-                ]
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "GET",
+                    "permission": null,
+                    "pagination": { "pageSize": 10 }
+                  }
                 },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "SELECT",
-                    "queryPayload": "SELECT * FROM Departments WHERE department_id = {{id}}",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
+                "response": {
+                  "successMessage": "Departments entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve Departments entry."
                 }
-                },
-                "requestMetaData": {
-                "requestMethod": "GET",
-                "permission": null,
-                "pagination": { "pageSize": 10 }
-                }
-            },
-            "response": {
-                "successMessage": "Departments entry retrieved successfully!",
-                "errorMessage": "Failed to retrieve Departments entry."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };
 
 
-    global.UpdateDepartments_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": false
-                },
-                "communication": {
-                    //"encryption": false,
+      global.UpdateDepartments_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": false
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
-                }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    
-                    {
-                    "name": "department_id",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
+                "data": {
+                  "parameters": {
+                    "fields": [
+                        
+                            {
+                            "name": "Departments_departmentName",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "Departments_updatedBy",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            }
+                    ]
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "UPDATE",
+                      "queryPayload": "UPDATE Departments SET department_name = {{Departments_departmentName}}, updated_by = {{Departments_updatedBy}} WHERE department_id = {{department_id}}",
+                      "database": "projectDB"
                     },
-                    {
-                    "name": "department_name",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "status",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_by",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "created_at",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_at",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
                     }
-                ]
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "PUT",
+                    "permission": null,
+                    "pagination": {}
+                  }
                 },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Departments SET department_id = {{department_id}}, department_name = {{department_name}}, status = {{status}}, updated_by = {{updated_by}}, created_at = {{created_at}}, updated_at = {{updated_at}} WHERE department_id = {{department_id}}",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
+                "response": {
+                  "successMessage": "Departments updated successfully!",
+                  "errorMessage": "There was an error updating Departments."
                 }
-                },
-                "requestMetaData": {
-                "requestMethod": "PUT",
-                "permission": null,
-                "pagination": {}
-                }
-            },
-            "response": {
-                "successMessage": "Departments updated successfully!",
-                "errorMessage": "There was an error updating Departments."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };
 
 
     global.DeleteDepartments_object = {
@@ -225,7 +198,6 @@
                     //"encryption": false,
                     "encryption": {
                         "platformEncryption": true,
-                        "accessTokenEncryption": false,
                     }
                 },
                 "verification": {
@@ -237,7 +209,7 @@
                 "parameters": {
                 "fields": [
                     {
-                    "name": "department_id",
+                    "name": "id",
                     "validations": [],
                     "required": true,
                     "source": "req.body"
@@ -247,7 +219,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Departments SET status = 'inactive' WHERE department_id = {{department_id}}",
+                    "queryPayload": "UPDATE Departments SET status = 'inactive' WHERE department_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -272,94 +244,70 @@
     };
 
 
-    global.Adddepartments_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": true,
-                "parameters": true,
-                "pagination": false
-                },
-                "communication": {
-                    //"encryption": false,
+      global.Adddepartments_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": true,
+                    "parameters": true,
+                    "pagination": false
+                  },
+                  "communication": {
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption": true,
+                      "accessTokenEncryption": false
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": true
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": true
-                }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    
-                    {
-                    "name": "department_id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
+                "data": {
+                  "parameters": {
+                    "fields": [
+                        
+                            {
+                            "name": "departments_departmentName",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "departments_updatedBy",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            }
+                    ]
+
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "INSERT",
+                      "queryPayload": "INSERT INTO departments (department_name, updated_by) VALUES ({{department_id}}, {{department_name}}, {{status}}, {{updated_by}}, {{created_at}}, {{updated_at}})",
+                      "database": "projectDB"
                     },
-                    {
-                    "name": "department_name",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "status",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_by",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "created_at",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_at",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
                     }
-                ]
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "POST",
+                    "permission": null,
+                    "pagination": {}
+                  }
                 },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "INSERT",
-                    "queryPayload": "INSERT INTO departments (department_id, department_name, status, updated_by, created_at, updated_at) VALUES ({{department_id}}, {{department_name}}, {{status}}, {{updated_by}}, {{created_at}}, {{updated_at}})",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
+                "response": {
+                  "successMessage": "departments added successfully!",
+                  "errorMessage": "There was an error adding departments."
                 }
-                },
-                "requestMetaData": {
-                "requestMethod": "POST",
-                "permission": null,
-                "pagination": {}
-                }
-            },
-            "response": {
-                "successMessage": "departments added successfully!",
-                "errorMessage": "There was an error adding departments."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };

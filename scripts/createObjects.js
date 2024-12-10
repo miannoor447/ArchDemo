@@ -9,189 +9,204 @@ const dbConfig = {
   password: '',       // Replace with your DB password
   database: 'projectdb_new', // Replace with your DB name
 };
-
+// Helper function to convert snake_case to camelCase
+const snakeToCamel = (str) => {
+    return str.replace(/_([a-z])/g, (match, group1) => group1.toUpperCase());
+  };
+  
 // Template for the API objects
 const apiTemplates = {
-    listAll: (table) => `
-    global.List${table}All_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": true
-                },
-                "communication": {
-                    //"encryption": false,
+    listAll: (table, columns) => {
+        const aliasedColumns = columns.map(col => `${col.COLUMN_NAME} as ${table}_${snakeToCamel(col.COLUMN_NAME)}`).join(', ');
+      
+        return `
+      global.List${table}All_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": true
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
+                "data": {
+                  "parameters": {
+                    "fields": []
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "SELECT",
+                      "queryPayload": "SELECT ${aliasedColumns}, COUNT(*) OVER () AS table_count FROM ${table}",
+                      "database": "projectDB"
+                    },
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
+                    }
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "GET",
+                    "permission": null,
+                    "pagination": { "pageSize": 10 }
+                  }
+                },
+                "response": {
+                  "successMessage": "${table} retrieved successfully!",
+                  "errorMessage": "Failed to retrieve ${table}."
                 }
-            },
-            "data": {
-                "parameters": {
-                "fields": []
-                },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "SELECT",
-                    "queryPayload": "SELECT *, COUNT(*) OVER () AS table_count FROM ${table}",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
-                }
-                },
-                "requestMetaData": {
-                "requestMethod": "GET",
-                "permission": null,
-                "pagination": { "pageSize": 10 }
-                }
-            },
-            "response": {
-                "successMessage": "${table} retrieved successfully!",
-                "errorMessage": "Failed to retrieve ${table}."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };`,
-
-    listOne: (table, primaryKey) => `
-    global.List${table}_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": true
-                },
-                "communication": {
-                    //"encryption": false,
+      };`;
+      },
+      
+      listOne: (table, primaryKey, columns) => {
+        const aliasedColumns = columns.map(col => `${col.COLUMN_NAME} as ${table}_${snakeToCamel(col.COLUMN_NAME)}`).join(', ');
+      
+        return `
+      global.List${table}_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": true
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
-                }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    {
-                    "name": "id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.query"
+                "data": {
+                  "parameters": {
+                    "fields": [
+                      {
+                        "name": "id",
+                        "validations": [],
+                        "required": true,
+                        "source": "req.query"
+                      }
+                    ]
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "SELECT",
+                      "queryPayload": "SELECT ${aliasedColumns} FROM ${table} WHERE ${primaryKey} = {{id}}",
+                      "database": "projectDB"
+                    },
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
                     }
-                ]
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "GET",
+                    "permission": null,
+                    "pagination": { "pageSize": 10 }
+                  }
                 },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "SELECT",
-                    "queryPayload": "SELECT * FROM ${table} WHERE ${primaryKey} = {{id}}",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
+                "response": {
+                  "successMessage": "${table} entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve ${table} entry."
                 }
-                },
-                "requestMetaData": {
-                "requestMethod": "GET",
-                "permission": null,
-                "pagination": { "pageSize": 10 }
-                }
-            },
-            "response": {
-                "successMessage": "${table} entry retrieved successfully!",
-                "errorMessage": "Failed to retrieve ${table} entry."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };`,
-
-    update: (table, primaryKey, columns) => `
-    global.Update${table}_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": false
-                },
-                "communication": {
-                    //"encryption": false,
+      };`;
+      },
+      
+      update: (table, primaryKey, columns) => {
+        const setClause = columns.filter(col => ![primaryKey, "status", "created_at", "updated_at"].includes(col.COLUMN_NAME)).map(col => `${col.COLUMN_NAME} = {{${table}_${snakeToCamel(col.COLUMN_NAME)}}}`).join(', ');
+      
+        return `
+      global.Update${table}_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": false
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
+                "data": {
+                  "parameters": {
+                    "fields": [
+                        ${columns
+                            .filter(col => ![primaryKey, "status", "created_at", "updated_at"].includes(col.COLUMN_NAME)) // Exclude specific columns
+                            .map(col => `
+                            {
+                            "name": "${table}_${snakeToCamel(col.COLUMN_NAME)}",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            }`).join(',')}
+                    ]
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "UPDATE",
+                      "queryPayload": "UPDATE ${table} SET ${setClause} WHERE ${primaryKey} = {{${primaryKey}}}",
+                      "database": "projectDB"
+                    },
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
+                    }
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "PUT",
+                    "permission": null,
+                    "pagination": {}
+                  }
+                },
+                "response": {
+                  "successMessage": "${table} updated successfully!",
+                  "errorMessage": "There was an error updating ${table}."
                 }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    ${columns.map(col => `
-                    {
-                    "name": "${col.COLUMN_NAME}",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    }`).join(',')}
-                ]
-                },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE ${table} SET ${columns.map(col => `${col.COLUMN_NAME} = {{${col.COLUMN_NAME}}}`).join(', ')} WHERE ${primaryKey} = {{${primaryKey}}}",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
-                }
-                },
-                "requestMetaData": {
-                "requestMethod": "PUT",
-                "permission": null,
-                "pagination": {}
-                }
-            },
-            "response": {
-                "successMessage": "${table} updated successfully!",
-                "errorMessage": "There was an error updating ${table}."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };`,
-
+      };`;
+      },
+      
     delete: (table, primaryKey) => `
     global.Delete${table}_object = {
     "versions": {
@@ -208,7 +223,6 @@ const apiTemplates = {
                     //"encryption": false,
                     "encryption": {
                         "platformEncryption": true,
-                        "accessTokenEncryption": false,
                     }
                 },
                 "verification": {
@@ -220,7 +234,7 @@ const apiTemplates = {
                 "parameters": {
                 "fields": [
                     {
-                    "name": "${primaryKey}",
+                    "name": "id",
                     "validations": [],
                     "required": true,
                     "source": "req.body"
@@ -230,7 +244,7 @@ const apiTemplates = {
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE ${table} SET status = 'inactive' WHERE ${primaryKey} = {{${primaryKey}}}",
+                    "queryPayload": "UPDATE ${table} SET status = 'inactive' WHERE ${primaryKey} = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -254,68 +268,74 @@ const apiTemplates = {
     }
     };`,
 
-    add: (table, columns) => `
-    global.Add${table}_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": true,
-                "parameters": true,
-                "pagination": false
-                },
-                "communication": {
-                    //"encryption": false,
+    add: (table, columns, primaryKey) => {
+        return `
+      global.Add${table}_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": true,
+                    "parameters": true,
+                    "pagination": false
+                  },
+                  "communication": {
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption": true,
+                      "accessTokenEncryption": false
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": true
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": true
+                "data": {
+                  "parameters": {
+                    "fields": [
+                        ${columns
+                            .filter(col => ![primaryKey, "status", "created_at", "updated_at"].includes(col.COLUMN_NAME)) // Exclude specific columns
+                            .map(col => `
+                            {
+                            "name": "${table}_${snakeToCamel(col.COLUMN_NAME)}",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            }`).join(',')}
+                    ]
+
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "INSERT",
+                      "queryPayload": "INSERT INTO ${table} (${columns.filter(col => ![primaryKey, "status", "created_at", "updated_at"].includes(col.COLUMN_NAME)).map(col => col.COLUMN_NAME).join(', ')}) VALUES (${columns.map(col => `{{${col.COLUMN_NAME}}}`).join(', ')})",
+                      "database": "projectDB"
+                    },
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
+                    }
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "POST",
+                    "permission": null,
+                    "pagination": {}
+                  }
+                },
+                "response": {
+                  "successMessage": "${table} added successfully!",
+                  "errorMessage": "There was an error adding ${table}."
                 }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    ${columns.map(col => `
-                    {
-                    "name": "${col.COLUMN_NAME}",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    }`).join(',')}
-                ]
-                },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "INSERT",
-                    "queryPayload": "INSERT INTO ${table} (${columns.map(col => col.COLUMN_NAME).join(', ')}) VALUES (${columns.map(col => `{{${col.COLUMN_NAME}}}`).join(', ')})",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
-                }
-                },
-                "requestMetaData": {
-                "requestMethod": "POST",
-                "permission": null,
-                "pagination": {}
-                }
-            },
-            "response": {
-                "successMessage": "${table} added successfully!",
-                "errorMessage": "There was an error adding ${table}."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };`,
+      };`;
+      },
+      
+      
 
 };
 
@@ -367,11 +387,11 @@ const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + strin
 `;
 
       // Add listAll API template
-      fileContent += apiTemplates.listAll(capitalizedTableName);
+      fileContent += apiTemplates.listAll(capitalizedTableName, columns);
       fileContent += '\n\n';
 
       // Add listOne API template
-      fileContent += apiTemplates.listOne(capitalizedTableName, primaryKey);
+      fileContent += apiTemplates.listOne(capitalizedTableName, primaryKey, columns);
       fileContent += '\n\n';
 
       // Add update API template
@@ -383,7 +403,7 @@ const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + strin
       fileContent += '\n\n';
 
       // Add add API template
-      fileContent += apiTemplates.add(TABLE_NAME, columns);
+      fileContent += apiTemplates.add(TABLE_NAME, columns, primaryKey);
       fileContent += '\n\n';
 
       // Write to file in the table's folder

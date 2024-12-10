@@ -1,237 +1,210 @@
 /* API Objects for table: attachments */
 
-    global.ListAttachmentsAll_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": true
-                },
-                "communication": {
-                    //"encryption": false,
+      global.ListAttachmentsAll_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": true
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
+                "data": {
+                  "parameters": {
+                    "fields": []
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "SELECT",
+                      "queryPayload": "SELECT attachment_id as Attachments_attachmentId, attachment_name as Attachments_attachmentName, attachment_type as Attachments_attachmentType, attachment_size as Attachments_attachmentSize, attachment_link as Attachments_attachmentLink, uploaded_by_user_role_designation_department_id as Attachments_uploadedByUserRoleDesignationDepartmentId, status as Attachments_status, updated_by as Attachments_updatedBy, created_at as Attachments_createdAt, updated_at as Attachments_updatedAt, COUNT(*) OVER () AS table_count FROM Attachments",
+                      "database": "projectDB"
+                    },
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
+                    }
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "GET",
+                    "permission": null,
+                    "pagination": { "pageSize": 10 }
+                  }
+                },
+                "response": {
+                  "successMessage": "Attachments retrieved successfully!",
+                  "errorMessage": "Failed to retrieve Attachments."
                 }
-            },
-            "data": {
-                "parameters": {
-                "fields": []
-                },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "SELECT",
-                    "queryPayload": "SELECT *, COUNT(*) OVER () AS table_count FROM Attachments",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
-                }
-                },
-                "requestMetaData": {
-                "requestMethod": "GET",
-                "permission": null,
-                "pagination": { "pageSize": 10 }
-                }
-            },
-            "response": {
-                "successMessage": "Attachments retrieved successfully!",
-                "errorMessage": "Failed to retrieve Attachments."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };
 
 
-    global.ListAttachments_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": true
-                },
-                "communication": {
-                    //"encryption": false,
+      global.ListAttachments_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": true
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
-                }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    {
-                    "name": "id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.query"
+                "data": {
+                  "parameters": {
+                    "fields": [
+                      {
+                        "name": "id",
+                        "validations": [],
+                        "required": true,
+                        "source": "req.query"
+                      }
+                    ]
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "SELECT",
+                      "queryPayload": "SELECT attachment_id as Attachments_attachmentId, attachment_name as Attachments_attachmentName, attachment_type as Attachments_attachmentType, attachment_size as Attachments_attachmentSize, attachment_link as Attachments_attachmentLink, uploaded_by_user_role_designation_department_id as Attachments_uploadedByUserRoleDesignationDepartmentId, status as Attachments_status, updated_by as Attachments_updatedBy, created_at as Attachments_createdAt, updated_at as Attachments_updatedAt FROM Attachments WHERE attachment_id = {{id}}",
+                      "database": "projectDB"
+                    },
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
                     }
-                ]
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "GET",
+                    "permission": null,
+                    "pagination": { "pageSize": 10 }
+                  }
                 },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "SELECT",
-                    "queryPayload": "SELECT * FROM Attachments WHERE attachment_id = {{id}}",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
+                "response": {
+                  "successMessage": "Attachments entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve Attachments entry."
                 }
-                },
-                "requestMetaData": {
-                "requestMethod": "GET",
-                "permission": null,
-                "pagination": { "pageSize": 10 }
-                }
-            },
-            "response": {
-                "successMessage": "Attachments entry retrieved successfully!",
-                "errorMessage": "Failed to retrieve Attachments entry."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };
 
 
-    global.UpdateAttachments_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": false
-                },
-                "communication": {
-                    //"encryption": false,
+      global.UpdateAttachments_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": false
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
-                }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    
-                    {
-                    "name": "attachment_id",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
+                "data": {
+                  "parameters": {
+                    "fields": [
+                        
+                            {
+                            "name": "Attachments_attachmentName",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "Attachments_attachmentType",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "Attachments_attachmentSize",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "Attachments_attachmentLink",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "Attachments_uploadedByUserRoleDesignationDepartmentId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "Attachments_updatedBy",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            }
+                    ]
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "UPDATE",
+                      "queryPayload": "UPDATE Attachments SET attachment_name = {{Attachments_attachmentName}}, attachment_type = {{Attachments_attachmentType}}, attachment_size = {{Attachments_attachmentSize}}, attachment_link = {{Attachments_attachmentLink}}, uploaded_by_user_role_designation_department_id = {{Attachments_uploadedByUserRoleDesignationDepartmentId}}, updated_by = {{Attachments_updatedBy}} WHERE attachment_id = {{attachment_id}}",
+                      "database": "projectDB"
                     },
-                    {
-                    "name": "attachment_name",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "attachment_type",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "attachment_size",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "attachment_link",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "uploaded_by_user_role_designation_department_id",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "status",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_by",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "created_at",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_at",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
                     }
-                ]
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "PUT",
+                    "permission": null,
+                    "pagination": {}
+                  }
                 },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Attachments SET attachment_id = {{attachment_id}}, attachment_name = {{attachment_name}}, attachment_type = {{attachment_type}}, attachment_size = {{attachment_size}}, attachment_link = {{attachment_link}}, uploaded_by_user_role_designation_department_id = {{uploaded_by_user_role_designation_department_id}}, status = {{status}}, updated_by = {{updated_by}}, created_at = {{created_at}}, updated_at = {{updated_at}} WHERE attachment_id = {{attachment_id}}",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
+                "response": {
+                  "successMessage": "Attachments updated successfully!",
+                  "errorMessage": "There was an error updating Attachments."
                 }
-                },
-                "requestMetaData": {
-                "requestMethod": "PUT",
-                "permission": null,
-                "pagination": {}
-                }
-            },
-            "response": {
-                "successMessage": "Attachments updated successfully!",
-                "errorMessage": "There was an error updating Attachments."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };
 
 
     global.DeleteAttachments_object = {
@@ -249,7 +222,6 @@
                     //"encryption": false,
                     "encryption": {
                         "platformEncryption": true,
-                        "accessTokenEncryption": false,
                     }
                 },
                 "verification": {
@@ -261,7 +233,7 @@
                 "parameters": {
                 "fields": [
                     {
-                    "name": "attachment_id",
+                    "name": "id",
                     "validations": [],
                     "required": true,
                     "source": "req.body"
@@ -271,7 +243,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Attachments SET status = 'inactive' WHERE attachment_id = {{attachment_id}}",
+                    "queryPayload": "UPDATE Attachments SET status = 'inactive' WHERE attachment_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -296,118 +268,94 @@
     };
 
 
-    global.Addattachments_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": true,
-                "parameters": true,
-                "pagination": false
-                },
-                "communication": {
-                    //"encryption": false,
+      global.Addattachments_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": true,
+                    "parameters": true,
+                    "pagination": false
+                  },
+                  "communication": {
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption": true,
+                      "accessTokenEncryption": false
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": true
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": true
-                }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    
-                    {
-                    "name": "attachment_id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
+                "data": {
+                  "parameters": {
+                    "fields": [
+                        
+                            {
+                            "name": "attachments_attachmentName",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "attachments_attachmentType",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "attachments_attachmentSize",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "attachments_attachmentLink",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "attachments_uploadedByUserRoleDesignationDepartmentId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "attachments_updatedBy",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            }
+                    ]
+
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "INSERT",
+                      "queryPayload": "INSERT INTO attachments (attachment_name, attachment_type, attachment_size, attachment_link, uploaded_by_user_role_designation_department_id, updated_by) VALUES ({{attachment_id}}, {{attachment_name}}, {{attachment_type}}, {{attachment_size}}, {{attachment_link}}, {{uploaded_by_user_role_designation_department_id}}, {{status}}, {{updated_by}}, {{created_at}}, {{updated_at}})",
+                      "database": "projectDB"
                     },
-                    {
-                    "name": "attachment_name",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "attachment_type",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "attachment_size",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "attachment_link",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "uploaded_by_user_role_designation_department_id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "status",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_by",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "created_at",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_at",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
                     }
-                ]
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "POST",
+                    "permission": null,
+                    "pagination": {}
+                  }
                 },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "INSERT",
-                    "queryPayload": "INSERT INTO attachments (attachment_id, attachment_name, attachment_type, attachment_size, attachment_link, uploaded_by_user_role_designation_department_id, status, updated_by, created_at, updated_at) VALUES ({{attachment_id}}, {{attachment_name}}, {{attachment_type}}, {{attachment_size}}, {{attachment_link}}, {{uploaded_by_user_role_designation_department_id}}, {{status}}, {{updated_by}}, {{created_at}}, {{updated_at}})",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
+                "response": {
+                  "successMessage": "attachments added successfully!",
+                  "errorMessage": "There was an error adding attachments."
                 }
-                },
-                "requestMetaData": {
-                "requestMethod": "POST",
-                "permission": null,
-                "pagination": {}
-                }
-            },
-            "response": {
-                "successMessage": "attachments added successfully!",
-                "errorMessage": "There was an error adding attachments."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };

@@ -1,219 +1,192 @@
 /* API Objects for table: roles */
 
-    global.ListRolesAll_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": true
-                },
-                "communication": {
-                    //"encryption": false,
+      global.ListRolesAll_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": true
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
+                "data": {
+                  "parameters": {
+                    "fields": []
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "SELECT",
+                      "queryPayload": "SELECT role_id as Roles_roleId, role_name as Roles_roleName, senior_role_id as Roles_seniorRoleId, status as Roles_status, updated_by as Roles_updatedBy, created_at as Roles_createdAt, updated_at as Roles_updatedAt, COUNT(*) OVER () AS table_count FROM Roles",
+                      "database": "projectDB"
+                    },
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
+                    }
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "GET",
+                    "permission": null,
+                    "pagination": { "pageSize": 10 }
+                  }
+                },
+                "response": {
+                  "successMessage": "Roles retrieved successfully!",
+                  "errorMessage": "Failed to retrieve Roles."
                 }
-            },
-            "data": {
-                "parameters": {
-                "fields": []
-                },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "SELECT",
-                    "queryPayload": "SELECT *, COUNT(*) OVER () AS table_count FROM Roles",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
-                }
-                },
-                "requestMetaData": {
-                "requestMethod": "GET",
-                "permission": null,
-                "pagination": { "pageSize": 10 }
-                }
-            },
-            "response": {
-                "successMessage": "Roles retrieved successfully!",
-                "errorMessage": "Failed to retrieve Roles."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };
 
 
-    global.ListRoles_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": true
-                },
-                "communication": {
-                    //"encryption": false,
+      global.ListRoles_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": true
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
-                }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    {
-                    "name": "id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.query"
+                "data": {
+                  "parameters": {
+                    "fields": [
+                      {
+                        "name": "id",
+                        "validations": [],
+                        "required": true,
+                        "source": "req.query"
+                      }
+                    ]
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "SELECT",
+                      "queryPayload": "SELECT role_id as Roles_roleId, role_name as Roles_roleName, senior_role_id as Roles_seniorRoleId, status as Roles_status, updated_by as Roles_updatedBy, created_at as Roles_createdAt, updated_at as Roles_updatedAt FROM Roles WHERE role_id = {{id}}",
+                      "database": "projectDB"
+                    },
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
                     }
-                ]
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "GET",
+                    "permission": null,
+                    "pagination": { "pageSize": 10 }
+                  }
                 },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "SELECT",
-                    "queryPayload": "SELECT * FROM Roles WHERE role_id = {{id}}",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
+                "response": {
+                  "successMessage": "Roles entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve Roles entry."
                 }
-                },
-                "requestMetaData": {
-                "requestMethod": "GET",
-                "permission": null,
-                "pagination": { "pageSize": 10 }
-                }
-            },
-            "response": {
-                "successMessage": "Roles entry retrieved successfully!",
-                "errorMessage": "Failed to retrieve Roles entry."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };
 
 
-    global.UpdateRoles_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": false,
-                "parameters": true,
-                "pagination": false
-                },
-                "communication": {
-                    //"encryption": false,
+      global.UpdateRoles_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": false
+                  },
+                  "communication": {
+                    //"encryption" : false
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption" : true,
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": false
-                }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    
-                    {
-                    "name": "role_id",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
+                "data": {
+                  "parameters": {
+                    "fields": [
+                        
+                            {
+                            "name": "Roles_roleName",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "Roles_seniorRoleId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "Roles_updatedBy",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            }
+                    ]
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "UPDATE",
+                      "queryPayload": "UPDATE Roles SET role_name = {{Roles_roleName}}, senior_role_id = {{Roles_seniorRoleId}}, updated_by = {{Roles_updatedBy}} WHERE role_id = {{role_id}}",
+                      "database": "projectDB"
                     },
-                    {
-                    "name": "role_name",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "senior_role_id",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "status",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_by",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "created_at",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_at",
-                    "validations": [],
-                    "required": false,
-                    "source": "req.body"
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
                     }
-                ]
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "PUT",
+                    "permission": null,
+                    "pagination": {}
+                  }
                 },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Roles SET role_id = {{role_id}}, role_name = {{role_name}}, senior_role_id = {{senior_role_id}}, status = {{status}}, updated_by = {{updated_by}}, created_at = {{created_at}}, updated_at = {{updated_at}} WHERE role_id = {{role_id}}",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
+                "response": {
+                  "successMessage": "Roles updated successfully!",
+                  "errorMessage": "There was an error updating Roles."
                 }
-                },
-                "requestMetaData": {
-                "requestMethod": "PUT",
-                "permission": null,
-                "pagination": {}
-                }
-            },
-            "response": {
-                "successMessage": "Roles updated successfully!",
-                "errorMessage": "There was an error updating Roles."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };
 
 
     global.DeleteRoles_object = {
@@ -231,7 +204,6 @@
                     //"encryption": false,
                     "encryption": {
                         "platformEncryption": true,
-                        "accessTokenEncryption": false,
                     }
                 },
                 "verification": {
@@ -243,7 +215,7 @@
                 "parameters": {
                 "fields": [
                     {
-                    "name": "role_id",
+                    "name": "id",
                     "validations": [],
                     "required": true,
                     "source": "req.body"
@@ -253,7 +225,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Roles SET status = 'inactive' WHERE role_id = {{role_id}}",
+                    "queryPayload": "UPDATE Roles SET status = 'inactive' WHERE role_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -278,100 +250,76 @@
     };
 
 
-    global.Addroles_object = {
-    "versions": {
-        "versionData": [{
-        "=1.0": {
-            "steps": [{
-            "config": {
-                "features": {
-                "multistep": true,
-                "parameters": true,
-                "pagination": false
-                },
-                "communication": {
-                    //"encryption": false,
+      global.Addroles_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": true,
+                    "parameters": true,
+                    "pagination": false
+                  },
+                  "communication": {
                     "encryption": {
-                        "platformEncryption": true,
-                        "accessTokenEncryption": false,
+                      "platformEncryption": true,
+                      "accessTokenEncryption": false
                     }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": true
+                  }
                 },
-                "verification": {
-                "otp": false,
-                "accessToken": true
-                }
-            },
-            "data": {
-                "parameters": {
-                "fields": [
-                    
-                    {
-                    "name": "role_id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
+                "data": {
+                  "parameters": {
+                    "fields": [
+                        
+                            {
+                            "name": "roles_roleName",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "roles_seniorRoleId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "roles_updatedBy",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            }
+                    ]
+
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "INSERT",
+                      "queryPayload": "INSERT INTO roles (role_name, senior_role_id, updated_by) VALUES ({{role_id}}, {{role_name}}, {{senior_role_id}}, {{status}}, {{updated_by}}, {{created_at}}, {{updated_at}})",
+                      "database": "projectDB"
                     },
-                    {
-                    "name": "role_name",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "senior_role_id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "status",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_by",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "created_at",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
-                    {
-                    "name": "updated_at",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
                     }
-                ]
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "POST",
+                    "permission": null,
+                    "pagination": {}
+                  }
                 },
-                "apiInfo": {
-                "query": {
-                    "queryNature": "INSERT",
-                    "queryPayload": "INSERT INTO roles (role_id, role_name, senior_role_id, status, updated_by, created_at, updated_at) VALUES ({{role_id}}, {{role_name}}, {{senior_role_id}}, {{status}}, {{updated_by}}, {{created_at}}, {{updated_at}})",
-                    "database": "projectDB"
-                },
-                "utilityFunctions": {
-                    "callbackFunction": null,
-                    "payloadFunction": []
+                "response": {
+                  "successMessage": "roles added successfully!",
+                  "errorMessage": "There was an error adding roles."
                 }
-                },
-                "requestMetaData": {
-                "requestMethod": "POST",
-                "permission": null,
-                "pagination": {}
-                }
-            },
-            "response": {
-                "successMessage": "roles added successfully!",
-                "errorMessage": "There was an error adding roles."
+              }]
             }
-            }]
+          }]
         }
-        }]
-    }
-    };
+      };
