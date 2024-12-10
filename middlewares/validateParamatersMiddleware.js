@@ -1,12 +1,14 @@
 require('../Constants/validateParameters.js')
-const LogError = require('../databases/Errorlog.js')
+const LogError = require('../databases/Errorlog.js');
+const logMessage = require('../LogFunctions/consoleLog.js');
 const validateParametersMiddleware = async (req, res, decryptedBody, apiObject) => {
     try {
         const { config, data } = apiObject;
         const attributeValidations = {};
         let parameters;
         parameters = data.parameters.fields;
-
+        logMessage("logging decrypted body");
+        logMessage(decryptedBody);
         // Validate each parameter based on the structure
         for (const paramConfig of parameters) {
             const paramName = paramConfig.name;
