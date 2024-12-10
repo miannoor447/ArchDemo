@@ -25,7 +25,7 @@ global.ListUsers_object = {
             "parameters": {
               "fields": [
                 {
-                  "name": "userId",
+                  "name": "id",
                   "validations": [],
                   "required": true,
                   "source": "req.query"
@@ -35,7 +35,7 @@ global.ListUsers_object = {
             "apiInfo": {
               "query": {
                 "queryNature": "SELECT",
-                "queryPayload": "select * from users where {{userId}} IS NULL OR user_id = {{userId}}" ,
+                "queryPayload": "select * from users where user_id = {{id}}" ,
                 "database": "projectDB"
               },
               "utilityFunctions": {
