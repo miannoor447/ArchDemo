@@ -52,7 +52,7 @@ const middlewareHandler = async (req, res, next) => {
         if (config.communication.encryption) {
             ({ decryptedPayload, encryptionKey, PlatformName, PlatformVersion } = await handleEncryption(req, res, { config, data, response }));
         }
-        logMessage([`Decrypted Payload =  ${decryptedPayload}`, `Req Body = ${req.body}`]);
+        logMessage([decryptedPayload, req.body]);
         if (data.requestMetaData.permission) {
             try {
                 permissionChecker(req, res, data, decryptedPayload, requestedPath);

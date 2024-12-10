@@ -58,13 +58,7 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
             const connection = await projectDB();
             results = await executeQuery(res, completeQuery, "", connection);
         }
-        if (Array.isArray(results) && results.length > 0) {
-            // Create a deep copy of results excluding the circular reference
-            const userInfo = JSON.parse(JSON.stringify(results));
-            results[0].userInfo = userInfo;
-        } else {
-            console.error("No results found or results is not an array.");
-        }
+
         return results;
 
     } catch (error) {
