@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT attachment_id as Attachments_attachmentId, attachment_name as Attachments_attachmentName, attachment_type as Attachments_attachmentType, attachment_size as Attachments_attachmentSize, attachment_link as Attachments_attachmentLink, uploaded_by_user_role_designation_department_id as Attachments_uploadedByUserRoleDesignationDepartmentId, status as Attachments_status, updated_by as Attachments_updatedBy, created_at as Attachments_createdAt, updated_at as Attachments_updatedAt, COUNT(*) OVER () AS table_count FROM Attachments",
+                      "queryPayload": "SELECT attachment_id as attachments_attachmentId, attachment_name as attachments_attachmentName, attachment_type as attachments_attachmentType, attachment_size as attachments_attachmentSize, attachment_link as attachments_attachmentLink, uploaded_by_user_role_designation_department_id as attachments_uploadedByUserRoleDesignationDepartmentId, status as attachments_status, updated_by as attachments_updatedBy, created_at as attachments_createdAt, updated_at as attachments_updatedAt, COUNT(*) OVER () AS table_count FROM attachments",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Attachments retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Attachments."
+                  "successMessage": "attachments retrieved successfully!",
+                  "errorMessage": "Failed to retrieve attachments."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT attachment_id as Attachments_attachmentId, attachment_name as Attachments_attachmentName, attachment_type as Attachments_attachmentType, attachment_size as Attachments_attachmentSize, attachment_link as Attachments_attachmentLink, uploaded_by_user_role_designation_department_id as Attachments_uploadedByUserRoleDesignationDepartmentId, status as Attachments_status, updated_by as Attachments_updatedBy, created_at as Attachments_createdAt, updated_at as Attachments_updatedAt FROM Attachments WHERE attachment_id = {{id}}",
+                      "queryPayload": "SELECT attachment_id as attachments_attachmentId, attachment_name as attachments_attachmentName, attachment_type as attachments_attachmentType, attachment_size as attachments_attachmentSize, attachment_link as attachments_attachmentLink, uploaded_by_user_role_designation_department_id as attachments_uploadedByUserRoleDesignationDepartmentId, status as attachments_status, updated_by as attachments_updatedBy, created_at as attachments_createdAt, updated_at as attachments_updatedAt FROM attachments WHERE attachment_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Attachments entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Attachments entry."
+                  "successMessage": "attachments entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve attachments entry."
                 }
               }]
             }
@@ -142,37 +142,43 @@
                     "fields": [
                         
                             {
-                            "name": "Attachments_attachmentName",
+                            "name": "attachments_attachmentId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Attachments_attachmentType",
+                            "name": "attachments_attachmentName",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Attachments_attachmentSize",
+                            "name": "attachments_attachmentType",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Attachments_attachmentLink",
+                            "name": "attachments_attachmentSize",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Attachments_uploadedByUserRoleDesignationDepartmentId",
+                            "name": "attachments_attachmentLink",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Attachments_updatedBy",
+                            "name": "attachments_uploadedByUserRoleDesignationDepartmentId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "attachments_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -182,7 +188,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Attachments SET attachment_name = {{Attachments_attachmentName}}, attachment_type = {{Attachments_attachmentType}}, attachment_size = {{Attachments_attachmentSize}}, attachment_link = {{Attachments_attachmentLink}}, uploaded_by_user_role_designation_department_id = {{Attachments_uploadedByUserRoleDesignationDepartmentId}}, updated_by = {{Attachments_updatedBy}} WHERE attachment_id = {{attachment_id}}",
+                      "queryPayload": "UPDATE attachments SET attachment_id = {{attachments_attachmentId}}, attachment_name = {{attachments_attachmentName}}, attachment_type = {{attachments_attachmentType}}, attachment_size = {{attachments_attachmentSize}}, attachment_link = {{attachments_attachmentLink}}, uploaded_by_user_role_designation_department_id = {{attachments_uploadedByUserRoleDesignationDepartmentId}}, updated_by = {{attachments_updatedBy}} WHERE attachment_id = {{attachment_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -197,8 +203,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Attachments updated successfully!",
-                  "errorMessage": "There was an error updating Attachments."
+                  "successMessage": "attachments updated successfully!",
+                  "errorMessage": "There was an error updating attachments."
                 }
               }]
             }
@@ -243,7 +249,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Attachments SET status = 'inactive' WHERE attachment_id = {{id}}",
+                    "queryPayload": "UPDATE attachments SET status = 'inactive' WHERE attachment_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -258,8 +264,8 @@
                 }
             },
             "response": {
-                "successMessage": "Attachments deleted successfully!",
-                "errorMessage": "There was an error deleting Attachments."
+                "successMessage": "attachments deleted successfully!",
+                "errorMessage": "There was an error deleting attachments."
             }
             }]
         }
@@ -268,7 +274,7 @@
     };
 
 
-      global.Addattachments_object = {
+      global.AddAttachments_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT task_flow_step_id as Task_flow_steps_taskFlowStepId, task_flow_id as Task_flow_steps_taskFlowId, step_title as Task_flow_steps_stepTitle, step_description as Task_flow_steps_stepDescription, step_order as Task_flow_steps_stepOrder, is_cross_department as Task_flow_steps_isCrossDepartment, step_assigned_to_role_department_id as Task_flow_steps_stepAssignedToRoleDepartmentId, created_by_user_role_department_id as Task_flow_steps_createdByUserRoleDepartmentId, updated_at as Task_flow_steps_updatedAt, created_at as Task_flow_steps_createdAt, updated_by as Task_flow_steps_updatedBy, status as Task_flow_steps_status, COUNT(*) OVER () AS table_count FROM Task_flow_steps",
+                      "queryPayload": "SELECT task_flow_step_id as task_flow_steps_taskFlowStepId, task_flow_id as task_flow_steps_taskFlowId, step_title as task_flow_steps_stepTitle, step_description as task_flow_steps_stepDescription, step_order as task_flow_steps_stepOrder, is_cross_department as task_flow_steps_isCrossDepartment, step_assigned_to_role_department_id as task_flow_steps_stepAssignedToRoleDepartmentId, created_by_user_role_department_id as task_flow_steps_createdByUserRoleDepartmentId, updated_at as task_flow_steps_updatedAt, created_at as task_flow_steps_createdAt, updated_by as task_flow_steps_updatedBy, status as task_flow_steps_status, COUNT(*) OVER () AS table_count FROM task_flow_steps",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Task_flow_steps retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Task_flow_steps."
+                  "successMessage": "task_flow_steps retrieved successfully!",
+                  "errorMessage": "Failed to retrieve task_flow_steps."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT task_flow_step_id as Task_flow_steps_taskFlowStepId, task_flow_id as Task_flow_steps_taskFlowId, step_title as Task_flow_steps_stepTitle, step_description as Task_flow_steps_stepDescription, step_order as Task_flow_steps_stepOrder, is_cross_department as Task_flow_steps_isCrossDepartment, step_assigned_to_role_department_id as Task_flow_steps_stepAssignedToRoleDepartmentId, created_by_user_role_department_id as Task_flow_steps_createdByUserRoleDepartmentId, updated_at as Task_flow_steps_updatedAt, created_at as Task_flow_steps_createdAt, updated_by as Task_flow_steps_updatedBy, status as Task_flow_steps_status FROM Task_flow_steps WHERE task_flow_step_id = {{id}}",
+                      "queryPayload": "SELECT task_flow_step_id as task_flow_steps_taskFlowStepId, task_flow_id as task_flow_steps_taskFlowId, step_title as task_flow_steps_stepTitle, step_description as task_flow_steps_stepDescription, step_order as task_flow_steps_stepOrder, is_cross_department as task_flow_steps_isCrossDepartment, step_assigned_to_role_department_id as task_flow_steps_stepAssignedToRoleDepartmentId, created_by_user_role_department_id as task_flow_steps_createdByUserRoleDepartmentId, updated_at as task_flow_steps_updatedAt, created_at as task_flow_steps_createdAt, updated_by as task_flow_steps_updatedBy, status as task_flow_steps_status FROM task_flow_steps WHERE task_flow_step_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Task_flow_steps entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Task_flow_steps entry."
+                  "successMessage": "task_flow_steps entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve task_flow_steps entry."
                 }
               }]
             }
@@ -142,49 +142,55 @@
                     "fields": [
                         
                             {
-                            "name": "Task_flow_steps_taskFlowId",
+                            "name": "task_flow_steps_taskFlowStepId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_flow_steps_stepTitle",
+                            "name": "task_flow_steps_taskFlowId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_flow_steps_stepDescription",
+                            "name": "task_flow_steps_stepTitle",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_flow_steps_stepOrder",
+                            "name": "task_flow_steps_stepDescription",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_flow_steps_isCrossDepartment",
+                            "name": "task_flow_steps_stepOrder",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_flow_steps_stepAssignedToRoleDepartmentId",
+                            "name": "task_flow_steps_isCrossDepartment",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_flow_steps_createdByUserRoleDepartmentId",
+                            "name": "task_flow_steps_stepAssignedToRoleDepartmentId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_flow_steps_updatedBy",
+                            "name": "task_flow_steps_createdByUserRoleDepartmentId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "task_flow_steps_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -194,7 +200,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Task_flow_steps SET task_flow_id = {{Task_flow_steps_taskFlowId}}, step_title = {{Task_flow_steps_stepTitle}}, step_description = {{Task_flow_steps_stepDescription}}, step_order = {{Task_flow_steps_stepOrder}}, is_cross_department = {{Task_flow_steps_isCrossDepartment}}, step_assigned_to_role_department_id = {{Task_flow_steps_stepAssignedToRoleDepartmentId}}, created_by_user_role_department_id = {{Task_flow_steps_createdByUserRoleDepartmentId}}, updated_by = {{Task_flow_steps_updatedBy}} WHERE task_flow_step_id = {{task_flow_step_id}}",
+                      "queryPayload": "UPDATE task_flow_steps SET task_flow_step_id = {{task_flow_steps_taskFlowStepId}}, task_flow_id = {{task_flow_steps_taskFlowId}}, step_title = {{task_flow_steps_stepTitle}}, step_description = {{task_flow_steps_stepDescription}}, step_order = {{task_flow_steps_stepOrder}}, is_cross_department = {{task_flow_steps_isCrossDepartment}}, step_assigned_to_role_department_id = {{task_flow_steps_stepAssignedToRoleDepartmentId}}, created_by_user_role_department_id = {{task_flow_steps_createdByUserRoleDepartmentId}}, updated_by = {{task_flow_steps_updatedBy}} WHERE task_flow_step_id = {{task_flow_step_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -209,8 +215,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Task_flow_steps updated successfully!",
-                  "errorMessage": "There was an error updating Task_flow_steps."
+                  "successMessage": "task_flow_steps updated successfully!",
+                  "errorMessage": "There was an error updating task_flow_steps."
                 }
               }]
             }
@@ -255,7 +261,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Task_flow_steps SET status = 'inactive' WHERE task_flow_step_id = {{id}}",
+                    "queryPayload": "UPDATE task_flow_steps SET status = 'inactive' WHERE task_flow_step_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -270,8 +276,8 @@
                 }
             },
             "response": {
-                "successMessage": "Task_flow_steps deleted successfully!",
-                "errorMessage": "There was an error deleting Task_flow_steps."
+                "successMessage": "task_flow_steps deleted successfully!",
+                "errorMessage": "There was an error deleting task_flow_steps."
             }
             }]
         }
@@ -280,7 +286,7 @@
     };
 
 
-      global.Addtask_flow_steps_object = {
+      global.AddTask_flow_steps_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

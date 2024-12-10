@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT task_flow_id as Task_flows_taskFlowId, task_flow_title as Task_flows_taskFlowTitle, task_flow_description as Task_flows_taskFlowDescription, is_default as Task_flows_isDefault, status as Task_flows_status, created_by_user_role_designation_department_id as Task_flows_createdByUserRoleDesignationDepartmentId, updated_at as Task_flows_updatedAt, created_at as Task_flows_createdAt, updated_by as Task_flows_updatedBy, COUNT(*) OVER () AS table_count FROM Task_flows",
+                      "queryPayload": "SELECT task_flow_id as task_flows_taskFlowId, task_flow_title as task_flows_taskFlowTitle, task_flow_description as task_flows_taskFlowDescription, is_default as task_flows_isDefault, status as task_flows_status, created_by_user_role_designation_department_id as task_flows_createdByUserRoleDesignationDepartmentId, updated_at as task_flows_updatedAt, created_at as task_flows_createdAt, updated_by as task_flows_updatedBy, COUNT(*) OVER () AS table_count FROM task_flows",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Task_flows retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Task_flows."
+                  "successMessage": "task_flows retrieved successfully!",
+                  "errorMessage": "Failed to retrieve task_flows."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT task_flow_id as Task_flows_taskFlowId, task_flow_title as Task_flows_taskFlowTitle, task_flow_description as Task_flows_taskFlowDescription, is_default as Task_flows_isDefault, status as Task_flows_status, created_by_user_role_designation_department_id as Task_flows_createdByUserRoleDesignationDepartmentId, updated_at as Task_flows_updatedAt, created_at as Task_flows_createdAt, updated_by as Task_flows_updatedBy FROM Task_flows WHERE task_flow_id = {{id}}",
+                      "queryPayload": "SELECT task_flow_id as task_flows_taskFlowId, task_flow_title as task_flows_taskFlowTitle, task_flow_description as task_flows_taskFlowDescription, is_default as task_flows_isDefault, status as task_flows_status, created_by_user_role_designation_department_id as task_flows_createdByUserRoleDesignationDepartmentId, updated_at as task_flows_updatedAt, created_at as task_flows_createdAt, updated_by as task_flows_updatedBy FROM task_flows WHERE task_flow_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Task_flows entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Task_flows entry."
+                  "successMessage": "task_flows entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve task_flows entry."
                 }
               }]
             }
@@ -142,31 +142,37 @@
                     "fields": [
                         
                             {
-                            "name": "Task_flows_taskFlowTitle",
+                            "name": "task_flows_taskFlowId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_flows_taskFlowDescription",
+                            "name": "task_flows_taskFlowTitle",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_flows_isDefault",
+                            "name": "task_flows_taskFlowDescription",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_flows_createdByUserRoleDesignationDepartmentId",
+                            "name": "task_flows_isDefault",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_flows_updatedBy",
+                            "name": "task_flows_createdByUserRoleDesignationDepartmentId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "task_flows_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -176,7 +182,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Task_flows SET task_flow_title = {{Task_flows_taskFlowTitle}}, task_flow_description = {{Task_flows_taskFlowDescription}}, is_default = {{Task_flows_isDefault}}, created_by_user_role_designation_department_id = {{Task_flows_createdByUserRoleDesignationDepartmentId}}, updated_by = {{Task_flows_updatedBy}} WHERE task_flow_id = {{task_flow_id}}",
+                      "queryPayload": "UPDATE task_flows SET task_flow_id = {{task_flows_taskFlowId}}, task_flow_title = {{task_flows_taskFlowTitle}}, task_flow_description = {{task_flows_taskFlowDescription}}, is_default = {{task_flows_isDefault}}, created_by_user_role_designation_department_id = {{task_flows_createdByUserRoleDesignationDepartmentId}}, updated_by = {{task_flows_updatedBy}} WHERE task_flow_id = {{task_flow_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -191,8 +197,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Task_flows updated successfully!",
-                  "errorMessage": "There was an error updating Task_flows."
+                  "successMessage": "task_flows updated successfully!",
+                  "errorMessage": "There was an error updating task_flows."
                 }
               }]
             }
@@ -237,7 +243,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Task_flows SET status = 'inactive' WHERE task_flow_id = {{id}}",
+                    "queryPayload": "UPDATE task_flows SET status = 'inactive' WHERE task_flow_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -252,8 +258,8 @@
                 }
             },
             "response": {
-                "successMessage": "Task_flows deleted successfully!",
-                "errorMessage": "There was an error deleting Task_flows."
+                "successMessage": "task_flows deleted successfully!",
+                "errorMessage": "There was an error deleting task_flows."
             }
             }]
         }
@@ -262,7 +268,7 @@
     };
 
 
-      global.Addtask_flows_object = {
+      global.AddTask_flows_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

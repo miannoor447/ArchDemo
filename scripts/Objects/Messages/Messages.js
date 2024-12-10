@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT message_id as Messages_messageId, sent_by_user_role_department_id as Messages_sentByUserRoleDepartmentId, recepient_user_role_department_id as Messages_recepientUserRoleDepartmentId, recepient_chatting_group_id as Messages_recepientChattingGroupId, message_title as Messages_messageTitle, message_body as Messages_messageBody, attachement_id as Messages_attachementId, status as Messages_status, updated_by as Messages_updatedBy, updated_at as Messages_updatedAt, created_by as Messages_createdBy, COUNT(*) OVER () AS table_count FROM Messages",
+                      "queryPayload": "SELECT message_id as messages_messageId, sent_by_user_role_department_id as messages_sentByUserRoleDepartmentId, recepient_user_role_department_id as messages_recepientUserRoleDepartmentId, recepient_chatting_group_id as messages_recepientChattingGroupId, message_title as messages_messageTitle, message_body as messages_messageBody, attachement_id as messages_attachementId, status as messages_status, updated_by as messages_updatedBy, updated_at as messages_updatedAt, created_by as messages_createdBy, COUNT(*) OVER () AS table_count FROM messages",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Messages retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Messages."
+                  "successMessage": "messages retrieved successfully!",
+                  "errorMessage": "Failed to retrieve messages."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT message_id as Messages_messageId, sent_by_user_role_department_id as Messages_sentByUserRoleDepartmentId, recepient_user_role_department_id as Messages_recepientUserRoleDepartmentId, recepient_chatting_group_id as Messages_recepientChattingGroupId, message_title as Messages_messageTitle, message_body as Messages_messageBody, attachement_id as Messages_attachementId, status as Messages_status, updated_by as Messages_updatedBy, updated_at as Messages_updatedAt, created_by as Messages_createdBy FROM Messages WHERE message_id = {{id}}",
+                      "queryPayload": "SELECT message_id as messages_messageId, sent_by_user_role_department_id as messages_sentByUserRoleDepartmentId, recepient_user_role_department_id as messages_recepientUserRoleDepartmentId, recepient_chatting_group_id as messages_recepientChattingGroupId, message_title as messages_messageTitle, message_body as messages_messageBody, attachement_id as messages_attachementId, status as messages_status, updated_by as messages_updatedBy, updated_at as messages_updatedAt, created_by as messages_createdBy FROM messages WHERE message_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Messages entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Messages entry."
+                  "successMessage": "messages entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve messages entry."
                 }
               }]
             }
@@ -142,49 +142,55 @@
                     "fields": [
                         
                             {
-                            "name": "Messages_sentByUserRoleDepartmentId",
+                            "name": "messages_messageId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Messages_recepientUserRoleDepartmentId",
+                            "name": "messages_sentByUserRoleDepartmentId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Messages_recepientChattingGroupId",
+                            "name": "messages_recepientUserRoleDepartmentId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Messages_messageTitle",
+                            "name": "messages_recepientChattingGroupId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Messages_messageBody",
+                            "name": "messages_messageTitle",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Messages_attachementId",
+                            "name": "messages_messageBody",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Messages_updatedBy",
+                            "name": "messages_attachementId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Messages_createdBy",
+                            "name": "messages_updatedBy",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "messages_createdBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -194,7 +200,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Messages SET sent_by_user_role_department_id = {{Messages_sentByUserRoleDepartmentId}}, recepient_user_role_department_id = {{Messages_recepientUserRoleDepartmentId}}, recepient_chatting_group_id = {{Messages_recepientChattingGroupId}}, message_title = {{Messages_messageTitle}}, message_body = {{Messages_messageBody}}, attachement_id = {{Messages_attachementId}}, updated_by = {{Messages_updatedBy}}, created_by = {{Messages_createdBy}} WHERE message_id = {{message_id}}",
+                      "queryPayload": "UPDATE messages SET message_id = {{messages_messageId}}, sent_by_user_role_department_id = {{messages_sentByUserRoleDepartmentId}}, recepient_user_role_department_id = {{messages_recepientUserRoleDepartmentId}}, recepient_chatting_group_id = {{messages_recepientChattingGroupId}}, message_title = {{messages_messageTitle}}, message_body = {{messages_messageBody}}, attachement_id = {{messages_attachementId}}, updated_by = {{messages_updatedBy}}, created_by = {{messages_createdBy}} WHERE message_id = {{message_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -209,8 +215,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Messages updated successfully!",
-                  "errorMessage": "There was an error updating Messages."
+                  "successMessage": "messages updated successfully!",
+                  "errorMessage": "There was an error updating messages."
                 }
               }]
             }
@@ -255,7 +261,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Messages SET status = 'inactive' WHERE message_id = {{id}}",
+                    "queryPayload": "UPDATE messages SET status = 'inactive' WHERE message_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -270,8 +276,8 @@
                 }
             },
             "response": {
-                "successMessage": "Messages deleted successfully!",
-                "errorMessage": "There was an error deleting Messages."
+                "successMessage": "messages deleted successfully!",
+                "errorMessage": "There was an error deleting messages."
             }
             }]
         }
@@ -280,7 +286,7 @@
     };
 
 
-      global.Addmessages_object = {
+      global.AddMessages_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

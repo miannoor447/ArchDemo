@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT task_id as Tasks_taskId, task_title as Tasks_taskTitle, task_description as Tasks_taskDescription, parent_task_id as Tasks_parentTaskId, attachement_id as Tasks_attachementId, task_flow_id as Tasks_taskFlowId, task_assigned_to_user_role_designation_department_id as Tasks_taskAssignedToUserRoleDesignationDepartmentId, status as Tasks_status, created_by_user_role_designation_department_id as Tasks_createdByUserRoleDesignationDepartmentId, updated_at as Tasks_updatedAt, created_at as Tasks_createdAt, updated_by as Tasks_updatedBy, COUNT(*) OVER () AS table_count FROM Tasks",
+                      "queryPayload": "SELECT task_id as tasks_taskId, task_title as tasks_taskTitle, task_description as tasks_taskDescription, parent_task_id as tasks_parentTaskId, attachement_id as tasks_attachementId, task_flow_id as tasks_taskFlowId, task_assigned_to_user_role_designation_department_id as tasks_taskAssignedToUserRoleDesignationDepartmentId, status as tasks_status, created_by_user_role_designation_department_id as tasks_createdByUserRoleDesignationDepartmentId, updated_at as tasks_updatedAt, created_at as tasks_createdAt, updated_by as tasks_updatedBy, COUNT(*) OVER () AS table_count FROM tasks",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Tasks retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Tasks."
+                  "successMessage": "tasks retrieved successfully!",
+                  "errorMessage": "Failed to retrieve tasks."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT task_id as Tasks_taskId, task_title as Tasks_taskTitle, task_description as Tasks_taskDescription, parent_task_id as Tasks_parentTaskId, attachement_id as Tasks_attachementId, task_flow_id as Tasks_taskFlowId, task_assigned_to_user_role_designation_department_id as Tasks_taskAssignedToUserRoleDesignationDepartmentId, status as Tasks_status, created_by_user_role_designation_department_id as Tasks_createdByUserRoleDesignationDepartmentId, updated_at as Tasks_updatedAt, created_at as Tasks_createdAt, updated_by as Tasks_updatedBy FROM Tasks WHERE task_id = {{id}}",
+                      "queryPayload": "SELECT task_id as tasks_taskId, task_title as tasks_taskTitle, task_description as tasks_taskDescription, parent_task_id as tasks_parentTaskId, attachement_id as tasks_attachementId, task_flow_id as tasks_taskFlowId, task_assigned_to_user_role_designation_department_id as tasks_taskAssignedToUserRoleDesignationDepartmentId, status as tasks_status, created_by_user_role_designation_department_id as tasks_createdByUserRoleDesignationDepartmentId, updated_at as tasks_updatedAt, created_at as tasks_createdAt, updated_by as tasks_updatedBy FROM tasks WHERE task_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Tasks entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Tasks entry."
+                  "successMessage": "tasks entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve tasks entry."
                 }
               }]
             }
@@ -142,49 +142,55 @@
                     "fields": [
                         
                             {
-                            "name": "Tasks_taskTitle",
+                            "name": "tasks_taskId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Tasks_taskDescription",
+                            "name": "tasks_taskTitle",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Tasks_parentTaskId",
+                            "name": "tasks_taskDescription",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Tasks_attachementId",
+                            "name": "tasks_parentTaskId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Tasks_taskFlowId",
+                            "name": "tasks_attachementId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Tasks_taskAssignedToUserRoleDesignationDepartmentId",
+                            "name": "tasks_taskFlowId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Tasks_createdByUserRoleDesignationDepartmentId",
+                            "name": "tasks_taskAssignedToUserRoleDesignationDepartmentId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Tasks_updatedBy",
+                            "name": "tasks_createdByUserRoleDesignationDepartmentId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "tasks_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -194,7 +200,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Tasks SET task_title = {{Tasks_taskTitle}}, task_description = {{Tasks_taskDescription}}, parent_task_id = {{Tasks_parentTaskId}}, attachement_id = {{Tasks_attachementId}}, task_flow_id = {{Tasks_taskFlowId}}, task_assigned_to_user_role_designation_department_id = {{Tasks_taskAssignedToUserRoleDesignationDepartmentId}}, created_by_user_role_designation_department_id = {{Tasks_createdByUserRoleDesignationDepartmentId}}, updated_by = {{Tasks_updatedBy}} WHERE task_id = {{task_id}}",
+                      "queryPayload": "UPDATE tasks SET task_id = {{tasks_taskId}}, task_title = {{tasks_taskTitle}}, task_description = {{tasks_taskDescription}}, parent_task_id = {{tasks_parentTaskId}}, attachement_id = {{tasks_attachementId}}, task_flow_id = {{tasks_taskFlowId}}, task_assigned_to_user_role_designation_department_id = {{tasks_taskAssignedToUserRoleDesignationDepartmentId}}, created_by_user_role_designation_department_id = {{tasks_createdByUserRoleDesignationDepartmentId}}, updated_by = {{tasks_updatedBy}} WHERE task_id = {{task_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -209,8 +215,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Tasks updated successfully!",
-                  "errorMessage": "There was an error updating Tasks."
+                  "successMessage": "tasks updated successfully!",
+                  "errorMessage": "There was an error updating tasks."
                 }
               }]
             }
@@ -255,7 +261,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Tasks SET status = 'inactive' WHERE task_id = {{id}}",
+                    "queryPayload": "UPDATE tasks SET status = 'inactive' WHERE task_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -270,8 +276,8 @@
                 }
             },
             "response": {
-                "successMessage": "Tasks deleted successfully!",
-                "errorMessage": "There was an error deleting Tasks."
+                "successMessage": "tasks deleted successfully!",
+                "errorMessage": "There was an error deleting tasks."
             }
             }]
         }
@@ -280,7 +286,7 @@
     };
 
 
-      global.Addtasks_object = {
+      global.AddTasks_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

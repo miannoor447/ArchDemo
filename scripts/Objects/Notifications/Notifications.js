@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT notification_id as Notifications_notificationId, notification_title as Notifications_notificationTitle, notification_message as Notifications_notificationMessage, sent_to_user_role_designation_department_id as Notifications_sentToUserRoleDesignationDepartmentId, status as Notifications_status, updated_by as Notifications_updatedBy, updated_at as Notifications_updatedAt, created_at as Notifications_createdAt, COUNT(*) OVER () AS table_count FROM Notifications",
+                      "queryPayload": "SELECT notification_id as notifications_notificationId, notification_title as notifications_notificationTitle, notification_message as notifications_notificationMessage, sent_to_user_role_designation_department_id as notifications_sentToUserRoleDesignationDepartmentId, status as notifications_status, updated_by as notifications_updatedBy, updated_at as notifications_updatedAt, created_at as notifications_createdAt, COUNT(*) OVER () AS table_count FROM notifications",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Notifications retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Notifications."
+                  "successMessage": "notifications retrieved successfully!",
+                  "errorMessage": "Failed to retrieve notifications."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT notification_id as Notifications_notificationId, notification_title as Notifications_notificationTitle, notification_message as Notifications_notificationMessage, sent_to_user_role_designation_department_id as Notifications_sentToUserRoleDesignationDepartmentId, status as Notifications_status, updated_by as Notifications_updatedBy, updated_at as Notifications_updatedAt, created_at as Notifications_createdAt FROM Notifications WHERE notification_id = {{id}}",
+                      "queryPayload": "SELECT notification_id as notifications_notificationId, notification_title as notifications_notificationTitle, notification_message as notifications_notificationMessage, sent_to_user_role_designation_department_id as notifications_sentToUserRoleDesignationDepartmentId, status as notifications_status, updated_by as notifications_updatedBy, updated_at as notifications_updatedAt, created_at as notifications_createdAt FROM notifications WHERE notification_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Notifications entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Notifications entry."
+                  "successMessage": "notifications entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve notifications entry."
                 }
               }]
             }
@@ -142,25 +142,31 @@
                     "fields": [
                         
                             {
-                            "name": "Notifications_notificationTitle",
+                            "name": "notifications_notificationId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Notifications_notificationMessage",
+                            "name": "notifications_notificationTitle",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Notifications_sentToUserRoleDesignationDepartmentId",
+                            "name": "notifications_notificationMessage",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Notifications_updatedBy",
+                            "name": "notifications_sentToUserRoleDesignationDepartmentId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "notifications_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -170,7 +176,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Notifications SET notification_title = {{Notifications_notificationTitle}}, notification_message = {{Notifications_notificationMessage}}, sent_to_user_role_designation_department_id = {{Notifications_sentToUserRoleDesignationDepartmentId}}, updated_by = {{Notifications_updatedBy}} WHERE notification_id = {{notification_id}}",
+                      "queryPayload": "UPDATE notifications SET notification_id = {{notifications_notificationId}}, notification_title = {{notifications_notificationTitle}}, notification_message = {{notifications_notificationMessage}}, sent_to_user_role_designation_department_id = {{notifications_sentToUserRoleDesignationDepartmentId}}, updated_by = {{notifications_updatedBy}} WHERE notification_id = {{notification_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -185,8 +191,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Notifications updated successfully!",
-                  "errorMessage": "There was an error updating Notifications."
+                  "successMessage": "notifications updated successfully!",
+                  "errorMessage": "There was an error updating notifications."
                 }
               }]
             }
@@ -231,7 +237,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Notifications SET status = 'inactive' WHERE notification_id = {{id}}",
+                    "queryPayload": "UPDATE notifications SET status = 'inactive' WHERE notification_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -246,8 +252,8 @@
                 }
             },
             "response": {
-                "successMessage": "Notifications deleted successfully!",
-                "errorMessage": "There was an error deleting Notifications."
+                "successMessage": "notifications deleted successfully!",
+                "errorMessage": "There was an error deleting notifications."
             }
             }]
         }
@@ -256,7 +262,7 @@
     };
 
 
-      global.Addnotifications_object = {
+      global.AddNotifications_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

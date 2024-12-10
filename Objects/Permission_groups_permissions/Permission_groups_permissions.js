@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT permission_group_permission_id as Permission_groups_permissions_permissionGroupPermissionId, group_id as Permission_groups_permissions_groupId, permission_id as Permission_groups_permissions_permissionId, status as Permission_groups_permissions_status, updated_by as Permission_groups_permissions_updatedBy, updated_at as Permission_groups_permissions_updatedAt, created_at as Permission_groups_permissions_createdAt, COUNT(*) OVER () AS table_count FROM Permission_groups_permissions",
+                      "queryPayload": "SELECT permission_group_permission_id as permission_groups_permissions_permissionGroupPermissionId, group_id as permission_groups_permissions_groupId, permission_id as permission_groups_permissions_permissionId, status as permission_groups_permissions_status, updated_by as permission_groups_permissions_updatedBy, updated_at as permission_groups_permissions_updatedAt, created_at as permission_groups_permissions_createdAt, COUNT(*) OVER () AS table_count FROM permission_groups_permissions",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Permission_groups_permissions retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Permission_groups_permissions."
+                  "successMessage": "permission_groups_permissions retrieved successfully!",
+                  "errorMessage": "Failed to retrieve permission_groups_permissions."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT permission_group_permission_id as Permission_groups_permissions_permissionGroupPermissionId, group_id as Permission_groups_permissions_groupId, permission_id as Permission_groups_permissions_permissionId, status as Permission_groups_permissions_status, updated_by as Permission_groups_permissions_updatedBy, updated_at as Permission_groups_permissions_updatedAt, created_at as Permission_groups_permissions_createdAt FROM Permission_groups_permissions WHERE permission_group_permission_id = {{id}}",
+                      "queryPayload": "SELECT permission_group_permission_id as permission_groups_permissions_permissionGroupPermissionId, group_id as permission_groups_permissions_groupId, permission_id as permission_groups_permissions_permissionId, status as permission_groups_permissions_status, updated_by as permission_groups_permissions_updatedBy, updated_at as permission_groups_permissions_updatedAt, created_at as permission_groups_permissions_createdAt FROM permission_groups_permissions WHERE permission_group_permission_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Permission_groups_permissions entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Permission_groups_permissions entry."
+                  "successMessage": "permission_groups_permissions entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve permission_groups_permissions entry."
                 }
               }]
             }
@@ -142,19 +142,25 @@
                     "fields": [
                         
                             {
-                            "name": "Permission_groups_permissions_groupId",
+                            "name": "permission_groups_permissions_permissionGroupPermissionId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Permission_groups_permissions_permissionId",
+                            "name": "permission_groups_permissions_groupId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Permission_groups_permissions_updatedBy",
+                            "name": "permission_groups_permissions_permissionId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "permission_groups_permissions_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -164,7 +170,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Permission_groups_permissions SET group_id = {{Permission_groups_permissions_groupId}}, permission_id = {{Permission_groups_permissions_permissionId}}, updated_by = {{Permission_groups_permissions_updatedBy}} WHERE permission_group_permission_id = {{permission_group_permission_id}}",
+                      "queryPayload": "UPDATE permission_groups_permissions SET permission_group_permission_id = {{permission_groups_permissions_permissionGroupPermissionId}}, group_id = {{permission_groups_permissions_groupId}}, permission_id = {{permission_groups_permissions_permissionId}}, updated_by = {{permission_groups_permissions_updatedBy}} WHERE permission_group_permission_id = {{permission_group_permission_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -179,8 +185,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Permission_groups_permissions updated successfully!",
-                  "errorMessage": "There was an error updating Permission_groups_permissions."
+                  "successMessage": "permission_groups_permissions updated successfully!",
+                  "errorMessage": "There was an error updating permission_groups_permissions."
                 }
               }]
             }
@@ -225,7 +231,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Permission_groups_permissions SET status = 'inactive' WHERE permission_group_permission_id = {{id}}",
+                    "queryPayload": "UPDATE permission_groups_permissions SET status = 'inactive' WHERE permission_group_permission_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -240,8 +246,8 @@
                 }
             },
             "response": {
-                "successMessage": "Permission_groups_permissions deleted successfully!",
-                "errorMessage": "There was an error deleting Permission_groups_permissions."
+                "successMessage": "permission_groups_permissions deleted successfully!",
+                "errorMessage": "There was an error deleting permission_groups_permissions."
             }
             }]
         }
@@ -250,7 +256,7 @@
     };
 
 
-      global.Addpermission_groups_permissions_object = {
+      global.AddPermission_groups_permissions_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

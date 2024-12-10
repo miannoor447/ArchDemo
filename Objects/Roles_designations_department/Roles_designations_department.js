@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT role_designation_department_id as Roles_designations_department_roleDesignationDepartmentId, designation_id as Roles_designations_department_designationId, role_id as Roles_designations_department_roleId, department_id as Roles_designations_department_departmentId, status as Roles_designations_department_status, updated_by as Roles_designations_department_updatedBy, created_at as Roles_designations_department_createdAt, updated_at as Roles_designations_department_updatedAt, COUNT(*) OVER () AS table_count FROM Roles_designations_department",
+                      "queryPayload": "SELECT role_designation_department_id as roles_designations_department_roleDesignationDepartmentId, designation_id as roles_designations_department_designationId, role_id as roles_designations_department_roleId, department_id as roles_designations_department_departmentId, status as roles_designations_department_status, updated_by as roles_designations_department_updatedBy, created_at as roles_designations_department_createdAt, updated_at as roles_designations_department_updatedAt, COUNT(*) OVER () AS table_count FROM roles_designations_department",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Roles_designations_department retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Roles_designations_department."
+                  "successMessage": "roles_designations_department retrieved successfully!",
+                  "errorMessage": "Failed to retrieve roles_designations_department."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT role_designation_department_id as Roles_designations_department_roleDesignationDepartmentId, designation_id as Roles_designations_department_designationId, role_id as Roles_designations_department_roleId, department_id as Roles_designations_department_departmentId, status as Roles_designations_department_status, updated_by as Roles_designations_department_updatedBy, created_at as Roles_designations_department_createdAt, updated_at as Roles_designations_department_updatedAt FROM Roles_designations_department WHERE role_designation_department_id = {{id}}",
+                      "queryPayload": "SELECT role_designation_department_id as roles_designations_department_roleDesignationDepartmentId, designation_id as roles_designations_department_designationId, role_id as roles_designations_department_roleId, department_id as roles_designations_department_departmentId, status as roles_designations_department_status, updated_by as roles_designations_department_updatedBy, created_at as roles_designations_department_createdAt, updated_at as roles_designations_department_updatedAt FROM roles_designations_department WHERE role_designation_department_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Roles_designations_department entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Roles_designations_department entry."
+                  "successMessage": "roles_designations_department entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve roles_designations_department entry."
                 }
               }]
             }
@@ -142,25 +142,31 @@
                     "fields": [
                         
                             {
-                            "name": "Roles_designations_department_designationId",
+                            "name": "roles_designations_department_roleDesignationDepartmentId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Roles_designations_department_roleId",
+                            "name": "roles_designations_department_designationId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Roles_designations_department_departmentId",
+                            "name": "roles_designations_department_roleId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Roles_designations_department_updatedBy",
+                            "name": "roles_designations_department_departmentId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "roles_designations_department_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -170,7 +176,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Roles_designations_department SET designation_id = {{Roles_designations_department_designationId}}, role_id = {{Roles_designations_department_roleId}}, department_id = {{Roles_designations_department_departmentId}}, updated_by = {{Roles_designations_department_updatedBy}} WHERE role_designation_department_id = {{role_designation_department_id}}",
+                      "queryPayload": "UPDATE roles_designations_department SET role_designation_department_id = {{roles_designations_department_roleDesignationDepartmentId}}, designation_id = {{roles_designations_department_designationId}}, role_id = {{roles_designations_department_roleId}}, department_id = {{roles_designations_department_departmentId}}, updated_by = {{roles_designations_department_updatedBy}} WHERE role_designation_department_id = {{role_designation_department_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -185,8 +191,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Roles_designations_department updated successfully!",
-                  "errorMessage": "There was an error updating Roles_designations_department."
+                  "successMessage": "roles_designations_department updated successfully!",
+                  "errorMessage": "There was an error updating roles_designations_department."
                 }
               }]
             }
@@ -231,7 +237,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Roles_designations_department SET status = 'inactive' WHERE role_designation_department_id = {{id}}",
+                    "queryPayload": "UPDATE roles_designations_department SET status = 'inactive' WHERE role_designation_department_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -246,8 +252,8 @@
                 }
             },
             "response": {
-                "successMessage": "Roles_designations_department deleted successfully!",
-                "errorMessage": "There was an error deleting Roles_designations_department."
+                "successMessage": "roles_designations_department deleted successfully!",
+                "errorMessage": "There was an error deleting roles_designations_department."
             }
             }]
         }
@@ -256,7 +262,7 @@
     };
 
 
-      global.Addroles_designations_department_object = {
+      global.AddRoles_designations_department_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

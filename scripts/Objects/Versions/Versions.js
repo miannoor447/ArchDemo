@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT version_id as Versions_versionId, version as Versions_version, status as Versions_status, updated_by as Versions_updatedBy, created_at as Versions_createdAt, updated_at as Versions_updatedAt, COUNT(*) OVER () AS table_count FROM Versions",
+                      "queryPayload": "SELECT version_id as versions_versionId, version as versions_version, status as versions_status, updated_by as versions_updatedBy, created_at as versions_createdAt, updated_at as versions_updatedAt, COUNT(*) OVER () AS table_count FROM versions",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Versions retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Versions."
+                  "successMessage": "versions retrieved successfully!",
+                  "errorMessage": "Failed to retrieve versions."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT version_id as Versions_versionId, version as Versions_version, status as Versions_status, updated_by as Versions_updatedBy, created_at as Versions_createdAt, updated_at as Versions_updatedAt FROM Versions WHERE version_id = {{id}}",
+                      "queryPayload": "SELECT version_id as versions_versionId, version as versions_version, status as versions_status, updated_by as versions_updatedBy, created_at as versions_createdAt, updated_at as versions_updatedAt FROM versions WHERE version_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Versions entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Versions entry."
+                  "successMessage": "versions entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve versions entry."
                 }
               }]
             }
@@ -142,13 +142,19 @@
                     "fields": [
                         
                             {
-                            "name": "Versions_version",
+                            "name": "versions_versionId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Versions_updatedBy",
+                            "name": "versions_version",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "versions_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -158,7 +164,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Versions SET version = {{Versions_version}}, updated_by = {{Versions_updatedBy}} WHERE version_id = {{version_id}}",
+                      "queryPayload": "UPDATE versions SET version_id = {{versions_versionId}}, version = {{versions_version}}, updated_by = {{versions_updatedBy}} WHERE version_id = {{version_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -173,8 +179,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Versions updated successfully!",
-                  "errorMessage": "There was an error updating Versions."
+                  "successMessage": "versions updated successfully!",
+                  "errorMessage": "There was an error updating versions."
                 }
               }]
             }
@@ -219,7 +225,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Versions SET status = 'inactive' WHERE version_id = {{id}}",
+                    "queryPayload": "UPDATE versions SET status = 'inactive' WHERE version_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -234,8 +240,8 @@
                 }
             },
             "response": {
-                "successMessage": "Versions deleted successfully!",
-                "errorMessage": "There was an error deleting Versions."
+                "successMessage": "versions deleted successfully!",
+                "errorMessage": "There was an error deleting versions."
             }
             }]
         }
@@ -244,7 +250,7 @@
     };
 
 
-      global.Addversions_object = {
+      global.AddVersions_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

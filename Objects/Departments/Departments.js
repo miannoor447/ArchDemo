@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT department_id as Departments_departmentId, department_name as Departments_departmentName, status as Departments_status, updated_by as Departments_updatedBy, created_at as Departments_createdAt, updated_at as Departments_updatedAt, COUNT(*) OVER () AS table_count FROM Departments",
+                      "queryPayload": "SELECT department_id as departments_departmentId, department_name as departments_departmentName, status as departments_status, updated_by as departments_updatedBy, created_at as departments_createdAt, updated_at as departments_updatedAt, COUNT(*) OVER () AS table_count FROM departments",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Departments retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Departments."
+                  "successMessage": "departments retrieved successfully!",
+                  "errorMessage": "Failed to retrieve departments."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT department_id as Departments_departmentId, department_name as Departments_departmentName, status as Departments_status, updated_by as Departments_updatedBy, created_at as Departments_createdAt, updated_at as Departments_updatedAt FROM Departments WHERE department_id = {{id}}",
+                      "queryPayload": "SELECT department_id as departments_departmentId, department_name as departments_departmentName, status as departments_status, updated_by as departments_updatedBy, created_at as departments_createdAt, updated_at as departments_updatedAt FROM departments WHERE department_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Departments entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Departments entry."
+                  "successMessage": "departments entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve departments entry."
                 }
               }]
             }
@@ -142,13 +142,19 @@
                     "fields": [
                         
                             {
-                            "name": "Departments_departmentName",
+                            "name": "departments_departmentId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Departments_updatedBy",
+                            "name": "departments_departmentName",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "departments_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -158,7 +164,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Departments SET department_name = {{Departments_departmentName}}, updated_by = {{Departments_updatedBy}} WHERE department_id = {{department_id}}",
+                      "queryPayload": "UPDATE departments SET department_id = {{departments_departmentId}}, department_name = {{departments_departmentName}}, updated_by = {{departments_updatedBy}} WHERE department_id = {{department_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -173,8 +179,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Departments updated successfully!",
-                  "errorMessage": "There was an error updating Departments."
+                  "successMessage": "departments updated successfully!",
+                  "errorMessage": "There was an error updating departments."
                 }
               }]
             }
@@ -219,7 +225,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Departments SET status = 'inactive' WHERE department_id = {{id}}",
+                    "queryPayload": "UPDATE departments SET status = 'inactive' WHERE department_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -234,8 +240,8 @@
                 }
             },
             "response": {
-                "successMessage": "Departments deleted successfully!",
-                "errorMessage": "There was an error deleting Departments."
+                "successMessage": "departments deleted successfully!",
+                "errorMessage": "There was an error deleting departments."
             }
             }]
         }
@@ -244,7 +250,7 @@
     };
 
 
-      global.Adddepartments_object = {
+      global.AddDepartments_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

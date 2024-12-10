@@ -4,6 +4,7 @@ const getPaginationParams = require('../Constants/getPaginationParams.js');
 const LogError = require('../databases/Errorlog'); // Import LogError
 const getDateTime = require("../Constants/getDateTime.js");
 const projectDB = require('../databases/projectDb.js');
+const logMessage = require('../LogFunctions/consoleLog.js');
 const objectResolver = async (req, res, decryptedBody, apiObject) => {
     try {
 
@@ -36,10 +37,9 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
             } else if (source === "req.query") {
                 paramValues[name] = req.query[name];
             }
-            
-            completeQuery = replaceNestedPlaceholders(completeQuery, paramValues);
         }
-
+        logMessage(`PARAM Value: ${paramValues}`);
+        completeQuery = replaceNestedPlaceholders(completeQuery, paramValues);
         // Add predefined values to the parameter values, ensuring they're quoted
         completeQuery = completeQuery
             .replace(/{{CreatedAtDate}}/g, `'${CreatedAtDate}'`)
@@ -89,9 +89,11 @@ const replaceNestedPlaceholders = (query, params) => {
 
         // Navigate through the object based on the keys
         for (const k of keys) {
+            logMessage(k);
             if (value[k] !== undefined) {
                 value = value[k];
             } else {
+                logMessage("returning null")
                 return 'NULL'; // Replace unresolved placeholders with NULL
             }
         }

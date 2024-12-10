@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT designation_id as Designations_designationId, designation_name as Designations_designationName, senior_designation_id as Designations_seniorDesignationId, status as Designations_status, updated_by as Designations_updatedBy, created_at as Designations_createdAt, updated_at as Designations_updatedAt, COUNT(*) OVER () AS table_count FROM Designations",
+                      "queryPayload": "SELECT designation_id as designations_designationId, designation_name as designations_designationName, senior_designation_id as designations_seniorDesignationId, status as designations_status, updated_by as designations_updatedBy, created_at as designations_createdAt, updated_at as designations_updatedAt, COUNT(*) OVER () AS table_count FROM designations",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Designations retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Designations."
+                  "successMessage": "designations retrieved successfully!",
+                  "errorMessage": "Failed to retrieve designations."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT designation_id as Designations_designationId, designation_name as Designations_designationName, senior_designation_id as Designations_seniorDesignationId, status as Designations_status, updated_by as Designations_updatedBy, created_at as Designations_createdAt, updated_at as Designations_updatedAt FROM Designations WHERE designation_id = {{id}}",
+                      "queryPayload": "SELECT designation_id as designations_designationId, designation_name as designations_designationName, senior_designation_id as designations_seniorDesignationId, status as designations_status, updated_by as designations_updatedBy, created_at as designations_createdAt, updated_at as designations_updatedAt FROM designations WHERE designation_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Designations entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Designations entry."
+                  "successMessage": "designations entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve designations entry."
                 }
               }]
             }
@@ -142,19 +142,25 @@
                     "fields": [
                         
                             {
-                            "name": "Designations_designationName",
+                            "name": "designations_designationId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Designations_seniorDesignationId",
+                            "name": "designations_designationName",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Designations_updatedBy",
+                            "name": "designations_seniorDesignationId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "designations_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -164,7 +170,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Designations SET designation_name = {{Designations_designationName}}, senior_designation_id = {{Designations_seniorDesignationId}}, updated_by = {{Designations_updatedBy}} WHERE designation_id = {{designation_id}}",
+                      "queryPayload": "UPDATE designations SET designation_id = {{designations_designationId}}, designation_name = {{designations_designationName}}, senior_designation_id = {{designations_seniorDesignationId}}, updated_by = {{designations_updatedBy}} WHERE designation_id = {{designation_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -179,8 +185,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Designations updated successfully!",
-                  "errorMessage": "There was an error updating Designations."
+                  "successMessage": "designations updated successfully!",
+                  "errorMessage": "There was an error updating designations."
                 }
               }]
             }
@@ -225,7 +231,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Designations SET status = 'inactive' WHERE designation_id = {{id}}",
+                    "queryPayload": "UPDATE designations SET status = 'inactive' WHERE designation_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -240,8 +246,8 @@
                 }
             },
             "response": {
-                "successMessage": "Designations deleted successfully!",
-                "errorMessage": "There was an error deleting Designations."
+                "successMessage": "designations deleted successfully!",
+                "errorMessage": "There was an error deleting designations."
             }
             }]
         }
@@ -250,7 +256,7 @@
     };
 
 
-      global.Adddesignations_object = {
+      global.AddDesignations_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

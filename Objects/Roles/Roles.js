@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT role_id as Roles_roleId, role_name as Roles_roleName, senior_role_id as Roles_seniorRoleId, status as Roles_status, updated_by as Roles_updatedBy, created_at as Roles_createdAt, updated_at as Roles_updatedAt, COUNT(*) OVER () AS table_count FROM Roles",
+                      "queryPayload": "SELECT role_id as roles_roleId, role_name as roles_roleName, senior_role_id as roles_seniorRoleId, status as roles_status, updated_by as roles_updatedBy, created_at as roles_createdAt, updated_at as roles_updatedAt, COUNT(*) OVER () AS table_count FROM roles",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Roles retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Roles."
+                  "successMessage": "roles retrieved successfully!",
+                  "errorMessage": "Failed to retrieve roles."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT role_id as Roles_roleId, role_name as Roles_roleName, senior_role_id as Roles_seniorRoleId, status as Roles_status, updated_by as Roles_updatedBy, created_at as Roles_createdAt, updated_at as Roles_updatedAt FROM Roles WHERE role_id = {{id}}",
+                      "queryPayload": "SELECT role_id as roles_roleId, role_name as roles_roleName, senior_role_id as roles_seniorRoleId, status as roles_status, updated_by as roles_updatedBy, created_at as roles_createdAt, updated_at as roles_updatedAt FROM roles WHERE role_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Roles entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Roles entry."
+                  "successMessage": "roles entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve roles entry."
                 }
               }]
             }
@@ -142,19 +142,25 @@
                     "fields": [
                         
                             {
-                            "name": "Roles_roleName",
+                            "name": "roles_roleId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Roles_seniorRoleId",
+                            "name": "roles_roleName",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Roles_updatedBy",
+                            "name": "roles_seniorRoleId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "roles_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -164,7 +170,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Roles SET role_name = {{Roles_roleName}}, senior_role_id = {{Roles_seniorRoleId}}, updated_by = {{Roles_updatedBy}} WHERE role_id = {{role_id}}",
+                      "queryPayload": "UPDATE roles SET role_id = {{roles_roleId}}, role_name = {{roles_roleName}}, senior_role_id = {{roles_seniorRoleId}}, updated_by = {{roles_updatedBy}} WHERE role_id = {{role_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -179,8 +185,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Roles updated successfully!",
-                  "errorMessage": "There was an error updating Roles."
+                  "successMessage": "roles updated successfully!",
+                  "errorMessage": "There was an error updating roles."
                 }
               }]
             }
@@ -225,7 +231,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Roles SET status = 'inactive' WHERE role_id = {{id}}",
+                    "queryPayload": "UPDATE roles SET status = 'inactive' WHERE role_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -240,8 +246,8 @@
                 }
             },
             "response": {
-                "successMessage": "Roles deleted successfully!",
-                "errorMessage": "There was an error deleting Roles."
+                "successMessage": "roles deleted successfully!",
+                "errorMessage": "There was an error deleting roles."
             }
             }]
         }
@@ -250,7 +256,7 @@
     };
 
 
-      global.Addroles_object = {
+      global.AddRoles_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

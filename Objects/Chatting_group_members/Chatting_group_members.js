@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT chatting_group_member_id as Chatting_group_members_chattingGroupMemberId, chatting_group_id as Chatting_group_members_chattingGroupId, user_role_designation_department_id as Chatting_group_members_userRoleDesignationDepartmentId, chatting_group_permission_id as Chatting_group_members_chattingGroupPermissionId, status as Chatting_group_members_status, updated_by as Chatting_group_members_updatedBy, created_at as Chatting_group_members_createdAt, updated_at as Chatting_group_members_updatedAt, COUNT(*) OVER () AS table_count FROM Chatting_group_members",
+                      "queryPayload": "SELECT chatting_group_member_id as chatting_group_members_chattingGroupMemberId, chatting_group_id as chatting_group_members_chattingGroupId, user_role_designation_department_id as chatting_group_members_userRoleDesignationDepartmentId, chatting_group_permission_id as chatting_group_members_chattingGroupPermissionId, status as chatting_group_members_status, updated_by as chatting_group_members_updatedBy, created_at as chatting_group_members_createdAt, updated_at as chatting_group_members_updatedAt, COUNT(*) OVER () AS table_count FROM chatting_group_members",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Chatting_group_members retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Chatting_group_members."
+                  "successMessage": "chatting_group_members retrieved successfully!",
+                  "errorMessage": "Failed to retrieve chatting_group_members."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT chatting_group_member_id as Chatting_group_members_chattingGroupMemberId, chatting_group_id as Chatting_group_members_chattingGroupId, user_role_designation_department_id as Chatting_group_members_userRoleDesignationDepartmentId, chatting_group_permission_id as Chatting_group_members_chattingGroupPermissionId, status as Chatting_group_members_status, updated_by as Chatting_group_members_updatedBy, created_at as Chatting_group_members_createdAt, updated_at as Chatting_group_members_updatedAt FROM Chatting_group_members WHERE chatting_group_member_id = {{id}}",
+                      "queryPayload": "SELECT chatting_group_member_id as chatting_group_members_chattingGroupMemberId, chatting_group_id as chatting_group_members_chattingGroupId, user_role_designation_department_id as chatting_group_members_userRoleDesignationDepartmentId, chatting_group_permission_id as chatting_group_members_chattingGroupPermissionId, status as chatting_group_members_status, updated_by as chatting_group_members_updatedBy, created_at as chatting_group_members_createdAt, updated_at as chatting_group_members_updatedAt FROM chatting_group_members WHERE chatting_group_member_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Chatting_group_members entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Chatting_group_members entry."
+                  "successMessage": "chatting_group_members entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve chatting_group_members entry."
                 }
               }]
             }
@@ -142,25 +142,31 @@
                     "fields": [
                         
                             {
-                            "name": "Chatting_group_members_chattingGroupId",
+                            "name": "chatting_group_members_chattingGroupMemberId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Chatting_group_members_userRoleDesignationDepartmentId",
+                            "name": "chatting_group_members_chattingGroupId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Chatting_group_members_chattingGroupPermissionId",
+                            "name": "chatting_group_members_userRoleDesignationDepartmentId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Chatting_group_members_updatedBy",
+                            "name": "chatting_group_members_chattingGroupPermissionId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "chatting_group_members_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -170,7 +176,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Chatting_group_members SET chatting_group_id = {{Chatting_group_members_chattingGroupId}}, user_role_designation_department_id = {{Chatting_group_members_userRoleDesignationDepartmentId}}, chatting_group_permission_id = {{Chatting_group_members_chattingGroupPermissionId}}, updated_by = {{Chatting_group_members_updatedBy}} WHERE chatting_group_member_id = {{chatting_group_member_id}}",
+                      "queryPayload": "UPDATE chatting_group_members SET chatting_group_member_id = {{chatting_group_members_chattingGroupMemberId}}, chatting_group_id = {{chatting_group_members_chattingGroupId}}, user_role_designation_department_id = {{chatting_group_members_userRoleDesignationDepartmentId}}, chatting_group_permission_id = {{chatting_group_members_chattingGroupPermissionId}}, updated_by = {{chatting_group_members_updatedBy}} WHERE chatting_group_member_id = {{chatting_group_member_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -185,8 +191,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Chatting_group_members updated successfully!",
-                  "errorMessage": "There was an error updating Chatting_group_members."
+                  "successMessage": "chatting_group_members updated successfully!",
+                  "errorMessage": "There was an error updating chatting_group_members."
                 }
               }]
             }
@@ -231,7 +237,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Chatting_group_members SET status = 'inactive' WHERE chatting_group_member_id = {{id}}",
+                    "queryPayload": "UPDATE chatting_group_members SET status = 'inactive' WHERE chatting_group_member_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -246,8 +252,8 @@
                 }
             },
             "response": {
-                "successMessage": "Chatting_group_members deleted successfully!",
-                "errorMessage": "There was an error deleting Chatting_group_members."
+                "successMessage": "chatting_group_members deleted successfully!",
+                "errorMessage": "There was an error deleting chatting_group_members."
             }
             }]
         }
@@ -256,7 +262,7 @@
     };
 
 
-      global.Addchatting_group_members_object = {
+      global.AddChatting_group_members_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

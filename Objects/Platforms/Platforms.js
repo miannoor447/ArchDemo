@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT platform_id as Platforms_platformId, platform_name as Platforms_platformName, status as Platforms_status, updated_by as Platforms_updatedBy, created_at as Platforms_createdAt, updated_at as Platforms_updatedAt, COUNT(*) OVER () AS table_count FROM Platforms",
+                      "queryPayload": "SELECT platform_id as platforms_platformId, platform_name as platforms_platformName, status as platforms_status, updated_by as platforms_updatedBy, created_at as platforms_createdAt, updated_at as platforms_updatedAt, COUNT(*) OVER () AS table_count FROM platforms",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Platforms retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Platforms."
+                  "successMessage": "platforms retrieved successfully!",
+                  "errorMessage": "Failed to retrieve platforms."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT platform_id as Platforms_platformId, platform_name as Platforms_platformName, status as Platforms_status, updated_by as Platforms_updatedBy, created_at as Platforms_createdAt, updated_at as Platforms_updatedAt FROM Platforms WHERE platform_id = {{id}}",
+                      "queryPayload": "SELECT platform_id as platforms_platformId, platform_name as platforms_platformName, status as platforms_status, updated_by as platforms_updatedBy, created_at as platforms_createdAt, updated_at as platforms_updatedAt FROM platforms WHERE platform_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Platforms entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Platforms entry."
+                  "successMessage": "platforms entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve platforms entry."
                 }
               }]
             }
@@ -142,13 +142,19 @@
                     "fields": [
                         
                             {
-                            "name": "Platforms_platformName",
+                            "name": "platforms_platformId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Platforms_updatedBy",
+                            "name": "platforms_platformName",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "platforms_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -158,7 +164,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Platforms SET platform_name = {{Platforms_platformName}}, updated_by = {{Platforms_updatedBy}} WHERE platform_id = {{platform_id}}",
+                      "queryPayload": "UPDATE platforms SET platform_id = {{platforms_platformId}}, platform_name = {{platforms_platformName}}, updated_by = {{platforms_updatedBy}} WHERE platform_id = {{platform_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -173,8 +179,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Platforms updated successfully!",
-                  "errorMessage": "There was an error updating Platforms."
+                  "successMessage": "platforms updated successfully!",
+                  "errorMessage": "There was an error updating platforms."
                 }
               }]
             }
@@ -219,7 +225,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Platforms SET status = 'inactive' WHERE platform_id = {{id}}",
+                    "queryPayload": "UPDATE platforms SET status = 'inactive' WHERE platform_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -234,8 +240,8 @@
                 }
             },
             "response": {
-                "successMessage": "Platforms deleted successfully!",
-                "errorMessage": "There was an error deleting Platforms."
+                "successMessage": "platforms deleted successfully!",
+                "errorMessage": "There was an error deleting platforms."
             }
             }]
         }
@@ -244,7 +250,7 @@
     };
 
 
-      global.Addplatforms_object = {
+      global.AddPlatforms_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

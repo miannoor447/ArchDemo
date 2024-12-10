@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT platform_version_id as Platform_versions_platformVersionId, version_id as Platform_versions_versionId, platform_id as Platform_versions_platformId, encryption_key as Platform_versions_encryptionKey, status as Platform_versions_status, updated_by as Platform_versions_updatedBy, created_at as Platform_versions_createdAt, updated_at as Platform_versions_updatedAt, COUNT(*) OVER () AS table_count FROM Platform_versions",
+                      "queryPayload": "SELECT platform_version_id as platform_versions_platformVersionId, version_id as platform_versions_versionId, platform_id as platform_versions_platformId, encryption_key as platform_versions_encryptionKey, status as platform_versions_status, updated_by as platform_versions_updatedBy, created_at as platform_versions_createdAt, updated_at as platform_versions_updatedAt, COUNT(*) OVER () AS table_count FROM platform_versions",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Platform_versions retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Platform_versions."
+                  "successMessage": "platform_versions retrieved successfully!",
+                  "errorMessage": "Failed to retrieve platform_versions."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT platform_version_id as Platform_versions_platformVersionId, version_id as Platform_versions_versionId, platform_id as Platform_versions_platformId, encryption_key as Platform_versions_encryptionKey, status as Platform_versions_status, updated_by as Platform_versions_updatedBy, created_at as Platform_versions_createdAt, updated_at as Platform_versions_updatedAt FROM Platform_versions WHERE platform_version_id = {{id}}",
+                      "queryPayload": "SELECT platform_version_id as platform_versions_platformVersionId, version_id as platform_versions_versionId, platform_id as platform_versions_platformId, encryption_key as platform_versions_encryptionKey, status as platform_versions_status, updated_by as platform_versions_updatedBy, created_at as platform_versions_createdAt, updated_at as platform_versions_updatedAt FROM platform_versions WHERE platform_version_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Platform_versions entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Platform_versions entry."
+                  "successMessage": "platform_versions entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve platform_versions entry."
                 }
               }]
             }
@@ -142,25 +142,31 @@
                     "fields": [
                         
                             {
-                            "name": "Platform_versions_versionId",
+                            "name": "platform_versions_platformVersionId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Platform_versions_platformId",
+                            "name": "platform_versions_versionId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Platform_versions_encryptionKey",
+                            "name": "platform_versions_platformId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Platform_versions_updatedBy",
+                            "name": "platform_versions_encryptionKey",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "platform_versions_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -170,7 +176,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Platform_versions SET version_id = {{Platform_versions_versionId}}, platform_id = {{Platform_versions_platformId}}, encryption_key = {{Platform_versions_encryptionKey}}, updated_by = {{Platform_versions_updatedBy}} WHERE platform_version_id = {{platform_version_id}}",
+                      "queryPayload": "UPDATE platform_versions SET platform_version_id = {{platform_versions_platformVersionId}}, version_id = {{platform_versions_versionId}}, platform_id = {{platform_versions_platformId}}, encryption_key = {{platform_versions_encryptionKey}}, updated_by = {{platform_versions_updatedBy}} WHERE platform_version_id = {{platform_version_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -185,8 +191,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Platform_versions updated successfully!",
-                  "errorMessage": "There was an error updating Platform_versions."
+                  "successMessage": "platform_versions updated successfully!",
+                  "errorMessage": "There was an error updating platform_versions."
                 }
               }]
             }
@@ -231,7 +237,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Platform_versions SET status = 'inactive' WHERE platform_version_id = {{id}}",
+                    "queryPayload": "UPDATE platform_versions SET status = 'inactive' WHERE platform_version_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -246,8 +252,8 @@
                 }
             },
             "response": {
-                "successMessage": "Platform_versions deleted successfully!",
-                "errorMessage": "There was an error deleting Platform_versions."
+                "successMessage": "platform_versions deleted successfully!",
+                "errorMessage": "There was an error deleting platform_versions."
             }
             }]
         }
@@ -256,7 +262,7 @@
     };
 
 
-      global.Addplatform_versions_object = {
+      global.AddPlatform_versions_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

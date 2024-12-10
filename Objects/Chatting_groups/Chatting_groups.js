@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT chatting_group_id as Chatting_groups_chattingGroupId, chatting_group_name as Chatting_groups_chattingGroupName, status as Chatting_groups_status, updated_by as Chatting_groups_updatedBy, updated_at as Chatting_groups_updatedAt, created_at as Chatting_groups_createdAt, COUNT(*) OVER () AS table_count FROM Chatting_groups",
+                      "queryPayload": "SELECT chatting_group_id as chatting_groups_chattingGroupId, chatting_group_name as chatting_groups_chattingGroupName, status as chatting_groups_status, updated_by as chatting_groups_updatedBy, updated_at as chatting_groups_updatedAt, created_at as chatting_groups_createdAt, COUNT(*) OVER () AS table_count FROM chatting_groups",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Chatting_groups retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Chatting_groups."
+                  "successMessage": "chatting_groups retrieved successfully!",
+                  "errorMessage": "Failed to retrieve chatting_groups."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT chatting_group_id as Chatting_groups_chattingGroupId, chatting_group_name as Chatting_groups_chattingGroupName, status as Chatting_groups_status, updated_by as Chatting_groups_updatedBy, updated_at as Chatting_groups_updatedAt, created_at as Chatting_groups_createdAt FROM Chatting_groups WHERE chatting_group_id = {{id}}",
+                      "queryPayload": "SELECT chatting_group_id as chatting_groups_chattingGroupId, chatting_group_name as chatting_groups_chattingGroupName, status as chatting_groups_status, updated_by as chatting_groups_updatedBy, updated_at as chatting_groups_updatedAt, created_at as chatting_groups_createdAt FROM chatting_groups WHERE chatting_group_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Chatting_groups entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Chatting_groups entry."
+                  "successMessage": "chatting_groups entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve chatting_groups entry."
                 }
               }]
             }
@@ -142,13 +142,19 @@
                     "fields": [
                         
                             {
-                            "name": "Chatting_groups_chattingGroupName",
+                            "name": "chatting_groups_chattingGroupId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Chatting_groups_updatedBy",
+                            "name": "chatting_groups_chattingGroupName",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "chatting_groups_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -158,7 +164,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Chatting_groups SET chatting_group_name = {{Chatting_groups_chattingGroupName}}, updated_by = {{Chatting_groups_updatedBy}} WHERE chatting_group_id = {{chatting_group_id}}",
+                      "queryPayload": "UPDATE chatting_groups SET chatting_group_id = {{chatting_groups_chattingGroupId}}, chatting_group_name = {{chatting_groups_chattingGroupName}}, updated_by = {{chatting_groups_updatedBy}} WHERE chatting_group_id = {{chatting_group_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -173,8 +179,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Chatting_groups updated successfully!",
-                  "errorMessage": "There was an error updating Chatting_groups."
+                  "successMessage": "chatting_groups updated successfully!",
+                  "errorMessage": "There was an error updating chatting_groups."
                 }
               }]
             }
@@ -219,7 +225,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Chatting_groups SET status = 'inactive' WHERE chatting_group_id = {{id}}",
+                    "queryPayload": "UPDATE chatting_groups SET status = 'inactive' WHERE chatting_group_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -234,8 +240,8 @@
                 }
             },
             "response": {
-                "successMessage": "Chatting_groups deleted successfully!",
-                "errorMessage": "There was an error deleting Chatting_groups."
+                "successMessage": "chatting_groups deleted successfully!",
+                "errorMessage": "There was an error deleting chatting_groups."
             }
             }]
         }
@@ -244,7 +250,7 @@
     };
 
 
-      global.Addchatting_groups_object = {
+      global.AddChatting_groups_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

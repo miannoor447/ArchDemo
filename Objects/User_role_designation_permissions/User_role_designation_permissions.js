@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT user_role_designation_permission_id as User_role_designation_permissions_userRoleDesignationPermissionId, user_role_designation_department_id as User_role_designation_permissions_userRoleDesignationDepartmentId, permission_id as User_role_designation_permissions_permissionId, status as User_role_designation_permissions_status, updated_by as User_role_designation_permissions_updatedBy, updated_at as User_role_designation_permissions_updatedAt, created_at as User_role_designation_permissions_createdAt, COUNT(*) OVER () AS table_count FROM User_role_designation_permissions",
+                      "queryPayload": "SELECT user_role_designation_permission_id as user_role_designation_permissions_userRoleDesignationPermissionId, user_role_designation_department_id as user_role_designation_permissions_userRoleDesignationDepartmentId, permission_id as user_role_designation_permissions_permissionId, status as user_role_designation_permissions_status, updated_by as user_role_designation_permissions_updatedBy, updated_at as user_role_designation_permissions_updatedAt, created_at as user_role_designation_permissions_createdAt, COUNT(*) OVER () AS table_count FROM user_role_designation_permissions",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "User_role_designation_permissions retrieved successfully!",
-                  "errorMessage": "Failed to retrieve User_role_designation_permissions."
+                  "successMessage": "user_role_designation_permissions retrieved successfully!",
+                  "errorMessage": "Failed to retrieve user_role_designation_permissions."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT user_role_designation_permission_id as User_role_designation_permissions_userRoleDesignationPermissionId, user_role_designation_department_id as User_role_designation_permissions_userRoleDesignationDepartmentId, permission_id as User_role_designation_permissions_permissionId, status as User_role_designation_permissions_status, updated_by as User_role_designation_permissions_updatedBy, updated_at as User_role_designation_permissions_updatedAt, created_at as User_role_designation_permissions_createdAt FROM User_role_designation_permissions WHERE user_role_designation_permission_id = {{id}}",
+                      "queryPayload": "SELECT user_role_designation_permission_id as user_role_designation_permissions_userRoleDesignationPermissionId, user_role_designation_department_id as user_role_designation_permissions_userRoleDesignationDepartmentId, permission_id as user_role_designation_permissions_permissionId, status as user_role_designation_permissions_status, updated_by as user_role_designation_permissions_updatedBy, updated_at as user_role_designation_permissions_updatedAt, created_at as user_role_designation_permissions_createdAt FROM user_role_designation_permissions WHERE user_role_designation_permission_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "User_role_designation_permissions entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve User_role_designation_permissions entry."
+                  "successMessage": "user_role_designation_permissions entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve user_role_designation_permissions entry."
                 }
               }]
             }
@@ -142,19 +142,25 @@
                     "fields": [
                         
                             {
-                            "name": "User_role_designation_permissions_userRoleDesignationDepartmentId",
+                            "name": "user_role_designation_permissions_userRoleDesignationPermissionId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "User_role_designation_permissions_permissionId",
+                            "name": "user_role_designation_permissions_userRoleDesignationDepartmentId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "User_role_designation_permissions_updatedBy",
+                            "name": "user_role_designation_permissions_permissionId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "user_role_designation_permissions_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -164,7 +170,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE User_role_designation_permissions SET user_role_designation_department_id = {{User_role_designation_permissions_userRoleDesignationDepartmentId}}, permission_id = {{User_role_designation_permissions_permissionId}}, updated_by = {{User_role_designation_permissions_updatedBy}} WHERE user_role_designation_permission_id = {{user_role_designation_permission_id}}",
+                      "queryPayload": "UPDATE user_role_designation_permissions SET user_role_designation_permission_id = {{user_role_designation_permissions_userRoleDesignationPermissionId}}, user_role_designation_department_id = {{user_role_designation_permissions_userRoleDesignationDepartmentId}}, permission_id = {{user_role_designation_permissions_permissionId}}, updated_by = {{user_role_designation_permissions_updatedBy}} WHERE user_role_designation_permission_id = {{user_role_designation_permission_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -179,8 +185,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "User_role_designation_permissions updated successfully!",
-                  "errorMessage": "There was an error updating User_role_designation_permissions."
+                  "successMessage": "user_role_designation_permissions updated successfully!",
+                  "errorMessage": "There was an error updating user_role_designation_permissions."
                 }
               }]
             }
@@ -225,7 +231,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE User_role_designation_permissions SET status = 'inactive' WHERE user_role_designation_permission_id = {{id}}",
+                    "queryPayload": "UPDATE user_role_designation_permissions SET status = 'inactive' WHERE user_role_designation_permission_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -240,8 +246,8 @@
                 }
             },
             "response": {
-                "successMessage": "User_role_designation_permissions deleted successfully!",
-                "errorMessage": "There was an error deleting User_role_designation_permissions."
+                "successMessage": "user_role_designation_permissions deleted successfully!",
+                "errorMessage": "There was an error deleting user_role_designation_permissions."
             }
             }]
         }
@@ -250,7 +256,7 @@
     };
 
 
-      global.Adduser_role_designation_permissions_object = {
+      global.AddUser_role_designation_permissions_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

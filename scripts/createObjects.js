@@ -16,11 +16,11 @@ const snakeToCamel = (str) => {
   
 // Template for the API objects
 const apiTemplates = {
-    listAll: (table, columns) => {
+    listAll: (table, columns, objectName) => {
         const aliasedColumns = columns.map(col => `${col.COLUMN_NAME} as ${table}_${snakeToCamel(col.COLUMN_NAME)}`).join(', ');
       
         return `
-      global.List${table}All_object = {
+      global.List${objectName}All_object = {
         "versions": {
           "versionData": [{
             "=1.0": {
@@ -74,11 +74,11 @@ const apiTemplates = {
       };`;
       },
       
-      listOne: (table, primaryKey, columns) => {
+      listOne: (table, primaryKey, columns, objectName) => {
         const aliasedColumns = columns.map(col => `${col.COLUMN_NAME} as ${table}_${snakeToCamel(col.COLUMN_NAME)}`).join(', ');
       
         return `
-      global.List${table}_object = {
+      global.List${objectName}_object = {
         "versions": {
           "versionData": [{
             "=1.0": {
@@ -139,11 +139,11 @@ const apiTemplates = {
       };`;
       },
       
-      update: (table, primaryKey, columns) => {
-        const setClause = columns.filter(col => ![primaryKey, "status", "created_at", "updated_at"].includes(col.COLUMN_NAME)).map(col => `${col.COLUMN_NAME} = {{${table}_${snakeToCamel(col.COLUMN_NAME)}}}`).join(', ');
+      update: (table, primaryKey, columns,objectName) => {
+        const setClause = columns.filter(col => !["status", "created_at", "updated_at"].includes(col.COLUMN_NAME)).map(col => `${col.COLUMN_NAME} = {{${table}_${snakeToCamel(col.COLUMN_NAME)}}}`).join(', ');
       
         return `
-      global.Update${table}_object = {
+      global.Update${objectName}_object = {
         "versions": {
           "versionData": [{
             "=1.0": {
@@ -169,7 +169,7 @@ const apiTemplates = {
                   "parameters": {
                     "fields": [
                         ${columns
-                            .filter(col => ![primaryKey, "status", "created_at", "updated_at"].includes(col.COLUMN_NAME)) // Exclude specific columns
+                            .filter(col => ![ "status", "created_at", "updated_at"].includes(col.COLUMN_NAME)) // Exclude specific columns
                             .map(col => `
                             {
                             "name": "${table}_${snakeToCamel(col.COLUMN_NAME)}",
@@ -207,8 +207,8 @@ const apiTemplates = {
       };`;
       },
       
-    delete: (table, primaryKey) => `
-    global.Delete${table}_object = {
+    delete: (table, primaryKey,objectName) => `
+    global.Delete${objectName}_object = {
     "versions": {
         "versionData": [{
         "=1.0": {
@@ -268,9 +268,9 @@ const apiTemplates = {
     }
     };`,
 
-    add: (table, columns, primaryKey) => {
+    add: (table, columns, primaryKey,objectName) => {
         return `
-      global.Add${table}_object = {
+      global.Add${objectName}_object = {
         "versions": {
           "versionData": [{
             "=1.0": {
@@ -387,23 +387,23 @@ const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + strin
 `;
 
       // Add listAll API template
-      fileContent += apiTemplates.listAll(capitalizedTableName, columns);
+      fileContent += apiTemplates.listAll(TABLE_NAME, columns, capitalizedTableName);
       fileContent += '\n\n';
 
       // Add listOne API template
-      fileContent += apiTemplates.listOne(capitalizedTableName, primaryKey, columns);
+      fileContent += apiTemplates.listOne(TABLE_NAME, primaryKey, columns, capitalizedTableName);
       fileContent += '\n\n';
 
       // Add update API template
-      fileContent += apiTemplates.update(capitalizedTableName, primaryKey, columns);
+      fileContent += apiTemplates.update(TABLE_NAME, primaryKey, columns, capitalizedTableName);
       fileContent += '\n\n';
 
       // Add delete API template
-      fileContent += apiTemplates.delete(capitalizedTableName, primaryKey);
+      fileContent += apiTemplates.delete(TABLE_NAME, primaryKey, capitalizedTableName);
       fileContent += '\n\n';
 
       // Add add API template
-      fileContent += apiTemplates.add(TABLE_NAME, columns, primaryKey);
+      fileContent += apiTemplates.add(TABLE_NAME, columns, primaryKey, capitalizedTableName);
       fileContent += '\n\n';
 
       // Write to file in the table's folder

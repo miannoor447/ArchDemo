@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT task_history_id as Task_history_taskHistoryId, task_id as Task_history_taskId, task_flow_step_id as Task_history_taskFlowStepId, action as Task_history_action, status as Task_history_status, action_by_user_role_designation_department_id as Task_history_actionByUserRoleDesignationDepartmentId, updated_at as Task_history_updatedAt, created_at as Task_history_createdAt, updated_by as Task_history_updatedBy, COUNT(*) OVER () AS table_count FROM Task_history",
+                      "queryPayload": "SELECT task_history_id as task_history_taskHistoryId, task_id as task_history_taskId, task_flow_step_id as task_history_taskFlowStepId, action as task_history_action, status as task_history_status, action_by_user_role_designation_department_id as task_history_actionByUserRoleDesignationDepartmentId, updated_at as task_history_updatedAt, created_at as task_history_createdAt, updated_by as task_history_updatedBy, COUNT(*) OVER () AS table_count FROM task_history",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Task_history retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Task_history."
+                  "successMessage": "task_history retrieved successfully!",
+                  "errorMessage": "Failed to retrieve task_history."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT task_history_id as Task_history_taskHistoryId, task_id as Task_history_taskId, task_flow_step_id as Task_history_taskFlowStepId, action as Task_history_action, status as Task_history_status, action_by_user_role_designation_department_id as Task_history_actionByUserRoleDesignationDepartmentId, updated_at as Task_history_updatedAt, created_at as Task_history_createdAt, updated_by as Task_history_updatedBy FROM Task_history WHERE task_history_id = {{id}}",
+                      "queryPayload": "SELECT task_history_id as task_history_taskHistoryId, task_id as task_history_taskId, task_flow_step_id as task_history_taskFlowStepId, action as task_history_action, status as task_history_status, action_by_user_role_designation_department_id as task_history_actionByUserRoleDesignationDepartmentId, updated_at as task_history_updatedAt, created_at as task_history_createdAt, updated_by as task_history_updatedBy FROM task_history WHERE task_history_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Task_history entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Task_history entry."
+                  "successMessage": "task_history entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve task_history entry."
                 }
               }]
             }
@@ -142,31 +142,37 @@
                     "fields": [
                         
                             {
-                            "name": "Task_history_taskId",
+                            "name": "task_history_taskHistoryId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_history_taskFlowStepId",
+                            "name": "task_history_taskId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_history_action",
+                            "name": "task_history_taskFlowStepId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_history_actionByUserRoleDesignationDepartmentId",
+                            "name": "task_history_action",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Task_history_updatedBy",
+                            "name": "task_history_actionByUserRoleDesignationDepartmentId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "task_history_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -176,7 +182,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Task_history SET task_id = {{Task_history_taskId}}, task_flow_step_id = {{Task_history_taskFlowStepId}}, action = {{Task_history_action}}, action_by_user_role_designation_department_id = {{Task_history_actionByUserRoleDesignationDepartmentId}}, updated_by = {{Task_history_updatedBy}} WHERE task_history_id = {{task_history_id}}",
+                      "queryPayload": "UPDATE task_history SET task_history_id = {{task_history_taskHistoryId}}, task_id = {{task_history_taskId}}, task_flow_step_id = {{task_history_taskFlowStepId}}, action = {{task_history_action}}, action_by_user_role_designation_department_id = {{task_history_actionByUserRoleDesignationDepartmentId}}, updated_by = {{task_history_updatedBy}} WHERE task_history_id = {{task_history_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -191,8 +197,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Task_history updated successfully!",
-                  "errorMessage": "There was an error updating Task_history."
+                  "successMessage": "task_history updated successfully!",
+                  "errorMessage": "There was an error updating task_history."
                 }
               }]
             }
@@ -237,7 +243,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Task_history SET status = 'inactive' WHERE task_history_id = {{id}}",
+                    "queryPayload": "UPDATE task_history SET status = 'inactive' WHERE task_history_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -252,8 +258,8 @@
                 }
             },
             "response": {
-                "successMessage": "Task_history deleted successfully!",
-                "errorMessage": "There was an error deleting Task_history."
+                "successMessage": "task_history deleted successfully!",
+                "errorMessage": "There was an error deleting task_history."
             }
             }]
         }
@@ -262,7 +268,7 @@
     };
 
 
-      global.Addtask_history_object = {
+      global.AddTask_history_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

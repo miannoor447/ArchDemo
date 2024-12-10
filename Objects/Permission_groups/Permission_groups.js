@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT permission_group_id as Permission_groups_permissionGroupId, group_name as Permission_groups_groupName, status as Permission_groups_status, updated_by as Permission_groups_updatedBy, created_at as Permission_groups_createdAt, updated_at as Permission_groups_updatedAt, COUNT(*) OVER () AS table_count FROM Permission_groups",
+                      "queryPayload": "SELECT permission_group_id as permission_groups_permissionGroupId, group_name as permission_groups_groupName, status as permission_groups_status, updated_by as permission_groups_updatedBy, created_at as permission_groups_createdAt, updated_at as permission_groups_updatedAt, COUNT(*) OVER () AS table_count FROM permission_groups",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Permission_groups retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Permission_groups."
+                  "successMessage": "permission_groups retrieved successfully!",
+                  "errorMessage": "Failed to retrieve permission_groups."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT permission_group_id as Permission_groups_permissionGroupId, group_name as Permission_groups_groupName, status as Permission_groups_status, updated_by as Permission_groups_updatedBy, created_at as Permission_groups_createdAt, updated_at as Permission_groups_updatedAt FROM Permission_groups WHERE permission_group_id = {{id}}",
+                      "queryPayload": "SELECT permission_group_id as permission_groups_permissionGroupId, group_name as permission_groups_groupName, status as permission_groups_status, updated_by as permission_groups_updatedBy, created_at as permission_groups_createdAt, updated_at as permission_groups_updatedAt FROM permission_groups WHERE permission_group_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Permission_groups entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Permission_groups entry."
+                  "successMessage": "permission_groups entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve permission_groups entry."
                 }
               }]
             }
@@ -142,13 +142,19 @@
                     "fields": [
                         
                             {
-                            "name": "Permission_groups_groupName",
+                            "name": "permission_groups_permissionGroupId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Permission_groups_updatedBy",
+                            "name": "permission_groups_groupName",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "permission_groups_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -158,7 +164,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Permission_groups SET group_name = {{Permission_groups_groupName}}, updated_by = {{Permission_groups_updatedBy}} WHERE permission_group_id = {{permission_group_id}}",
+                      "queryPayload": "UPDATE permission_groups SET permission_group_id = {{permission_groups_permissionGroupId}}, group_name = {{permission_groups_groupName}}, updated_by = {{permission_groups_updatedBy}} WHERE permission_group_id = {{permission_group_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -173,8 +179,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Permission_groups updated successfully!",
-                  "errorMessage": "There was an error updating Permission_groups."
+                  "successMessage": "permission_groups updated successfully!",
+                  "errorMessage": "There was an error updating permission_groups."
                 }
               }]
             }
@@ -219,7 +225,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Permission_groups SET status = 'inactive' WHERE permission_group_id = {{id}}",
+                    "queryPayload": "UPDATE permission_groups SET status = 'inactive' WHERE permission_group_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -234,8 +240,8 @@
                 }
             },
             "response": {
-                "successMessage": "Permission_groups deleted successfully!",
-                "errorMessage": "There was an error deleting Permission_groups."
+                "successMessage": "permission_groups deleted successfully!",
+                "errorMessage": "There was an error deleting permission_groups."
             }
             }]
         }
@@ -244,7 +250,7 @@
     };
 
 
-      global.Addpermission_groups_object = {
+      global.AddPermission_groups_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

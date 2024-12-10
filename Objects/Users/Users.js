@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT user_id as Users_userId, email as Users_email, first_name as Users_firstName, last_name as Users_lastName, phone_no as Users_phoneNo, cnic as Users_cnic, gender as Users_gender, father_name as Users_fatherName, image_attachment_id as Users_imageAttachmentId, address as Users_address, date_of_birth as Users_dateOfBirth, blood_group as Users_bloodGroup, religion as Users_religion, status as Users_status, updated_by as Users_updatedBy, created_at as Users_createdAt, updated_at as Users_updatedAt, COUNT(*) OVER () AS table_count FROM Users",
+                      "queryPayload": "SELECT user_id as users_userId, email as users_email, first_name as users_firstName, last_name as users_lastName, phone_no as users_phoneNo, cnic as users_cnic, gender as users_gender, father_name as users_fatherName, image_attachment_id as users_imageAttachmentId, address as users_address, date_of_birth as users_dateOfBirth, blood_group as users_bloodGroup, religion as users_religion, status as users_status, updated_by as users_updatedBy, created_at as users_createdAt, updated_at as users_updatedAt, COUNT(*) OVER () AS table_count FROM users",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Users retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Users."
+                  "successMessage": "users retrieved successfully!",
+                  "errorMessage": "Failed to retrieve users."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT user_id as Users_userId, email as Users_email, first_name as Users_firstName, last_name as Users_lastName, phone_no as Users_phoneNo, cnic as Users_cnic, gender as Users_gender, father_name as Users_fatherName, image_attachment_id as Users_imageAttachmentId, address as Users_address, date_of_birth as Users_dateOfBirth, blood_group as Users_bloodGroup, religion as Users_religion, status as Users_status, updated_by as Users_updatedBy, created_at as Users_createdAt, updated_at as Users_updatedAt FROM Users WHERE user_id = {{id}}",
+                      "queryPayload": "SELECT user_id as users_userId, email as users_email, first_name as users_firstName, last_name as users_lastName, phone_no as users_phoneNo, cnic as users_cnic, gender as users_gender, father_name as users_fatherName, image_attachment_id as users_imageAttachmentId, address as users_address, date_of_birth as users_dateOfBirth, blood_group as users_bloodGroup, religion as users_religion, status as users_status, updated_by as users_updatedBy, created_at as users_createdAt, updated_at as users_updatedAt FROM users WHERE user_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Users entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Users entry."
+                  "successMessage": "users entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve users entry."
                 }
               }]
             }
@@ -127,7 +127,7 @@
                     "pagination": false
                   },
                   "communication": {
-                    //"encryption" : false
+                    // "encryption" : false
                     "encryption": {
                       "platformEncryption" : true,
                     }
@@ -142,79 +142,85 @@
                     "fields": [
                         
                             {
-                            "name": "Users_email",
+                            "name": "users_userId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_firstName",
+                            "name": "users_email",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_lastName",
+                            "name": "users_firstName",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_phoneNo",
+                            "name": "users_lastName",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_cnic",
+                            "name": "users_phoneNo",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_gender",
+                            "name": "users_cnic",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_fatherName",
+                            "name": "users_gender",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_imageAttachmentId",
+                            "name": "users_fatherName",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_address",
+                            "name": "users_imageAttachmentId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_dateOfBirth",
+                            "name": "users_address",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_bloodGroup",
+                            "name": "users_dateOfBirth",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_religion",
+                            "name": "users_bloodGroup",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Users_updatedBy",
+                            "name": "users_religion",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "users_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -223,8 +229,8 @@
                   },
                   "apiInfo": {
                     "query": {
-                      "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Users SET email = {{Users_email}}, first_name = {{Users_firstName}}, last_name = {{Users_lastName}}, phone_no = {{Users_phoneNo}}, cnic = {{Users_cnic}}, gender = {{Users_gender}}, father_name = {{Users_fatherName}}, image_attachment_id = {{Users_imageAttachmentId}}, address = {{Users_address}}, date_of_birth = {{Users_dateOfBirth}}, blood_group = {{Users_bloodGroup}}, religion = {{Users_religion}}, updated_by = {{Users_updatedBy}} WHERE user_id = {{user_id}}",
+                      "queryNature": "PUT",
+                      "queryPayload": "UPDATE users SET user_id = {{users_userId}}, email = {{users_email}}, first_name = {{users_firstName}}, last_name = {{users_lastName}}, phone_no = {{users_phoneNo}}, cnic = {{users_cnic}}, gender = {{users_gender}}, father_name = {{users_fatherName}}, image_attachment_id = {{users_imageAttachmentId}}, address = {{users_address}}, date_of_birth = {{users_dateOfBirth}}, blood_group = {{users_bloodGroup}}, religion = {{users_religion}}, updated_by = {{users_updatedBy}} WHERE user_id = {{users_userId}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -239,8 +245,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Users updated successfully!",
-                  "errorMessage": "There was an error updating Users."
+                  "successMessage": "users updated successfully!",
+                  "errorMessage": "There was an error updating users."
                 }
               }]
             }
@@ -261,7 +267,7 @@
                 "pagination": false
                 },
                 "communication": {
-                    //"encryption": false,
+                    // "encryption": false,
                     "encryption": {
                         "platformEncryption": true,
                     }
@@ -285,7 +291,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Users SET status = 'inactive' WHERE user_id = {{id}}",
+                    "queryPayload": "UPDATE users SET status = 'inactive' WHERE user_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -300,8 +306,8 @@
                 }
             },
             "response": {
-                "successMessage": "Users deleted successfully!",
-                "errorMessage": "There was an error deleting Users."
+                "successMessage": "users deleted successfully!",
+                "errorMessage": "There was an error deleting users."
             }
             }]
         }
@@ -310,7 +316,7 @@
     };
 
 
-      global.Addusers_object = {
+      global.AddUsers_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

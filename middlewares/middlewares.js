@@ -38,7 +38,6 @@ const middlewareHandler = async (req, res, next) => {
         const { config, data, response } = await handleVersionChecking(req, res, apiObject);    
         const { features } = config;
         let decryptedPayload = req.body;
-        logMessage(decryptedPayload, req.body);
         let encryptionKey = null;
         if (req.method !== data.requestMetaData.requestMethod) {
             const errorObject = {
@@ -53,6 +52,7 @@ const middlewareHandler = async (req, res, next) => {
         if (config.communication.encryption) {
             ({ decryptedPayload, encryptionKey, PlatformName, PlatformVersion } = await handleEncryption(req, res, { config, data, response }));
         }
+        logMessage([`Decrypted Payload =  ${decryptedPayload}`, `Req Body = ${req.body}`]);
         if (data.requestMetaData.permission) {
             try {
                 permissionChecker(req, res, data, decryptedPayload, requestedPath);

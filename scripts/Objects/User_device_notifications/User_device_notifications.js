@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT user_device_notification_id as User_device_notifications_userDeviceNotificationId, user_device_id as User_device_notifications_userDeviceId, notification_id as User_device_notifications_notificationId, status as User_device_notifications_status, updated_by as User_device_notifications_updatedBy, updated_at as User_device_notifications_updatedAt, created_at as User_device_notifications_createdAt, COUNT(*) OVER () AS table_count FROM User_device_notifications",
+                      "queryPayload": "SELECT user_device_notification_id as user_device_notifications_userDeviceNotificationId, user_device_id as user_device_notifications_userDeviceId, notification_id as user_device_notifications_notificationId, status as user_device_notifications_status, updated_by as user_device_notifications_updatedBy, updated_at as user_device_notifications_updatedAt, created_at as user_device_notifications_createdAt, COUNT(*) OVER () AS table_count FROM user_device_notifications",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "User_device_notifications retrieved successfully!",
-                  "errorMessage": "Failed to retrieve User_device_notifications."
+                  "successMessage": "user_device_notifications retrieved successfully!",
+                  "errorMessage": "Failed to retrieve user_device_notifications."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT user_device_notification_id as User_device_notifications_userDeviceNotificationId, user_device_id as User_device_notifications_userDeviceId, notification_id as User_device_notifications_notificationId, status as User_device_notifications_status, updated_by as User_device_notifications_updatedBy, updated_at as User_device_notifications_updatedAt, created_at as User_device_notifications_createdAt FROM User_device_notifications WHERE user_device_notification_id = {{id}}",
+                      "queryPayload": "SELECT user_device_notification_id as user_device_notifications_userDeviceNotificationId, user_device_id as user_device_notifications_userDeviceId, notification_id as user_device_notifications_notificationId, status as user_device_notifications_status, updated_by as user_device_notifications_updatedBy, updated_at as user_device_notifications_updatedAt, created_at as user_device_notifications_createdAt FROM user_device_notifications WHERE user_device_notification_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "User_device_notifications entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve User_device_notifications entry."
+                  "successMessage": "user_device_notifications entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve user_device_notifications entry."
                 }
               }]
             }
@@ -142,19 +142,25 @@
                     "fields": [
                         
                             {
-                            "name": "User_device_notifications_userDeviceId",
+                            "name": "user_device_notifications_userDeviceNotificationId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "User_device_notifications_notificationId",
+                            "name": "user_device_notifications_userDeviceId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "User_device_notifications_updatedBy",
+                            "name": "user_device_notifications_notificationId",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "user_device_notifications_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -164,7 +170,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE User_device_notifications SET user_device_id = {{User_device_notifications_userDeviceId}}, notification_id = {{User_device_notifications_notificationId}}, updated_by = {{User_device_notifications_updatedBy}} WHERE user_device_notification_id = {{user_device_notification_id}}",
+                      "queryPayload": "UPDATE user_device_notifications SET user_device_notification_id = {{user_device_notifications_userDeviceNotificationId}}, user_device_id = {{user_device_notifications_userDeviceId}}, notification_id = {{user_device_notifications_notificationId}}, updated_by = {{user_device_notifications_updatedBy}} WHERE user_device_notification_id = {{user_device_notification_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -179,8 +185,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "User_device_notifications updated successfully!",
-                  "errorMessage": "There was an error updating User_device_notifications."
+                  "successMessage": "user_device_notifications updated successfully!",
+                  "errorMessage": "There was an error updating user_device_notifications."
                 }
               }]
             }
@@ -225,7 +231,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE User_device_notifications SET status = 'inactive' WHERE user_device_notification_id = {{id}}",
+                    "queryPayload": "UPDATE user_device_notifications SET status = 'inactive' WHERE user_device_notification_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -240,8 +246,8 @@
                 }
             },
             "response": {
-                "successMessage": "User_device_notifications deleted successfully!",
-                "errorMessage": "There was an error deleting User_device_notifications."
+                "successMessage": "user_device_notifications deleted successfully!",
+                "errorMessage": "There was an error deleting user_device_notifications."
             }
             }]
         }
@@ -250,7 +256,7 @@
     };
 
 
-      global.Adduser_device_notifications_object = {
+      global.AddUser_device_notifications_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

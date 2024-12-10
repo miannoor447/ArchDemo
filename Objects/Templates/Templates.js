@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT template_id as Templates_templateId, created_by_user_designation_department_id as Templates_createdByUserDesignationDepartmentId, template_type as Templates_templateType, template_title as Templates_templateTitle, template_body as Templates_templateBody, template_desc as Templates_templateDesc, template_audience as Templates_templateAudience, template_department as Templates_templateDepartment, list_of_attributes as Templates_listOfAttributes, status as Templates_status, updated_by as Templates_updatedBy, created_at as Templates_createdAt, updated_at as Templates_updatedAt, COUNT(*) OVER () AS table_count FROM Templates",
+                      "queryPayload": "SELECT template_id as templates_templateId, created_by_user_designation_department_id as templates_createdByUserDesignationDepartmentId, template_type as templates_templateType, template_title as templates_templateTitle, template_body as templates_templateBody, template_desc as templates_templateDesc, template_audience as templates_templateAudience, template_department as templates_templateDepartment, list_of_attributes as templates_listOfAttributes, status as templates_status, updated_by as templates_updatedBy, created_at as templates_createdAt, updated_at as templates_updatedAt, COUNT(*) OVER () AS table_count FROM templates",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Templates retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Templates."
+                  "successMessage": "templates retrieved successfully!",
+                  "errorMessage": "Failed to retrieve templates."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT template_id as Templates_templateId, created_by_user_designation_department_id as Templates_createdByUserDesignationDepartmentId, template_type as Templates_templateType, template_title as Templates_templateTitle, template_body as Templates_templateBody, template_desc as Templates_templateDesc, template_audience as Templates_templateAudience, template_department as Templates_templateDepartment, list_of_attributes as Templates_listOfAttributes, status as Templates_status, updated_by as Templates_updatedBy, created_at as Templates_createdAt, updated_at as Templates_updatedAt FROM Templates WHERE template_id = {{id}}",
+                      "queryPayload": "SELECT template_id as templates_templateId, created_by_user_designation_department_id as templates_createdByUserDesignationDepartmentId, template_type as templates_templateType, template_title as templates_templateTitle, template_body as templates_templateBody, template_desc as templates_templateDesc, template_audience as templates_templateAudience, template_department as templates_templateDepartment, list_of_attributes as templates_listOfAttributes, status as templates_status, updated_by as templates_updatedBy, created_at as templates_createdAt, updated_at as templates_updatedAt FROM templates WHERE template_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Templates entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Templates entry."
+                  "successMessage": "templates entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve templates entry."
                 }
               }]
             }
@@ -142,55 +142,61 @@
                     "fields": [
                         
                             {
-                            "name": "Templates_createdByUserDesignationDepartmentId",
+                            "name": "templates_templateId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Templates_templateType",
+                            "name": "templates_createdByUserDesignationDepartmentId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Templates_templateTitle",
+                            "name": "templates_templateType",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Templates_templateBody",
+                            "name": "templates_templateTitle",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Templates_templateDesc",
+                            "name": "templates_templateBody",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Templates_templateAudience",
+                            "name": "templates_templateDesc",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Templates_templateDepartment",
+                            "name": "templates_templateAudience",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Templates_listOfAttributes",
+                            "name": "templates_templateDepartment",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Templates_updatedBy",
+                            "name": "templates_listOfAttributes",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "templates_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -200,7 +206,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Templates SET created_by_user_designation_department_id = {{Templates_createdByUserDesignationDepartmentId}}, template_type = {{Templates_templateType}}, template_title = {{Templates_templateTitle}}, template_body = {{Templates_templateBody}}, template_desc = {{Templates_templateDesc}}, template_audience = {{Templates_templateAudience}}, template_department = {{Templates_templateDepartment}}, list_of_attributes = {{Templates_listOfAttributes}}, updated_by = {{Templates_updatedBy}} WHERE template_id = {{template_id}}",
+                      "queryPayload": "UPDATE templates SET template_id = {{templates_templateId}}, created_by_user_designation_department_id = {{templates_createdByUserDesignationDepartmentId}}, template_type = {{templates_templateType}}, template_title = {{templates_templateTitle}}, template_body = {{templates_templateBody}}, template_desc = {{templates_templateDesc}}, template_audience = {{templates_templateAudience}}, template_department = {{templates_templateDepartment}}, list_of_attributes = {{templates_listOfAttributes}}, updated_by = {{templates_updatedBy}} WHERE template_id = {{template_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -215,8 +221,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Templates updated successfully!",
-                  "errorMessage": "There was an error updating Templates."
+                  "successMessage": "templates updated successfully!",
+                  "errorMessage": "There was an error updating templates."
                 }
               }]
             }
@@ -261,7 +267,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Templates SET status = 'inactive' WHERE template_id = {{id}}",
+                    "queryPayload": "UPDATE templates SET status = 'inactive' WHERE template_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -276,8 +282,8 @@
                 }
             },
             "response": {
-                "successMessage": "Templates deleted successfully!",
-                "errorMessage": "There was an error deleting Templates."
+                "successMessage": "templates deleted successfully!",
+                "errorMessage": "There was an error deleting templates."
             }
             }]
         }
@@ -286,7 +292,7 @@
     };
 
 
-      global.Addtemplates_object = {
+      global.AddTemplates_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

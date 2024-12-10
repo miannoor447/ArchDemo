@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT permission_id as Permissions_permissionId, permission_name as Permissions_permissionName, status as Permissions_status, updated_by as Permissions_updatedBy, created_at as Permissions_createdAt, updated_at as Permissions_updatedAt, COUNT(*) OVER () AS table_count FROM Permissions",
+                      "queryPayload": "SELECT permission_id as permissions_permissionId, permission_name as permissions_permissionName, status as permissions_status, updated_by as permissions_updatedBy, created_at as permissions_createdAt, updated_at as permissions_updatedAt, COUNT(*) OVER () AS table_count FROM permissions",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Permissions retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Permissions."
+                  "successMessage": "permissions retrieved successfully!",
+                  "errorMessage": "Failed to retrieve permissions."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT permission_id as Permissions_permissionId, permission_name as Permissions_permissionName, status as Permissions_status, updated_by as Permissions_updatedBy, created_at as Permissions_createdAt, updated_at as Permissions_updatedAt FROM Permissions WHERE permission_id = {{id}}",
+                      "queryPayload": "SELECT permission_id as permissions_permissionId, permission_name as permissions_permissionName, status as permissions_status, updated_by as permissions_updatedBy, created_at as permissions_createdAt, updated_at as permissions_updatedAt FROM permissions WHERE permission_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Permissions entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve Permissions entry."
+                  "successMessage": "permissions entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve permissions entry."
                 }
               }]
             }
@@ -142,13 +142,19 @@
                     "fields": [
                         
                             {
-                            "name": "Permissions_permissionName",
+                            "name": "permissions_permissionId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "Permissions_updatedBy",
+                            "name": "permissions_permissionName",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "permissions_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -158,7 +164,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE Permissions SET permission_name = {{Permissions_permissionName}}, updated_by = {{Permissions_updatedBy}} WHERE permission_id = {{permission_id}}",
+                      "queryPayload": "UPDATE permissions SET permission_id = {{permissions_permissionId}}, permission_name = {{permissions_permissionName}}, updated_by = {{permissions_updatedBy}} WHERE permission_id = {{permission_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -173,8 +179,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "Permissions updated successfully!",
-                  "errorMessage": "There was an error updating Permissions."
+                  "successMessage": "permissions updated successfully!",
+                  "errorMessage": "There was an error updating permissions."
                 }
               }]
             }
@@ -219,7 +225,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE Permissions SET status = 'inactive' WHERE permission_id = {{id}}",
+                    "queryPayload": "UPDATE permissions SET status = 'inactive' WHERE permission_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -234,8 +240,8 @@
                 }
             },
             "response": {
-                "successMessage": "Permissions deleted successfully!",
-                "errorMessage": "There was an error deleting Permissions."
+                "successMessage": "permissions deleted successfully!",
+                "errorMessage": "There was an error deleting permissions."
             }
             }]
         }
@@ -244,7 +250,7 @@
     };
 
 
-      global.Addpermissions_object = {
+      global.AddPermissions_object = {
         "versions": {
           "versionData": [{
             "=1.0": {

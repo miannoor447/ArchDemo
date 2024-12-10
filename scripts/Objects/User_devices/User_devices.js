@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT user_device_id as User_devices_userDeviceId, user_id as User_devices_userId, device_token as User_devices_deviceToken, device_name as User_devices_deviceName, platform_version_id as User_devices_platformVersionId, os_version as User_devices_osVersion, status as User_devices_status, updated_by as User_devices_updatedBy, updated_at as User_devices_updatedAt, created_at as User_devices_createdAt, COUNT(*) OVER () AS table_count FROM User_devices",
+                      "queryPayload": "SELECT user_device_id as user_devices_userDeviceId, user_id as user_devices_userId, device_token as user_devices_deviceToken, device_name as user_devices_deviceName, platform_version_id as user_devices_platformVersionId, os_version as user_devices_osVersion, status as user_devices_status, updated_by as user_devices_updatedBy, updated_at as user_devices_updatedAt, created_at as user_devices_createdAt, COUNT(*) OVER () AS table_count FROM user_devices",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -44,8 +44,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "User_devices retrieved successfully!",
-                  "errorMessage": "Failed to retrieve User_devices."
+                  "successMessage": "user_devices retrieved successfully!",
+                  "errorMessage": "Failed to retrieve user_devices."
                 }
               }]
             }
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT user_device_id as User_devices_userDeviceId, user_id as User_devices_userId, device_token as User_devices_deviceToken, device_name as User_devices_deviceName, platform_version_id as User_devices_platformVersionId, os_version as User_devices_osVersion, status as User_devices_status, updated_by as User_devices_updatedBy, updated_at as User_devices_updatedAt, created_at as User_devices_createdAt FROM User_devices WHERE user_device_id = {{id}}",
+                      "queryPayload": "SELECT user_device_id as user_devices_userDeviceId, user_id as user_devices_userId, device_token as user_devices_deviceToken, device_name as user_devices_deviceName, platform_version_id as user_devices_platformVersionId, os_version as user_devices_osVersion, status as user_devices_status, updated_by as user_devices_updatedBy, updated_at as user_devices_updatedAt, created_at as user_devices_createdAt FROM user_devices WHERE user_device_id = {{id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -105,8 +105,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "User_devices entry retrieved successfully!",
-                  "errorMessage": "Failed to retrieve User_devices entry."
+                  "successMessage": "user_devices entry retrieved successfully!",
+                  "errorMessage": "Failed to retrieve user_devices entry."
                 }
               }]
             }
@@ -142,37 +142,43 @@
                     "fields": [
                         
                             {
-                            "name": "User_devices_userId",
+                            "name": "user_devices_userDeviceId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "User_devices_deviceToken",
+                            "name": "user_devices_userId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "User_devices_deviceName",
+                            "name": "user_devices_deviceToken",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "User_devices_platformVersionId",
+                            "name": "user_devices_deviceName",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "User_devices_osVersion",
+                            "name": "user_devices_platformVersionId",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
                             },
                             {
-                            "name": "User_devices_updatedBy",
+                            "name": "user_devices_osVersion",
+                            "validations": [],
+                            "required": true,
+                            "source": "req.body"
+                            },
+                            {
+                            "name": "user_devices_updatedBy",
                             "validations": [],
                             "required": true,
                             "source": "req.body"
@@ -182,7 +188,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "UPDATE",
-                      "queryPayload": "UPDATE User_devices SET user_id = {{User_devices_userId}}, device_token = {{User_devices_deviceToken}}, device_name = {{User_devices_deviceName}}, platform_version_id = {{User_devices_platformVersionId}}, os_version = {{User_devices_osVersion}}, updated_by = {{User_devices_updatedBy}} WHERE user_device_id = {{user_device_id}}",
+                      "queryPayload": "UPDATE user_devices SET user_device_id = {{user_devices_userDeviceId}}, user_id = {{user_devices_userId}}, device_token = {{user_devices_deviceToken}}, device_name = {{user_devices_deviceName}}, platform_version_id = {{user_devices_platformVersionId}}, os_version = {{user_devices_osVersion}}, updated_by = {{user_devices_updatedBy}} WHERE user_device_id = {{user_device_id}}",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -197,8 +203,8 @@
                   }
                 },
                 "response": {
-                  "successMessage": "User_devices updated successfully!",
-                  "errorMessage": "There was an error updating User_devices."
+                  "successMessage": "user_devices updated successfully!",
+                  "errorMessage": "There was an error updating user_devices."
                 }
               }]
             }
@@ -243,7 +249,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE User_devices SET status = 'inactive' WHERE user_device_id = {{id}}",
+                    "queryPayload": "UPDATE user_devices SET status = 'inactive' WHERE user_device_id = {{id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -258,8 +264,8 @@
                 }
             },
             "response": {
-                "successMessage": "User_devices deleted successfully!",
-                "errorMessage": "There was an error deleting User_devices."
+                "successMessage": "user_devices deleted successfully!",
+                "errorMessage": "There was an error deleting user_devices."
             }
             }]
         }
@@ -268,7 +274,7 @@
     };
 
 
-      global.Adduser_devices_object = {
+      global.AddUser_devices_object = {
         "versions": {
           "versionData": [{
             "=1.0": {
