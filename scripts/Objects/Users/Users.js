@@ -143,12 +143,6 @@
             "data": {
                 "parameters": {
                 "fields": [
-                    {
-                    "name": "user_id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
                     
                     {
                     "name": "user_id",

@@ -143,12 +143,6 @@
             "data": {
                 "parameters": {
                 "fields": [
-                    {
-                    "name": "department_id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
                     
                     {
                     "name": "department_id",

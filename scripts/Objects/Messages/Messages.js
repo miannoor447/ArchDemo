@@ -143,12 +143,6 @@
             "data": {
                 "parameters": {
                 "fields": [
-                    {
-                    "name": "message_id",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
                     
                     {
                     "name": "message_id",

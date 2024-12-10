@@ -156,12 +156,6 @@ const apiTemplates = {
             "data": {
                 "parameters": {
                 "fields": [
-                    {
-                    "name": "${primaryKey}",
-                    "validations": [],
-                    "required": true,
-                    "source": "req.body"
-                    },
                     ${columns.map(col => `
                     {
                     "name": "${col.COLUMN_NAME}",
