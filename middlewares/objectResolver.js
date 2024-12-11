@@ -57,7 +57,6 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
         } else {
             const connection = await projectDB();
             results = await executeQuery(res, completeQuery, "", connection);
-            console.log("results", results);
         }
 
         return results;
