@@ -29,7 +29,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT user_id as users_userId, email as users_email, first_name as users_firstName, last_name as users_lastName, phone_no as users_phoneNo, cnic as users_cnic, gender as users_gender, father_name as users_fatherName, image_attachment_id as users_imageAttachmentId, address as users_address, date_of_birth as users_dateOfBirth, blood_group as users_bloodGroup, religion as users_religion, status as users_status, updated_by as users_updatedBy, created_at as users_createdAt, updated_at as users_updatedAt, COUNT(*) OVER () AS table_count FROM users",
+                      "queryPayload": "SELECT user_id as users_userId,user_id as id, email as users_email, first_name as users_firstName, last_name as users_lastName, phone_no as users_phoneNo, cnic as users_cnic, gender as users_gender, father_name as users_fatherName, image_attachment_id as users_imageAttachmentId, address as users_address, date_of_birth as users_dateOfBirth, blood_group as users_bloodGroup, religion as users_religion, status as users_status, updated_by as users_updatedBy, created_at as users_createdAt, updated_at as users_updatedAt, COUNT(*) OVER () AS table_count FROM users WHERE status!='inactive'",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -90,7 +90,7 @@
                   "apiInfo": {
                     "query": {
                       "queryNature": "SELECT",
-                      "queryPayload": "SELECT user_id as users_userId, email as users_email, first_name as users_firstName, last_name as users_lastName, phone_no as users_phoneNo, cnic as users_cnic, gender as users_gender, father_name as users_fatherName, image_attachment_id as users_imageAttachmentId, address as users_address, date_of_birth as users_dateOfBirth, blood_group as users_bloodGroup, religion as users_religion, status as users_status, updated_by as users_updatedBy, created_at as users_createdAt, updated_at as users_updatedAt FROM users WHERE user_id = {{id}}",
+                      "queryPayload": "SELECT user_id as users_userId, email as users_email, first_name as users_firstName, last_name as users_lastName, phone_no as users_phoneNo, cnic as users_cnic, gender as users_gender, father_name as users_fatherName, image_attachment_id as users_imageAttachmentId, address as users_address, date_of_birth as users_dateOfBirth, blood_group as users_bloodGroup, religion as users_religion, status as users_status, updated_by as users_updatedBy, created_at as users_createdAt, updated_at as users_updatedAt FROM users WHERE user_id = {{id}} AND status!='inactive'",
                       "database": "projectDB"
                     },
                     "utilityFunctions": {
@@ -192,7 +192,7 @@
                             {
                             "name": "users_imageAttachmentId",
                             "validations": [],
-                            "required": true,
+                            "required": false,
                             "source": "req.body"
                             },
                             {
@@ -222,7 +222,7 @@
                             {
                             "name": "users_updatedBy",
                             "validations": [],
-                            "required": true,
+                            "required": false,
                             "source": "req.body"
                             }
                     ]
@@ -281,7 +281,7 @@
                 "parameters": {
                 "fields": [
                     {
-                    "name": "id",
+                    "name": "Id",
                     "validations": [],
                     "required": true,
                     "source": "req.body"
@@ -291,7 +291,7 @@
                 "apiInfo": {
                 "query": {
                     "queryNature": "UPDATE",
-                    "queryPayload": "UPDATE users SET status = 'inactive' WHERE user_id = {{id}}",
+                    "queryPayload": "UPDATE users SET status = 'inactive' WHERE user_id = {{Id}}",
                     "database": "projectDB"
                 },
                 "utilityFunctions": {
@@ -443,6 +443,66 @@
                 "response": {
                   "successMessage": "users added successfully!",
                   "errorMessage": "There was an error adding users."
+                }
+              }]
+            }
+          }]
+        }
+      };
+
+
+
+
+      //Api for dropdown
+
+
+
+      global.ListUsersDropdown_object = {
+        "versions": {
+          "versionData": [{
+            "=1.0": {
+              "steps": [{
+                "config": {
+                  "features": {
+                    "multistep": false,
+                    "parameters": true,
+                    "pagination": true
+                  },
+                  "communication": {
+                    // "encryption" : false
+                    "encryption": {
+                      "platformEncryption" : true,
+                    }
+                  },
+                  "verification": {
+                    "otp": false,
+                    "accessToken": false
+                  }
+                },
+                "data": {
+                  "parameters": {
+                    "fields": []
+                  },
+                  "apiInfo": {
+                    "query": {
+                      "queryNature": "SELECT",
+                      "queryPayload": "SELECT user_id as value ,CONCAT(first_name, ' ',last_name,' - ' ,email) as label FROM users WHERE status!='inactive'",
+                      "database": "projectDB"
+                    },
+                    "utilityFunctions": {
+                      "callbackFunction": null,
+                      "payloadFunction": []
+                    }
+                  },
+                  "requestMetaData": {
+                    "requestMethod": "GET",
+                    "permission": null,
+                    "pagination": { "pageSize": 10 }
+                  }
+                },
+                "response": {
+                  "successMessage": "users retrieved successfully!",
+                  "errorMessage": "Failed to retrieve users."
                 }
               }]
             }

@@ -21,7 +21,7 @@ const handleEncryption = async (req, res, object) => {
     }
     else if (Object.keys(req.body).length > 0){
       encryptedRequest = req.body.encryptedRequest;
-      logMessage("Extracting ER from body")
+      logMessage("Extracting ER from body::::", req.headers)
 
     }
     else{

@@ -46,7 +46,7 @@ async function initializeApp() {
     });
   } catch (error) {
     console.error('Error during initialization:', error);
-    await logErrorToDatabase(error);
+    // await logErrorToDatabase(error);
     process.exit(1); // Exit the process after logging the error
   }
 }
@@ -54,13 +54,13 @@ async function initializeApp() {
 // Global Error Handlers for Crash Detection
 process.on('uncaughtException', async (error) => {
   console.error('Uncaught Exception:', error);
-  await logErrorToDatabase(error);
+  // await logErrorToDatabase(error);
   process.exit(1); // Exit to allow PM2 or another process manager to restart the server
 });
 
 process.on('unhandledRejection', async (reason, promise) => {
   console.error('Unhandled Rejection:', reason);
-  await logErrorToDatabase(reason);
+  // await logErrorToDatabase(reason);
   process.exit(1); // Exit to allow PM2 or another process manager to restart the server
 });
 

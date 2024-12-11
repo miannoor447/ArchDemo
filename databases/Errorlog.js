@@ -13,7 +13,7 @@ async function LogError(req,res,statusCode,fileName,error, SCC){
     const values = [error.toString(), fileName, currentDateTime,currentDateTime, Status, SCC];
     const results = await executeQuery(res, query, values, connection);
     // console.log(error)
-    sendResponse(res, statusCode, "An Error Occurred", error, SCC)
+    // sendResponse(res, statusCode, "An Error Occurred", error, SCC)
 }
     catch(error)
     {

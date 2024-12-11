@@ -57,6 +57,7 @@ const objectResolver = async (req, res, decryptedBody, apiObject) => {
         } else {
             const connection = await projectDB();
             results = await executeQuery(res, completeQuery, "", connection);
+            console.log("results", results);
         }
 
         return results;
@@ -80,10 +81,18 @@ const replaceNestedPlaceholders = (query, params) => {
     return query.replace(/{{(.*?)}}/g, (match, key) => {
         const keys = key.split('.'); // Split by dot for nested properties
         let value = params;
-
         // Navigate through the object based on the keys
         for (const k of keys) {
             logMessage(k);
+         
+         
+            if (typeof value[k] === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(value[k])) {
+                // Split the string to format it into SQL DATETIME
+                const [date, time] = value[k].split('T');
+                const formattedTime = time.split('.')[0]; // Remove milliseconds
+                value[k] = `${date} ${formattedTime}`;
+            }
+            
             if (value[k] !== undefined) {
                 value = value[k];
             } else {
@@ -95,10 +104,11 @@ const replaceNestedPlaceholders = (query, params) => {
         // Format the value, wrapping strings in quotes
         if (typeof value === 'string') {
             return `'${value}'`; // Wrap string values in quotes
-        } else if (value instanceof Date) {
-            return `'${value.toISOString().slice(0, 19).replace('T', ' ')}'`; // Format date to SQL DATETIME
+        } else if (value instanceof Date ) {
+          
+            // Convert to SQL DATETIME format
+            return `'${value.toISOString().split('T')[0]} ${value.toISOString().split('T')[1].split('.')[0]}'`;
         }
-
         return value; // Return other types (like numbers) as they are
     });
 };
